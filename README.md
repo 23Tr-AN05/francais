@@ -237,11 +237,11 @@
                    <li><a href="fr/1re/oui-non/Explication_de_texte-5-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 5 :  </p></a></li>
                </ol></li> -->
         </ul></div>
-    <button onclick="myFunction('Demo21')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Étienne de La Boétie,<br> <i>Discours de la servitude volontaire</i></p></button>
+    <!--<button onclick="myFunction('Demo21')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Étienne de La Boétie,<br> <i>Discours de la servitude volontaire</i></p></button>
         <div id="Demo21" class="w3-hide w3-container w3-light-grey"> 
           <ul>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Présentation de Parcours-S1</p></a></li>
-             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>-->
+             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Structure de l'œuvre-S3 </p></a></li>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜Quelques citations-S4</p></a></li>
              <li><p id="para4">📑  Explications de texte </p><ol type="A">
@@ -253,11 +253,11 @@
                </ol></li>      
          </ul>
     </div>
-   <button onclick="myFunction('Demo21')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Bernard Le Bouyer de Fontenelle,<br> <i>Entretiens sur la pluralité des mondes</i></p></button>
-        <div id="Demo21" class="w3-hide w3-container w3-light-grey"> 
+   <button onclick="myFunction('Demo22')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Bernard Le Bouyer de Fontenelle,<br> <i>Entretiens sur la pluralité des mondes</i></p></button>
+        <div id="Demo22" class="w3-hide w3-container w3-light-grey"> 
           <ul>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Présentation de Parcours-S1</p></a></li>
-             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>-->
+             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Structure de l'œuvre-S3 </p></a></li>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜Quelques citations-S4</p></a></li>
              <li><p id="para4">📑  Explications de texte </p><ol type="A">
@@ -269,11 +269,11 @@
                </ol></li>      
          </ul>
     </div>
-    <button onclick="myFunction('Demo21')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Françoise de Graffigny,<br> <i>Lettres d'une Péruvienne</i></p></button>
-        <div id="Demo21" class="w3-hide w3-container w3-light-grey"> 
+    <button onclick="myFunction('Demo23')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Françoise de Graffigny,<br> <i>Lettres d'une Péruvienne</i></p></button>
+        <div id="Demo23" class="w3-hide w3-container w3-light-grey"> 
           <ul>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Présentation de Parcours-S1</p></a></li>
-             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>-->
+             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Structure de l'œuvre-S3 </p></a></li>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜Quelques citations-S4</p></a></li>
              <li><p id="para4">📑  Explications de texte </p><ol type="A">
@@ -284,7 +284,7 @@
                    <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 5 :  </p></a></li>
                </ol></li>      
          </ul>
-   </div>
+   </div>-->
    <button onclick="myFunction('Demo01')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Sujets de dissertation</p></button>
      <div id="Demo01" class="w3-hide w3-container w3-light-grey">    
             <ul>
