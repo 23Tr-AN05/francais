@@ -19,8 +19,8 @@
 
  <div class="w3-bar w3-black">
   <button class="w3-bar-item w3-button" onclick="openCity('Ac')">Accueil</button>
-  <!--<button class="w3-bar-item w3-button" onclick="openCity('Six')">Sixième</button>
-  <button class="w3-bar-item w3-button" onclick="openCity('Cinq')">Cinquième</button>
+  <button class="w3-bar-item w3-button" onclick="openCity('Six')">Sixième</button>
+  <!--<button class="w3-bar-item w3-button" onclick="openCity('Cinq')">Cinquième</button>
   <button class="w3-bar-item w3-button" onclick="openCity('Quatre')">Quatrième</button>
   <button class="w3-bar-item w3-button" onclick="openCity('Trois')">Troisième</button>
   <button class="w3-bar-item w3-button" onclick="openCity('Seconde')">Seconde</button>-->
@@ -29,7 +29,7 @@
  </div>
  <div id="Ac" class="w3-container city">
   <p id="para2">Bienvenue</p>
-  <p id="para3">Sur ce site, vous trouverez les cours de français, qui peuvent vous servir.<br> En particulier pour ceux qui se préparent au Baccalauréat.</p>
+  <p id="para3">Je suis actuellement étudiant en deuxième année de Licence de Lettres Modernes (Français) et je me prépare également à passer les concours du professorat en 2027.<br>Sur ce site, vous trouverez des cours de Françasi qui peuvent vous être utiles, notamment si vous préparez le Baccalauréat. </p>
   
   <br>
    <div id="center">
@@ -45,10 +45,10 @@
     <hr>
    </div>
 
-   <!--
+   
  <div id="Six" class="w3-container city" style="display:none">
    <p id="para1">Sixième</p>
-   <p id="para3"><a href="mat/6e/Programme_6.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Programme de l'année</u></font> </a>et<a href="mat/6e/Edt.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Cahier de texte</u></font></a> </p>
+  <!-- <p id="para3"><a href="mat/6e/Programme_6.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Programme de l'année</u></font> </a>et<a href="mat/6e/Edt.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Cahier de texte</u></font></a> </p>
     <p id="para6">📁 Chapitre 1:</p>
       <ul>
         <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   </p></a></li>
@@ -62,10 +62,10 @@
         <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   TD-</p></a></li>
         <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   Correction-TD-</p></a></li>
         <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   </p></a></li>
-    </ul>
+    </ul>-->
    <hr> 
   </div>
-
+<!--
  <div id="Cinq" class="w3-container city" style="display:none"> 
    <p id="para1">Cinquième</p>
    <p id="para3"><a href="mat/5e/Programme_5.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Programme de l'année</u></font> </a>et<a href="mat/5e/Edt.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Cahier de texte</u></font> </a></p>
@@ -309,7 +309,7 @@
       <button onclick="myFunction('Demo04)" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Méthodologie de BAC</p></button>
      <div id="Demo04" class="w3-hide w3-container w3-light-grey">    
             <ul>
-            <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Méthodologie de <b>Dissertation</b </p></a> </li>
+            <li><a href="fr/1re/methodo/" dowland="" target="_blank"><p id="para4">📝Méthodologie de <b>Dissertation</b </p></a> </li>
             <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Méthodologie de <b>Commentaire</b </p></a> </li>
             <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Méthodologie de <b>Essai</b </p></a> </li>
             <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Méthodologie de <b>Contraction</b </p></a> </li>
