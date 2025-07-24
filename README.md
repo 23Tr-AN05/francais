@@ -199,7 +199,7 @@
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> -->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
             <!--<li><p id="para4">📑  Explications de texte </p><ol type="A">
-                   <li><a href="fr/1re/Menteur/Explication_de_texte-1-Le_Menteur.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 1 :  </p></a></li>
+                   <li><a href="fr/1re/Menteur/Explication_de_texte-1-Le_Menteur.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 1 : Acte I, scène 3  </p></a></li>
                    <li><a href="fr/1re/Menteur/Explication_de_texte-2-Le_Menteur.pdf  " dowload="" target="_blank"><p id="para4">Explication de texte 2 :  </p></a></li>
                    <li><a href="fr/1re/Menteur/Explication_de_texte-3-Le_Menteur.pdf  " dowload="" target="_blank"><p id="para4">Explication de texte 3 :  </p></a></li>
                    <li><a href="fr/1re/Menteur/Explication_de_texte-4-Le_Menteur.pdf  " dowload="" target="_blank"><p id="para4">Explication de texte 4 :  </p></a></li>
@@ -241,7 +241,7 @@
         <div id="Demo21" class="w3-hide w3-container w3-light-grey"> 
           <ul>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Présentation de Parcours-S1</p></a></li>
-             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
+             !--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Structure de l'œuvre-S3 </p></a></li>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜Quelques citations-S4</p></a></li>
              <li><p id="para4">📑  Explications de texte </p><ol type="A">
@@ -257,7 +257,7 @@
         <div id="Demo22" class="w3-hide w3-container w3-light-grey"> 
           <ul>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Présentation de Parcours-S1</p></a></li>
-             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
+             !--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Structure de l'œuvre-S3 </p></a></li>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜Quelques citations-S4</p></a></li>
              <li><p id="para4">📑  Explications de texte </p><ol type="A">
@@ -273,15 +273,15 @@
         <div id="Demo23" class="w3-hide w3-container w3-light-grey"> 
           <ul>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Présentation de Parcours-S1</p></a></li>
-             <!--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
+             !--<li><a href="fr/ .pdf" dowload="" target="_blank"><p id="para4">Présentation de l'œuvre-2</p></a></li>--
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜  Structure de l'œuvre-S3 </p></a></li>
              <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">📜Quelques citations-S4</p></a></li>
              <li><p id="para4">📑  Explications de texte </p><ol type="A">
-                    <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 1 : </p></a></li>
-                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 2 : </p></a></li>
-                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 3 : </p></a></li>
-                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 4 :  </p></a></li>
-                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 5 :  </p></a></li>
+                    <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 1 : Lettre </p></a></li>
+                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 2 : Lettre </p></a></li>
+                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 3 : Lettre </p></a></li>
+                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 4 :  Lettre </p></a></li>
+                   <li><a href="fr/1re/" dowload="" target="_blank"><p id="para4">Explication de texte 5 :  Lettre </p></a></li>
                </ol></li>      
          </ul>
    </div>-->
@@ -298,15 +298,15 @@
             <li><a href="fr/1re/sujet-de-BAC-2024.pdf" dowland="" target="_blank"><p id="para4">📝Sujets de Bac  de l'épreuve de 2024 </p></a> </li>
          </ul>
       </div>
-      <!--<button onclick="myFunction('Demo03')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Boîte à outils</p></button>
+      <button onclick="myFunction('Demo03')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Boîte à outils</p></button>
      <div id="Demo03" class="w3-hide w3-container w3-light-grey">    
             <ul>
-            <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Figures de sytles </p></a> </li>
-            <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Vocabulaire de théâtre </p></a> </li>
-            <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Analyse poètique </p></a> </li>
+            <li><a href="fr/1re/bao/Figures_de_style.pdf" dowland="" target="_blank"><p id="para4">📝Figures de sytle </p></a> </li>
+            <!--<li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Vocabulaire de théâtre </p></a> </li>
+            <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Analyse poètique </p></a> </li>-->
          </ul>
       </div>
-      <button onclick="myFunction('Demo04)" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Méthodologie de BAC</p></button>
+      <!--<button onclick="myFunction('Demo04)" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Méthodologie de BAC</p></button>
      <div id="Demo04" class="w3-hide w3-container w3-light-grey">    
             <ul>
             <li><a href="fr/1re/methodo/" dowland="" target="_blank"><p id="para4">📝Méthodologie de <b>Dissertation</b </p></a> </li>
