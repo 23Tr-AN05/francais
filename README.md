@@ -136,7 +136,7 @@
     <button onclick="myFunction('Demo11')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📘-Arthur RIMBAUD, <i>Cahier de Douai</i></p></button>
       <div id="Demo11" class="w3-hide w3-container w3-light-grey"> 
         <ul>
-            <li><a href="fr/1re/Douai/Rimbaud-Cahier_de_Douai.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de l'œuvre-S1</p></a></li>
+            <li><a href="fr/1re/Douai/Rimbaud-Cahier_de_Douai.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de Parcours-S1</p></a></li>
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Biographie de l'auteur-S2</p></a></li>-->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> -->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
@@ -194,7 +194,7 @@
        <p id="para2">📕- Pierre Corneille, <i>Le Menteur</i></p>
         <ul>
             <!--<li><a href="fr/ " dowland="" target="_blank"><p id="para4">📜 Théâtre Classique  -  S0 </p></a></li>-->
-            <li><a href="fr/1re/Menteur/Corneille-Le_Menteur-Parcours.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de l'œuvre-S1</p></a></li>
+            <li><a href="fr/1re/Menteur/Corneille-Le_Menteur-Parcours.pdf" dowload="" target="_blank"><p id="para4">📜    Présentation de Parcours-S1</p></a></li>
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Biographie de l'auteur-S2</p></a></li>-->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> -->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
@@ -209,7 +209,7 @@
       <button onclick="myFunction('Demo42')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📕- Alfred de Musset, <i>On ne badine pas avec l'amour</i></p></button>
         <div id="Demo42" class="w3-hide w3-container w3-light-grey">   
          <ul>
-            <li><a href="fr/1re/Amour/Musset-on_ne_badine_pas_avec_amour-Parcours.pdf   " dowload="" target="_blank"><p id="para4">📜   Présentation de l'œuvre-S1</p></a></li>
+            <li><a href="fr/1re/Amour/Musset-on_ne_badine_pas_avec_amour-Parcours.pdf   " dowload="" target="_blank"><p id="para4">📜   Présentation de Parcours-S1</p></a></li>
             <li><a href="fr/1re/Amour/Musset-on_ne_badine_pas_avec_amour-Oeuvre.pdf" dowland="" target="_blank"><p id="para4">📜  Oeuvre et personnages -S2</p></a></li>
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> -->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
@@ -225,7 +225,7 @@
         <div id="Demo41" class="w3-hide w3-container w3-light-grey"> -->  
         <p id="para2">📕- Nathalie Sarraute, <i>Pour un oui ou pour un non</i></p>
         <ul>
-            <li><a href="fr/1re/oui-non/Nathalie_Sarraute-Pour_un_oui_pour_un_non-Parcours.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de l'œuvre-S1</p></a></li>
+            <li><a href="fr/1re/oui-non/Nathalie_Sarraute-Pour_un_oui_pour_un_non-Parcours.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de Parcours-S1</p></a></li>
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Oeuvre et personnnages -S2</p></a></li>--
             !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> --
             !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> --
