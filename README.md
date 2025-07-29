@@ -210,7 +210,7 @@
         <div id="Demo42" class="w3-hide w3-container w3-light-grey">   
          <ul>
             <li><a href="fr/1re/Amour/Musset-on_ne_badine_pas_avec_amour-Parcours.pdf   " dowload="" target="_blank"><p id="para4">📜   Présentation de l'œuvre-S1</p></a></li>
-            <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Biographie de l'auteur-2</p></a></li>-->
+            <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜  Oeuvre et personnages -S2</p></a></li>-->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> -->
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
             <li><p id="para4">📑  Explications de texte </p><ol type="A">
@@ -226,7 +226,7 @@
         <p id="para2">📕- Nathalie Sarraute, <i>Pour un oui ou pour un non</i></p>
         <ul>
             <li><a href="fr/1re/oui-non/Nathalie_Sarraute-Pour_un_oui_pour_un_non-Parcours.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de l'œuvre-S1</p></a></li>
-            <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Biographie de l'auteur-2</p></a></li>--
+            <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Oeuvre et personnnages -S2</p></a></li>--
             !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> --
             !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> --
             !--<li><p id="para4">📑  Explications de texte </p><ol type="A">
