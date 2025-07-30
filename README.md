@@ -211,8 +211,8 @@
          <ul>
             <li><a href="fr/1re/Amour/Musset-on_ne_badine_pas_avec_amour-Parcours.pdf   " dowload="" target="_blank"><p id="para4">📜   Présentation de Parcours-S1</p></a></li>
             <li><a href="fr/1re/Amour/Musset-on_ne_badine_pas_avec_amour-Oeuvre.pdf" dowland="" target="_blank"><p id="para4">📜  Oeuvre et personnages -S2</p></a></li>
-            <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> -->
-            <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
+            <li><a href="fr/1re/Amour/Structure-on_ne_badine_pas_avec_l_amour.pdf" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> 
+            <li><a href="fr/1re/Amour/Cit-On_ne_badine_pas_avec_l_amour.pdf" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> 
             <li><p id="para4">📑  Explications de texte </p><ol type="A">
                    <li><a href="fr/1re/Amour/Explication_de_texte-1-On_ne_badine_pas_avec_l_amour.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 1 : Acte I, Scène 2  </p></a></li>
                    <li><a href="fr/1re/Amour/Explication_de_texte-2-On_ne_badine_pas_avec_l_amour.pdf  " dowload="" target="_blank"><p id="para4">Explication de texte 2 : Acte II, scène 1 </p></a></li>
@@ -220,6 +220,7 @@
                    <li><a href="fr/1re/Amour/Explication_de_texte-4-On_ne_badine_pas_avec_l_amour.pdf  " dowload="" target="_blank"><p id="para4">Explication de texte 4 : Acte III, scène 3  </p></a></li>
                    <li><a href="fr/1re/Amour/Explication_de_texte-5-On_ne_badine_pas_avec_l_amour.pdf  " dowload="" target="_blank"><p id="para4">Explication de texte 5 : Acte III, scène 8  </p></a></li>
             </ol></li> 
+            <li><p id="para4">Voici deux quiz que j'ai touvé sur internet: </p><a href="https://www.lumni.fr/quiz/on-ne-badine-pas-avec-l-amour-d-alfred-de-musset" dowland="" target="_blank"><p id="para4"> Lumni</p></a> et <a href="http://www.toutlebacdefrancais.com/quiz/qcm-on-ne-badine-pas-avec-l-amour-de-musset/" dowland="" target="_blank"><p id="para4">Tout le bac de français.</p></a></li>
         </ul> </div>
         <!--<button onclick="myFunction('Demo41')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📕- Nathalie Sarraute, <i>Pour un oui ou pour un non</i></p></button>
         <div id="Demo41" class="w3-hide w3-container w3-light-grey"> -->  
