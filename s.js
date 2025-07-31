@@ -1,6 +1,6 @@
 // site root / import_modules / title
 
-const before_title = "Mathématique-Français";
+const before_title = "Français";
 const icon = "e";
 const name_script = "s.js";
 
