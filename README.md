@@ -302,9 +302,9 @@
       <button onclick="myFunction('Demo03')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Boîte à outils</p></button>
      <div id="Demo03" class="w3-hide w3-container w3-light-grey">    
             <ul>
-            <li><a href="fr/1re/bao/Figures_de_style.pdf" dowland="" target="_blank"><p id="para4">📝Figures de sytle </p></a> </li>
-            <!--<li><a href="fr/1re/bao/" dowland="" target="_blank"><p id="para4">📝Vocabulaire de théâtre </p></a> </li>
-            <li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝Analyse poètique </p></a> </li>-->
+            <li><a href="fr/1re/bao/Figures_de_style.pdf" dowland="" target="_blank"><p id="para4">📝   Figures de sytle </p></a> </li>
+            <li><a href="fr/1re/bao/vocabulaire-de-theatre.pdf" dowland="" target="_blank"><p id="para4">📝   Vocabulaire de théâtre </p></a> </li>
+            <!--<li><a href="fr/divers/mot_sens_changé.pdf" dowland="" target="_blank"><p id="para4">📝   Vocabulaire poètique </p></a> </li>-->
          </ul>
       </div>
       <!--<button onclick="myFunction('Demo04)" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Méthodologie de BAC</p></button>
