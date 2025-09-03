@@ -1,6 +1,6 @@
 
 <html>
- <title>Mathématiques</title>
+ <title>Français</title>
  <head>
     <meta charset="utf-8"/>
     <link href="style.css" rel="stylesheet" type="text/css"/>
@@ -29,10 +29,12 @@
  </div>
  <div id="Ac" class="w3-container city">
   <p id="para2">Bienvenue</p>
-  <p id="para3">Je suis actuellement étudiant en deuxième année de Licence de Lettres Modernes (Français) et je me prépare également à passer les concours du professorat en 2027.<br>Sur ce site, vous trouverez des cours de Françasi qui peuvent vous être utiles, notamment si vous préparez le Baccalauréat. </p>
+  <p id="para3">Je suis actuellement étudiant en deuxième année de Licence de Lettres Modernes (Français) et je me prépare également à passer les concours du professorat en 2027.<br>Sur ce site, vous trouverez des cours de Français qui peuvent vous être utiles, notamment si vous préparez le Baccalauréat. </p>
   
   <br>
    <div id="center">
+       <p id="para33">Si vous avez des questions vous pouvez envoyer un<a title="Question" href="mailto:ozcelebialican2005@gmail.com?subject=J'ai une question%5BFR%5D&body=Ma%20question%20se%20porte%20sur%20le%20français%20 (ne%20changez%20pas%20l'objet%20du%20mail).">mail</a> ou me signaler<a title="Signaler une erreur" href="mailto:ozcelebialican2005@gmail.com?subject=%5BErreur%5D&body=
+       (ne%20changez%20pas%20l'objet%20du%20mail).%0ADans%20l'onglet:%0ANom%20du%20fichier:%0AErreur:"> une erreur!</a> . Je vous réponderai plutôt possible par mail ou vous pouvez consulter l'onglet "forum", où je mettrais certaines questions avec leur réponse.   </p>
       <p id="para33">Si vous avez des questions vous pouvez envoyer un mail en choissisant la matière concernée. Je vous réponderai plutôt possible par mail ou vous pouvez consulter l'onglet "forum", où je mettrais certaines questions avec leur réponse. 
        <br>&nbsp;&nbsp;&nbsp;⯑ &nbsp;<a title="Question" href="mailto:ozcelebialican2005@gmail.com?subject=J'ai une question%5BMat%5D&body=Ma%20question%20se%20porte%20sur%20les%20mathématiques%20(ne%20changez%20pas%20l'objet%20du%20mail).">Mathémmatiques</a>
        <br>&nbsp;&nbsp;&nbsp;⯑&nbsp;<a title="Question" href="mailto:ozcelebialican2005@gmail.com?subject=J'ai une question%5BFR%5D&body=Ma%20question%20se%20porte%20sur%20le%20français%20 (ne%20changez%20pas%20l'objet%20du%20mail).">Français</a>
@@ -229,14 +231,14 @@
             <li><a href="fr/1re/oui-non/Nathalie_Sarraute-Pour_un_oui_pour_un_non-Parcours.pdf" dowload="" target="_blank"><p id="para4">📜   Présentation de Parcours-S1</p></a></li>
             <!--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Oeuvre et personnnages -S2</p></a></li>--
             !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Structure de l'œuvre-S3</p></a></li> --
-            !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> --
-            !--<li><p id="para4">📑  Explications de texte </p><ol type="A">
+            !--<li><a href="fr/" dowland="" target="_blank"><p id="para4">📜   Quelques citations-S4</p></a></li> -->
+            <li><p id="para4">📑  Explications de texte </p><ol type="A">
                    <li><a href="fr/1re/oui-non/Explication_de_texte-1-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 1 :  </p></a></li>
-                   <li><a href="fr/1re/oui-non/Explication_de_texte-2-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 2 :  </p></a></li>
+                   <!--<li><a href="fr/1re/oui-non/Explication_de_texte-2-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 2 :  </p></a></li>
                    <li><a href="fr/1re/oui-non/Explication_de_texte-3-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 3 :  </p></a></li>
                    <li><a href="fr/1re/oui-non/Explication_de_texte-4-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 4 :  </p></a></li>
-                   <li><a href="fr/1re/oui-non/Explication_de_texte-5-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 5 :  </p></a></li>
-               </ol></li> -->
+                   <li><a href="fr/1re/oui-non/Explication_de_texte-5-Pour_un_oui_ou_pour_un_non.pdf" dowload="" target="_blank"><p id="para4">Explication de texte 5 :  </p></a></li> -->
+               </ol></li>
         </ul></div>
     <!--<button onclick="myFunction('Demo21')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📙-Étienne de La Boétie,<br> <i>Discours de la servitude volontaire</i></p></button>
         <div id="Demo21" class="w3-hide w3-container w3-light-grey"> 
