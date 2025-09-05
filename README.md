@@ -414,7 +414,7 @@
   }
  }
  </script>
-   <script>
+ <script>
     function openCity(cityName) {
       document.querySelectorAll(".city").forEach(c => c.style.display = "none");
       document.getElementById(cityName).style.display = "block";
