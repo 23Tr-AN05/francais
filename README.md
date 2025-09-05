@@ -50,21 +50,60 @@
    
  <div id="Six" class="w3-container city" style="display:none">
    <p id="para1">Sixième</p>
-  <!-- <p id="para3"><a href="mat/6e/Programme_6.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Programme de l'année</u></font> </a>et<a href="mat/6e/Edt.pdf" dowload="" target="_blank"><font style="color:#0000FF;"><u> Cahier de texte</u></font></a> </p>
-    <p id="para6">📁 Chapitre 1:</p>
+  <nav>
+    <button class="tablink active" onclick="openTab('cahier')">Cahier de texte</button>
+    <button class="tablink" onclick="openTab('cours')">Cours</button>
+    <button class="tablink" onclick="openTab('grammaire')">Grammaire</button>
+    <button class="tablink" onclick="openTab('dsdm')">DS / DM</button>
+  </nav>
+
+  <div class="container1">
+    <div id="cahier" class="tab active">
+      <h2>📅 Cahier de Texte</h2>
+      <table>
+        <tr>
+          <th colspan="2">Choisir une date : <input type="date" id="date"></th>
+        </tr>
+        <tr>
+          <td><h3>✔ Ce qui a été fait</h3><p id="seance">—</p></td>
+          <td><h3>📝 Devoirs à faire</h3><p id="devoirs">—</p></td>
+        </tr>
+      </table>
+      <div class="card">
+        <h3>🔑 Espace Professeur</h3>
+        <input type="password" id="password" placeholder="Mot de passe">
+        <button onclick="login()">Connexion</button>
+      </div>
+      <div id="adminSection" class="card" style="display:none;">
+        <h3>Ajouter / Modifier</h3>
+        <input type="date" id="adminDate">
+        <textarea id="adminSeance" rows="3" placeholder="Ce qui a été fait"></textarea>
+        <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
+        <button class="save" onclick="saveData()">💾 Enregistrer</button>
+      </div>
+    </div>
+    <div id="cours" class="tab">
+      <h2>📖 Cours</h2>
       <ul>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   </p></a></li>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   TD-</p></a></li>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   Correction-TD-</p></a></li>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   </p></a></li>
-    </ul>
-    <p id="para6">📁 Chapitre 2:</p>
-     <ul>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   </p></a></li>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   TD-</p></a></li>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   Correction-TD-</p></a></li>
-        <li><a href="mat/6e/Chp1/    " dowload="" target="_blank"><p id="para4">📄   </p></a></li>
-    </ul>-->
+        <li><a href="pdf/cours1.pdf" target="_blank">Cours 1 : Introduction</a></li>
+        <li><a href="pdf/cours2.pdf" target="_blank">Cours 2 : Approfondissement</a></li>
+      </ul>
+    </div>
+    <div id="grammaire" class="tab">
+      <h2>📘 Grammaire</h2>
+      <ul>
+        <li><a href="pdf/grammaire1.pdf" target="_blank">Grammaire : Les bases</a></li>
+        <li><a href="pdf/grammaire2.pdf" target="_blank">Grammaire : Niveau avancé</a></li>
+      </ul>
+    </div>
+    <div id="dsdm" class="tab">
+      <h2>📑 DS / DM</h2>
+      <ul>
+        <li><a href="pdf/ds1.pdf" target="_blank">DS 1</a></li>
+        <li><a href="pdf/dm1.pdf" target="_blank">DM 1</a></li>
+      </ul>
+    </div>
+  </div>
    <hr> 
   </div>
 <!--
@@ -375,3 +414,40 @@
   }
  }
  </script>
+   <script>
+    function openCity(cityName) {
+      document.querySelectorAll(".city").forEach(c => c.style.display = "none");
+      document.getElementById(cityName).style.display = "block";
+    }
+
+    function openTab(tabName, event) {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".tablink").forEach(b => b.classList.remove("active"));
+      document.getElementById(tabName).classList.add("active");
+      event.target.classList.add("active");
+    }
+
+    function login() {
+      const pwd = document.getElementById("password").value;
+      if (pwd === "prof123") {
+        document.getElementById("adminSection").style.display = "block";
+        alert("Connexion réussie !");
+      } else {
+        alert("Mot de passe incorrect !");
+      }
+    }
+
+    function saveData() {
+      const d = document.getElementById("adminDate").value;
+      const dv = document.getElementById("adminDevoirs").value;
+      const sc = document.getElementById("adminSeance").value;
+      if (!d) {
+        alert("Veuillez choisir une date.");
+        return;
+      }
+      let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+      donnees[d] = { devoirs: dv, seance: sc };
+      localStorage.setItem("donnees", JSON.stringify(donnees));
+      alert("Données enregistrées !");
+    }
+  </script>
