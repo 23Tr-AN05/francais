@@ -59,6 +59,7 @@
 
   <div class="container">
     <div id="cahier" class="tab active">
+     <center>
       <h2>📅 Cahier de Texte</h2>
       <table>
         <tr>
@@ -68,7 +69,7 @@
           <td><h3>✔ Ce qui a été fait</h3><p id="seance">—</p></td>
           <td><h3>📝 Devoirs à faire</h3><p id="devoirs">—</p></td>
         </tr>
-      </table>
+      </table></center>
       <div class="card">
         <h3>🔑 Espace Professeur</h3>
         <input type="password" id="password" placeholder="Mot de passe" />
@@ -452,28 +453,35 @@
     }
 
     async function chargerDevoirs(date) {
-      const response = await fetch("devoirs.json?cache=" + Date.now());
-      const donnees = await response.json();
-      if (donnees[date]) {
-        document.getElementById("seance").textContent = donnees[date].seance;
-        document.getElementById("devoirs").textContent = donnees[date].devoirs;
-      } else {
-        document.getElementById("seance").textContent = "Pas de séance enregistrée.";
-        document.getElementById("devoirs").textContent = "Pas de devoirs enregistrés.";
-      }
+  try {
+    const response = await fetch("devoirs.json?cache=" + Date.now());
+    const donnees = await response.json();
+    if (donnees[date]) {
+      document.getElementById("seance").textContent = donnees[date].seance;
+      document.getElementById("devoirs").textContent = donnees[date].devoirs;
+    } else {
+      document.getElementById("seance").textContent = "Pas de séance enregistrée.";
+      document.getElementById("devoirs").textContent = "Pas de devoirs enregistrés.";
     }
-
-   function saveData() {
-    const d = document.getElementById('adminDate').value;
-    const dv = document.getElementById('adminDevoirs').value;
-    const sc = document.getElementById('adminSeance').value;
-  
-   fetch("save.php", {
-     method: "POST",
-     headers: { "Content-Type": "application/json" },
-     body: JSON.stringify({ date: d, devoirs: dv, seance: sc })
-   })
-   .then(r => r.text())
-   .then(msg => alert(msg));
+  } catch (err) {
+    console.error(err);
+    document.getElementById("seance").textContent = "Erreur lors du chargement.";
+    document.getElementById("devoirs").textContent = "Erreur lors du chargement.";
   }
+}
+
+function saveData() {
+  const d = document.getElementById('adminDate').value;
+  const dv = document.getElementById('adminDevoirs').value;
+  const sc = document.getElementById('adminSeance').value;
+
+  fetch("save.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ date: d, devoirs: dv, seance: sc })
+  })
+  .then(r => r.text())
+  .then(msg => alert(msg))
+  .catch(err => alert("Erreur lors de l'enregistrement : " + err));
+}
   </script>
