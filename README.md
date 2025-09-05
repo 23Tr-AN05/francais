@@ -453,35 +453,35 @@
     }
 
     async function chargerDevoirs(date) {
-  try {
-    const response = await fetch("devoirs.json?cache=" + Date.now());
-    const donnees = await response.json();
-    if (donnees[date]) {
-      document.getElementById("seance").textContent = donnees[date].seance;
-      document.getElementById("devoirs").textContent = donnees[date].devoirs;
-    } else {
-      document.getElementById("seance").textContent = "Pas de séance enregistrée.";
-      document.getElementById("devoirs").textContent = "Pas de devoirs enregistrés.";
-    }
-  } catch (err) {
-    console.error(err);
-    document.getElementById("seance").textContent = "Erreur lors du chargement.";
-    document.getElementById("devoirs").textContent = "Erreur lors du chargement.";
-  }
-}
+    try {
+      const response = await fetch("devoirs.json?cache=" + Date.now());
+      const donnees = await response.json();
+      if (donnees[date]) {
+        document.getElementById("seance").textContent = donnees[date].seance;
+        document.getElementById("devoirs").textContent = donnees[date].devoirs;
+     } else {
+       document.getElementById("seance").textContent = "Pas de séance enregistrée.";
+       document.getElementById("devoirs").textContent = "Pas de devoirs enregistrés.";
+     }
+    } catch (err) {
+     console.error(err);
+     document.getElementById("seance").textContent = "Erreur lors du chargement.";
+     document.getElementById("devoirs").textContent = "Erreur lors du chargement.";
+   }
+   }
 
-function saveData() {
-  const d = document.getElementById('adminDate').value;
-  const dv = document.getElementById('adminDevoirs').value;
-  const sc = document.getElementById('adminSeance').value;
+   function saveData() {
+    const d = document.getElementById('adminDate').value;
+    const dv = document.getElementById('adminDevoirs').value;
+    const sc = document.getElementById('adminSeance').value;
 
-  fetch("save.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ date: d, devoirs: dv, seance: sc })
-  })
-  .then(r => r.text())
-  .then(msg => alert(msg))
-  .catch(err => alert("Erreur lors de l'enregistrement : " + err));
-}
+    fetch("save.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ date: d, devoirs: dv, seance: sc })
+    })
+   .then(r => r.text())
+   .then(msg => alert(msg))
+   .catch(err => alert("Erreur lors de l'enregistrement : " + err));
+   }
   </script>
