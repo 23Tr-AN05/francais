@@ -59,7 +59,7 @@
 
   <div class="container">
     <div id="cahier" class="tab active">
-      <h2>📅 Cahier de Texte</h2>s
+      <h2>📅 Cahier de Texte</h2>
       <table>
         <tr>
           <th colspan="2">Choisir une date : <input type="date" id="date" /></th>
@@ -451,17 +451,29 @@
       }
     }
 
-    function saveData() {
-      const d = document.getElementById("adminDate").value;
-      const dv = document.getElementById("adminDevoirs").value;
-      const sc = document.getElementById("adminSeance").value;
-      if (!d) {
-        alert("Veuillez choisir une date.");
-        return;
+    async function chargerDevoirs(date) {
+      const response = await fetch("devoirs.json?cache=" + Date.now());
+      const donnees = await response.json();
+      if (donnees[date]) {
+        document.getElementById("seance").textContent = donnees[date].seance;
+        document.getElementById("devoirs").textContent = donnees[date].devoirs;
+      } else {
+        document.getElementById("seance").textContent = "Pas de séance enregistrée.";
+        document.getElementById("devoirs").textContent = "Pas de devoirs enregistrés.";
       }
-      let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
-      donnees[d] = { devoirs: dv, seance: sc };
-      localStorage.setItem("donnees", JSON.stringify(donnees));
-      alert("Données enregistrées !");
     }
+
+   function saveData() {
+    const d = document.getElementById('adminDate').value;
+    const dv = document.getElementById('adminDevoirs').value;
+    const sc = document.getElementById('adminSeance').value;
+  
+   fetch("save.php", {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({ date: d, devoirs: dv, seance: sc })
+   })
+   .then(r => r.text())
+   .then(msg => alert(msg));
+  }
   </script>
