@@ -152,7 +152,7 @@
     nav button:hover, nav button.active {
       background: #1f6390;
     }
-    .container1 {
+    .container {
       max-width: 900px;
       margin: 20px auto;
       background: white;

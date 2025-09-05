@@ -57,9 +57,9 @@
     <button class="tablink" onclick="openTab('dsdm')">DS / DM</button>
   </nav>
 
-  <div class="container1">
+  <div class="container">
     <div id="cahier" class="tab active">
-      <h2>📅 Cahier de Texte</h2>
+      <h2>📅 Cahier de Texte</h2>s
       <table>
         <tr>
           <th colspan="2">Choisir une date : <input type="date" id="date"></th>
