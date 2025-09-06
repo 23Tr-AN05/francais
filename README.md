@@ -450,115 +450,84 @@
       event.target.classList.add("active");
     }
 
-  // Connexion professeur
-function login() {
-  const pwd = document.getElementById("password").value;
-  if (pwd === "prof123") {
-    document.getElementById("adminSection").style.display = "block";
-    renderList(); // Afficher la liste des données existantes
-    alert("Connexion réussie !");
-  } else {
-    alert("Mot de passe incorrect !");
-  }
+  const GITHUB_USER = "TON_USERNAME";
+const REPO = "TON_REPO";
+const BRANCH = "main";
+const FILE_PATH = "donnees.json";
+const TOKEN = "TON_PERSONAL_ACCESS_TOKEN"; // Attention, à protéger en prod
+
+async function getData() {
+  const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
+  const data = await res.json();
+  const content = atob(data.content);
+  return { sha: data.sha, data: JSON.parse(content) };
 }
 
-// Enregistrer ou modifier une donnée
-function saveData() {
-  const date = document.getElementById("adminDate").value;
-  const seance = document.getElementById("adminSeance").value;
-  const devoirs = document.getElementById("adminDevoirs").value;
-
-  if (!date) {
-    alert("Veuillez choisir une date.");
-    return;
-  }
-
-  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
-  donnees[date] = { seance, devoirs };
-  localStorage.setItem("donnees", JSON.stringify(donnees));
-
-  alert("Données enregistrées !");
-  renderList();
+async function saveDataToGitHub(newData) {
+  const { sha } = await getData();
+  const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO}/contents/${FILE_PATH}`, {
+    method: "PUT",
+    headers: {
+      "Authorization": `token ${TOKEN}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: "Mise à jour cahier de texte",
+      content: btoa(JSON.stringify(newData, null, 2)),
+      sha: sha,
+      branch: BRANCH
+    })
+  });
+  return await res.json();
 }
 
-// Supprimer une donnée
-function deleteData(date) {
-  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
-  if (donnees[date]) {
-    if (confirm(`Supprimer l'entrée du ${date} ?`)) {
-      delete donnees[date];
-      localStorage.setItem("donnees", JSON.stringify(donnees));
-      renderList();
-    }
-  }
-}
+// Afficher les données
+async function renderList() {
+  const { data } = await getData();
+  const div = document.getElementById("dataList");
+  div.innerHTML = "<h3>📋 Liste des entrées</h3>";
 
-// Charger une donnée pour modification
-function editData(date) {
-  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
-  if (donnees[date]) {
-    document.getElementById("adminDate").value = date;
-    document.getElementById("adminSeance").value = donnees[date].seance;
-    document.getElementById("adminDevoirs").value = donnees[date].devoirs;
-  }
-}
-
-// Afficher la liste côté professeur
-function renderList() {
-  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
-  let listDiv = document.getElementById("dataList");
-
-  if (!listDiv) {
-    listDiv = document.createElement("div");
-    listDiv.id = "dataList";
-    document.getElementById("adminSection").appendChild(listDiv);
-  }
-
-  listDiv.innerHTML = "<h3>📋 Liste des entrées</h3>";
-
-  const dates = Object.keys(donnees).sort();
-  if (dates.length === 0) {
-    listDiv.innerHTML += "<p>Aucune donnée enregistrée.</p>";
-    return;
-  }
-
-  dates.forEach(date => {
-    const entry = donnees[date];
+  for (let date in data) {
+    const entry = data[date];
     const item = document.createElement("div");
     item.style.border = "1px solid #ccc";
     item.style.padding = "5px";
     item.style.margin = "5px 0";
-
     item.innerHTML = `
       <strong>${date}</strong><br>
-      ✔ ${entry.seance || "—"}<br>
-      📝 ${entry.devoirs || "—"}<br>
+      ✔ ${entry.seance}<br>
+      📝 ${entry.devoirs}<br>
       <button onclick="editData('${date}')">✏️ Modifier</button>
       <button onclick="deleteData('${date}')">🗑️ Supprimer</button>
     `;
-
-    listDiv.appendChild(item);
-  });
-}
-
-// Afficher les devoirs côté élève
-function loadData(date) {
-  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
-  document.getElementById("seance").textContent = donnees[date]?.seance || "—";
-  document.getElementById("devoirs").textContent = donnees[date]?.devoirs || "—";
-}
-
-// Quand l'élève change de date
-document.getElementById("date").addEventListener("change", function() {
-  loadData(this.value);
-});
-
-// Charger les données initiales pour l'élève
-window.onload = function () {
-  const dateInput = document.getElementById("date");
-  if (dateInput.value) {
-    loadData(dateInput.value);
+    div.appendChild(item);
   }
-};
+}
+
+// Enregistrer / Modifier
+async function saveData(date, seance, devoirs) {
+  const { data } = await getData();
+  data[date] = { seance, devoirs };
+  await saveDataToGitHub(data);
+  renderList();
+}
+
+// Supprimer
+async function deleteData(date) {
+  const { data } = await getData();
+  delete data[date];
+  await saveDataToGitHub(data);
+  renderList();
+}
+
+// Charger pour modification
+async function editData(date) {
+  const { data } = await getData();
+  if (data[date]) {
+    document.getElementById("adminDate").value = date;
+    document.getElementById("adminSeance").value = data[date].seance;
+    document.getElementById("adminDevoirs").value = data[date].devoirs;
+  }
+}
 
   </script>
