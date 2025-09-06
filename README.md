@@ -89,7 +89,7 @@
      <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
       <button class="save" onclick="saveData()">💾 Enregistrer</button>
        <!-- Ici la liste sera ajoutée automatiquement par JS -->
-       <div id="dataList"></div>
+       <div id="dataList"></div></div>
     <div id="cours" class="tab">
       <h2>📖 Cours</h2>
       <ul>
