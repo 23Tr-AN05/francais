@@ -59,7 +59,7 @@
    <div class="container">
     <div id="cahier" class="tab active">
      <center>
-      <h2>📅 Cahier de Texte</h2>
+      <h2>📅 Cahier de Texte</h2></center>
      <table>
      <tr>
        <th colspan="2">
