@@ -1,222 +1,110 @@
-
-#h1{
-  font-size:35px;
-  text-align:center;
-  color:black;
-  background-color:yellow;
+// Connexion professeur
+function login() {
+  const pwd = document.getElementById("password").value;
+  if (pwd === "prof123") {
+    document.getElementById("adminSection").style.display = "block";
+    renderList(); // Afficher la liste des données existantes
+    alert("Connexion réussie !");
+  } else {
+    alert("Mot de passe incorrect !");
+  }
 }
-#para1{
-  font-size:40px;
-  text-align:center;
-  color:red;
+
+// Enregistrer ou modifier une donnée
+function saveData() {
+  const date = document.getElementById("adminDate").value;
+  const seance = document.getElementById("adminSeance").value;
+  const devoirs = document.getElementById("adminDevoirs").value;
+
+  if (!date) {
+    alert("Veuillez choisir une date.");
+    return;
+  }
+
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  donnees[date] = { seance, devoirs };
+  localStorage.setItem("donnees", JSON.stringify(donnees));
+
+  alert("Données enregistrées !");
+  renderList();
 }
-    #para2{
-        font-size:30px;
-        text-align:left;
-        color:rgb(3, 110, 14);
+
+// Supprimer une donnée
+function deleteData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  if (donnees[date]) {
+    if (confirm(`Supprimer l'entrée du ${date} ?`)) {
+      delete donnees[date];
+      localStorage.setItem("donnees", JSON.stringify(donnees));
+      renderList();
     }
-    #para3{
-        font-size:20px;
-        text-align:left;
-        color:#000000;
-    }
-    #para4{
-        font-size:20px;
-        text-align:left;
-        color: black;
-    }
-    #para5{
-        font-size:20px;
-        text-align:left;
-        color:black;
-    }
-    #para6{
-        font-size:30px;
-        text-align:left;
-        color:#2f0ad3;
-    }
-     #para7{
-        font-size:30px;
-        text-align:center;
-        color:#C100AA;
-    }
-    #para8{
-        font-size:30px;
-        text-align:left;
-        color:#00FF00;
-    }
-    #para9{
-        font-size:20px;
-        text-align:right;
-        color:#000000;
-    }
-     #para10{
-        font-size:20px;
-        text-align:right;
-        color:#FF0000;
-    }
-    mark{
-        background-color:yellow;
-        color:black;
-    }
-    #m1{
-        background-color:#FFDCDA;
-        color: black;
-    }
-    #m2{
-        background-color:#8FFF6D;
-        color: black;
-    }
-    #m3{
-         background-color:#C1FFFC;
-        color: black;
-    }
-    #m4{
-        background-color:#00FFFF;
-        color:black;
-    }
-    #m5{
-         background-color:yellow;
-     }
-    
-    #p1{
-        text-align:center;
-    }
-    #p2{
-        font-size:20px;
-        text-align:center;
-    }
-  #centre {
-        float:right;
-        width:65%;
-        margin : 10px 20px 10px 30px;
-        
-       border-style:solid;
-       border: 0;
   }
- #para33{
-        font-size:15px;
-        text-align:left;
-        color:#000000;
-        text-align:justify; 
-        width:100%;
-        height:100%;
-        overflow:auto;
+}
+
+// Charger une donnée pour modification
+function editData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  if (donnees[date]) {
+    document.getElementById("adminDate").value = date;
+    document.getElementById("adminSeance").value = donnees[date].seance;
+    document.getElementById("adminDevoirs").value = donnees[date].devoirs;
   }
- #para34{
-        font-size:20px;
-        text-align:left;
-        color:#000000;
-        text-align:justify; 
-        width:100%;
-        height:100%;
-        overflow:auto;
+}
+
+// Afficher la liste côté professeur
+function renderList() {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  let listDiv = document.getElementById("dataList");
+
+  if (!listDiv) {
+    listDiv = document.createElement("div");
+    listDiv.id = "dataList";
+    document.getElementById("adminSection").appendChild(listDiv);
   }
 
+  listDiv.innerHTML = "<h3>📋 Liste des entrées</h3>";
 
-    
+  const dates = Object.keys(donnees).sort();
+  if (dates.length === 0) {
+    listDiv.innerHTML += "<p>Aucune donnée enregistrée.</p>";
+    return;
+  }
 
-.collapsible {
-  background-color: #A1FCDC;
-  color: white;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
- }
- .active, .collapsible:hover {
-    background-color: none;
- }
- .content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color:#E1E5FF;
- }
+  dates.forEach(date => {
+    const entry = donnees[date];
+    const item = document.createElement("div");
+    item.style.border = "1px solid #ccc";
+    item.style.padding = "5px";
+    item.style.margin = "5px 0";
 
-nav {
-      display: flex;
-      justify-content: center;
-      background: #2c3e50;
-    }
-    nav button {
-      background: none;
-      border: none;
-      color: white;
-      padding: 14px 20px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-    nav button:hover, nav button.active {
-      background: #1f6390;
-    }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .tab {
-      display: none;
-    }
-    .tab.active {
-      display: block;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    th, td {
-      padding: 20px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th {
-      background: #34495e;
-      color: white;
-    }
-    td {
-      background: #fdfdfd;
-      border: 1px solid #ddd;
-    }
-    input, textarea {
-      width: 100%;
-      margin-top: 8px;
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button.save {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #2980b9;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button.save:hover {
-      background: #1f6390;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    ul li {
-      margin: 10px 0;
-    }
-    ul li a {
-      text-decoration: none;
-      color: #2980b9;
-    }
-    ul li a:hover {
-      text-decoration: underline;
-    }
+    item.innerHTML = `
+      <strong>${date}</strong><br>
+      ✔ ${entry.seance || "—"}<br>
+      📝 ${entry.devoirs || "—"}<br>
+      <button onclick="editData('${date}')">✏️ Modifier</button>
+      <button onclick="deleteData('${date}')">🗑️ Supprimer</button>
+    `;
+
+    listDiv.appendChild(item);
+  });
+}
+
+// Afficher les devoirs côté élève
+function loadData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  document.getElementById("seance").textContent = donnees[date]?.seance || "—";
+  document.getElementById("devoirs").textContent = donnees[date]?.devoirs || "—";
+}
+
+// Quand l'élève change de date
+document.getElementById("date").addEventListener("change", function() {
+  loadData(this.value);
+});
+
+// Charger les données initiales pour l'élève
+window.onload = function () {
+  const dateInput = document.getElementById("date");
+  if (dateInput.value) {
+    loadData(dateInput.value);
+  }
+};
