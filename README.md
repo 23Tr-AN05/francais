@@ -9,8 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script src="s.js" data-import=""></script>
-    <script src="cahier.js"></script>
-
  </head>
  <body onload="body()">
  <center><h1 id="h1">Français</h1></center>
@@ -75,23 +73,6 @@
       </td>
       <td>
         <h3>📝 Devoirs à faire</h3>
-        <p id="devoirs">—</p>
-      </td>
-     </tr>
-     </table>
-     <div class="card">
-      <h3>🔑 Espace Professeur</h3>
-      <input type="password" id="password" placeholder="Mot de passe" />
-      <button onclick="login()">Connexion</button>
-      </div>
-     <div id="adminSection" class="card" style="display:none;">
-      <h3>Ajouter / Modifier</h3>
-       <input type="date" id="adminDate" />
-        <textarea id="adminSeance" rows="3" placeholder="Ce qui a été fait"></textarea>
-       <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
-       <button class="save" onclick="saveData()">💾 Enregistrer</button>
-       <!-- Ici la liste sera ajoutée automatiquement par JS -->
-       <div id="dataList"></div></div>
     </div>
     <div id="cours" class="tab">
       <h2>📖 Cours</h2>
