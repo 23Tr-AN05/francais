@@ -173,7 +173,7 @@
      <div id="Demo02" class="w3-hide w3-container w3-light-grey">  
     <ul>
         <li><a href="fr/1re/2025-2026-G.pdf" dowload="" target="_blank"><p id="para4">Les œuvres au programme de Première Générale 2025-2026</p></a></li>
-        <li><p id="para4"><a href="fr/1re/2025-2026-T.pdf" dowload="" target="_blank">Les œuvres au programme de Première Technologique 2025-2026</a></p></li> 
+        <li><a href="fr/1re/2025-2026-T.pdf" dowload="" target="_blank"><p id="para4">Les œuvres au programme de Première Technologique 2025-2026</a></p></li> 
     </ul></div>
     <button onclick="myFunction('Demo11')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📘-Arthur RIMBAUD, <i>Cahier de Douai</i></p></button>
       <div id="Demo11" class="w3-hide w3-container w3-light-grey"> 
@@ -442,46 +442,54 @@
       event.target.classList.add("active");
     }
 
-    function login() {
-      const pwd = document.getElementById("password").value;
-      if (pwd === "prof123") {
-        document.getElementById("adminSection").style.display = "block";
-        alert("Connexion réussie !");
-      } else {
-        alert("Mot de passe incorrect !");
-      }
+   // Connexion professeur
+function login() {
+  const pwd = document.getElementById("password").value;
+  if (pwd === "prof123") {
+    document.getElementById("adminSection").style.display = "block";
+    alert("Connexion réussie !");
+  } else {
+    alert("Mot de passe incorrect !");
+  }
+}
+
+// Enregistrer les données
+function saveData() {
+  const d = document.getElementById("adminDate").value;
+  const sc = document.getElementById("adminSeance").value;
+  const dv = document.getElementById("adminDevoirs").value;
+
+  if (!d) {
+    alert("Veuillez choisir une date.");
+    return;
+  }
+
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  donnees[d] = { seance: sc, devoirs: dv };
+  localStorage.setItem("donnees", JSON.stringify(donnees));
+
+  alert("Données enregistrées !");
+}
+
+// Charger les données au démarrage
+window.onload = function () {
+  const dateInput = document.getElementById("date");
+  const seanceEl = document.getElementById("seance");
+  const devoirsEl = document.getElementById("devoirs");
+
+  const donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+
+  // Quand on choisit une date, afficher les infos correspondantes
+  dateInput.addEventListener("change", function () {
+    const d = this.value;
+    if (donnees[d]) {
+      seanceEl.textContent = donnees[d].seance || "—";
+      devoirsEl.textContent = donnees[d].devoirs || "—";
+    } else {
+      seanceEl.textContent = "—";
+      devoirsEl.textContent = "—";
     }
+  });
+};
 
-    async function chargerDevoirs(date) {
-    try {
-      const response = await fetch("devoirs.json?cache=" + Date.now());
-      const donnees = await response.json();
-      if (donnees[date]) {
-        document.getElementById("seance").textContent = donnees[date].seance;
-        document.getElementById("devoirs").textContent = donnees[date].devoirs;
-     } else {
-       document.getElementById("seance").textContent = "Pas de séance enregistrée.";
-       document.getElementById("devoirs").textContent = "Pas de devoirs enregistrés.";
-     }
-    } catch (err) {
-     console.error(err);
-     document.getElementById("seance").textContent = "Erreur lors du chargement.";
-     document.getElementById("devoirs").textContent = "Erreur lors du chargement.";
-   }
-   }
-
-   function saveData() {
-    const d = document.getElementById('adminDate').value;
-    const dv = document.getElementById('adminDevoirs').value;
-    const sc = document.getElementById('adminSeance').value;
-
-    fetch("save.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ date: d, devoirs: dv, seance: sc })
-    })
-   .then(r => r.text())
-   .then(msg => alert(msg))
-   .catch(err => alert("Erreur lors de l'enregistrement : " + err));
-   }
   </script>
