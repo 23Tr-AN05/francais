@@ -616,5 +616,24 @@ document.getElementById("date").addEventListener("change", function() {
   loadData(this.value);
 });
 
+// Charger les données au démarrage pour les élèves
+window.onload = function () {
+  const dateInput = document.getElementById("date");
+  const seanceEl = document.getElementById("seance");
+  const devoirsEl = document.getElementById("devoirs");
 
+  const donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+
+  // Quand on choisit une date → afficher les infos
+  dateInput.addEventListener("change", function () {
+    const d = this.value;
+    if (donnees[d]) {
+      seanceEl.textContent = donnees[d].seance || "—";
+      devoirsEl.textContent = donnees[d].devoirs || "—";
+    } else {
+      seanceEl.textContent = "—";
+      devoirsEl.textContent = "—";
+    }
+  });
+};
   </script>
