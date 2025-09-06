@@ -450,7 +450,7 @@
       event.target.classList.add("active");
     }
 
-   // Connexion professeur
+  // Connexion professeur
 function login() {
   const pwd = document.getElementById("password").value;
   if (pwd === "prof123") {
@@ -462,54 +462,50 @@ function login() {
   }
 }
 
-// Enregistrer ou modifier une donnée côté serveur
-async function saveData() {
-  const d = document.getElementById("adminDate").value;
-  const s = document.getElementById("adminSeance").value;
-  const dv = document.getElementById("adminDevoirs").value;
+// Enregistrer ou modifier une donnée
+function saveData() {
+  const date = document.getElementById("adminDate").value;
+  const seance = document.getElementById("adminSeance").value;
+  const devoirs = document.getElementById("adminDevoirs").value;
 
-  if (!d) {
+  if (!date) {
     alert("Veuillez choisir une date.");
     return;
   }
 
-  await fetch("save.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ date: d, seance: s, devoirs: dv })
-  });
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  donnees[date] = { seance, devoirs };
+  localStorage.setItem("donnees", JSON.stringify(donnees));
 
   alert("Données enregistrées !");
-  renderList(); // mettre à jour la liste
-}
-
-// Supprimer une donnée côté serveur
-async function deleteData(date) {
-  await fetch("delete.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ date })
-  });
-  alert("Données supprimées !");
   renderList();
 }
 
-// Charger une donnée pour modification
-async function editData(date) {
-  const res = await fetch("load.php");
-  const data = await res.json();
-
-  if (data[date]) {
-    document.getElementById("adminDate").value = date;
-    document.getElementById("adminSeance").value = data[date].seance;
-    document.getElementById("adminDevoirs").value = data[date].devoirs;
+// Supprimer une donnée
+function deleteData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  if (donnees[date]) {
+    if (confirm(`Supprimer l'entrée du ${date} ?`)) {
+      delete donnees[date];
+      localStorage.setItem("donnees", JSON.stringify(donnees));
+      renderList();
+    }
   }
 }
 
-// Afficher la liste des données côté serveur
-async function renderList() {
-  const res = await fetch("load.php");
-  const data = await res.json();
+// Charger une donnée pour modification
+function editData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  if (donnees[date]) {
+    document.getElementById("adminDate").value = date;
+    document.getElementById("adminSeance").value = donnees[date].seance;
+    document.getElementById("adminDevoirs").value = donnees[date].devoirs;
+  }
+}
+
+// Afficher la liste côté professeur
+function renderList() {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
   let listDiv = document.getElementById("dataList");
 
   if (!listDiv) {
@@ -520,14 +516,14 @@ async function renderList() {
 
   listDiv.innerHTML = "<h3>📋 Liste des entrées</h3>";
 
-  const dates = Object.keys(data).sort();
+  const dates = Object.keys(donnees).sort();
   if (dates.length === 0) {
     listDiv.innerHTML += "<p>Aucune donnée enregistrée.</p>";
     return;
   }
 
   dates.forEach(date => {
-    const entry = data[date];
+    const entry = donnees[date];
     const item = document.createElement("div");
     item.style.border = "1px solid #ccc";
     item.style.padding = "5px";
@@ -545,21 +541,19 @@ async function renderList() {
   });
 }
 
-// Charger les devoirs côté élèves
-async function loadData(date) {
-  const res = await fetch("load.php");
-  const data = await res.json();
-
-  document.getElementById("seance").textContent = data[date]?.seance || "—";
-  document.getElementById("devoirs").textContent = data[date]?.devoirs || "—";
+// Afficher les devoirs côté élève
+function loadData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  document.getElementById("seance").textContent = donnees[date]?.seance || "—";
+  document.getElementById("devoirs").textContent = donnees[date]?.devoirs || "—";
 }
 
-// Événement pour changer de date côté élèves
+// Quand l'élève change de date
 document.getElementById("date").addEventListener("change", function() {
   loadData(this.value);
 });
 
-// Charger la date actuelle côté élèves au chargement
+// Charger les données initiales pour l'élève
 window.onload = function () {
   const dateInput = document.getElementById("date");
   if (dateInput.value) {
