@@ -86,10 +86,11 @@
       <h3>Ajouter / Modifier</h3>
        <input type="date" id="adminDate" />
         <textarea id="adminSeance" rows="3" placeholder="Ce qui a été fait"></textarea>
-     <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
-      <button class="save" onclick="saveData()">💾 Enregistrer</button>
+       <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
+       <button class="save" onclick="saveData()">💾 Enregistrer</button>
        <!-- Ici la liste sera ajoutée automatiquement par JS -->
        <div id="dataList"></div></div>
+    </div>
     <div id="cours" class="tab">
       <h2>📖 Cours</h2>
       <ul>
