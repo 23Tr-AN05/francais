@@ -63,16 +63,17 @@
      <table>
      <tr>
        <th colspan="2">
-          Choisir une date : <input type="date" id="date" />
+          Choisir une date : 
         </th>
       </tr>
      <tr>
      <td>
        <h3>✔ Ce qui a été fait</h3>
-       <p id="seance">—</p>
       </td>
       <td>
         <h3>📝 Devoirs à faire</h3>
+      </td></tr>
+    </table>
     </div>
     <div id="cours" class="tab">
       <h2>📖 Cours</h2>
