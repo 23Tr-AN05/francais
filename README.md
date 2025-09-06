@@ -165,7 +165,7 @@
      <div id="Demo02" class="w3-hide w3-container w3-light-grey">  
     <ul>
         <li><a href="fr/1re/2025-2026-G.pdf" dowload="" target="_blank"><p id="para4">Les œuvres au programme de Première Générale 2025-2026</p></a></li>
-        <li><a href="fr/1re/2025-2026-T.pdf" dowload="" target="_blank"><p id="para4">Les œuvres au programme de Première Technologique 2025-2026</a></p></li> 
+        <li><a href="fr/1re/2025-2026-T.pdf" dowload="" target="_blank"><p id="para4">Les œuvres au programme de Première Technologique 2025-2026</p></a></li> 
     </ul></div>
     <button onclick="myFunction('Demo11')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">📘-Arthur RIMBAUD, <i>Cahier de Douai</i></p></button>
       <div id="Demo11" class="w3-hide w3-container w3-light-grey"> 
