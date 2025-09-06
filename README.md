@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script src="s.js" data-import=""></script>
+    <script src="cahier.js"></script>
+
  </head>
  <body onload="body()">
  <center><h1 id="h1">Français</h1></center>
@@ -450,84 +452,18 @@
       event.target.classList.add("active");
     }
 
-  const GITHUB_USER = "TON_USERNAME";
-const REPO = "TON_REPO";
-const BRANCH = "main";
-const FILE_PATH = "donnees.json";
-const TOKEN = "TON_PERSONAL_ACCESS_TOKEN"; // Attention, à protéger en prod
-
-async function getData() {
-  const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO}/contents/${FILE_PATH}?ref=${BRANCH}`);
-  const data = await res.json();
-  const content = atob(data.content);
-  return { sha: data.sha, data: JSON.parse(content) };
-}
-
-async function saveDataToGitHub(newData) {
-  const { sha } = await getData();
-  const res = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO}/contents/${FILE_PATH}`, {
-    method: "PUT",
-    headers: {
-      "Authorization": `token ${TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      message: "Mise à jour cahier de texte",
-      content: btoa(JSON.stringify(newData, null, 2)),
-      sha: sha,
-      branch: BRANCH
-    })
-  });
-  return await res.json();
-}
-
-// Afficher les données
-async function renderList() {
-  const { data } = await getData();
-  const div = document.getElementById("dataList");
-  div.innerHTML = "<h3>📋 Liste des entrées</h3>";
-
-  for (let date in data) {
-    const entry = data[date];
-    const item = document.createElement("div");
-    item.style.border = "1px solid #ccc";
-    item.style.padding = "5px";
-    item.style.margin = "5px 0";
-    item.innerHTML = `
-      <strong>${date}</strong><br>
-      ✔ ${entry.seance}<br>
-      📝 ${entry.devoirs}<br>
-      <button onclick="editData('${date}')">✏️ Modifier</button>
-      <button onclick="deleteData('${date}')">🗑️ Supprimer</button>
-    `;
-    div.appendChild(item);
+  // Connexion professeur
+function login() {
+  const pwd = document.getElementById("password").value;
+  if (pwd === "prof123") {
+    document.getElementById("adminSection").style.display = "block";
+    renderList(); // Afficher la liste des données existantes
+    alert("Connexion réussie !");
+  } else {
+    alert("Mot de passe incorrect !");
   }
 }
 
-// Enregistrer / Modifier
-async function saveData(date, seance, devoirs) {
-  const { data } = await getData();
-  data[date] = { seance, devoirs };
-  await saveDataToGitHub(data);
-  renderList();
-}
 
-// Supprimer
-async function deleteData(date) {
-  const { data } = await getData();
-  delete data[date];
-  await saveDataToGitHub(data);
-  renderList();
-}
-
-// Charger pour modification
-async function editData(date) {
-  const { data } = await getData();
-  if (data[date]) {
-    document.getElementById("adminDate").value = date;
-    document.getElementById("adminSeance").value = data[date].seance;
-    document.getElementById("adminDevoirs").value = data[date].devoirs;
-  }
-}
 
   </script>
