@@ -55,33 +55,43 @@
     <button class="tablink" onclick="openTab('cours')">Cours</button>
     <button class="tablink" onclick="openTab('grammaire')">Grammaire</button>
     <button class="tablink" onclick="openTab('dsdm')">DS / DM</button>
-  </nav>
-
-  <div class="container">
+   </nav>
+   <div class="container">
     <div id="cahier" class="tab active">
      <center>
       <h2>📅 Cahier de Texte</h2>
-      <table>
-        <tr>
-          <th colspan="2">Choisir une date : <input type="date" id="date" /></th>
-        </tr>
-        <tr>
-          <td><h3>✔ Ce qui a été fait</h3><p id="seance">—</p></td>
-          <td><h3>📝 Devoirs à faire</h3><p id="devoirs">—</p></td>
-        </tr>
-      </table></center>
-      <div class="card">
-        <h3>🔑 Espace Professeur</h3>
-        <input type="password" id="password" placeholder="Mot de passe" />
-        <button onclick="login()">Connexion</button>
+     <table>
+     <tr>
+       <th colspan="2">
+          Choisir une date : <input type="date" id="date" />
+        </th>
+      </tr>
+     <tr>
+     <td>
+       <h3>✔ Ce qui a été fait</h3>
+       <p id="seance">—</p>
+      </td>
+      <td>
+        <h3>📝 Devoirs à faire</h3>
+        <p id="devoirs">—</p>
+      </td>
+     </tr>
+     </table>
+     <div class="card">
+      <h3>🔑 Espace Professeur</h3>
+      <input type="password" id="password" placeholder="Mot de passe" />
+      <button onclick="login()">Connexion</button>
       </div>
-      <div id="adminSection" class="card" style="display:none;">
-        <h3>Ajouter / Modifier</h3>
-        <input type="date" id="adminDate" />
+     <div id="adminSection" class="card" style="display:none;">
+      <h3>Ajouter / Modifier</h3>
+       <input type="date" id="adminDate" />
         <textarea id="adminSeance" rows="3" placeholder="Ce qui a été fait"></textarea>
-        <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
-        <button class="save" onclick="saveData()">💾 Enregistrer</button>
-      </div>
+     <textarea id="adminDevoirs" rows="3" placeholder="Devoirs"></textarea>
+      <button class="save" onclick="saveData()">💾 Enregistrer</button>
+       <!-- Ici la liste sera ajoutée automatiquement par JS -->
+       <div id="dataList"></div>
+    </div>
+   </div>
     </div>
     <div id="cours" class="tab">
       <h2>📖 Cours</h2>
@@ -447,13 +457,14 @@ function login() {
   const pwd = document.getElementById("password").value;
   if (pwd === "prof123") {
     document.getElementById("adminSection").style.display = "block";
+    renderList(); // Afficher la liste des données existantes
     alert("Connexion réussie !");
   } else {
     alert("Mot de passe incorrect !");
   }
 }
 
-// Enregistrer les données
+// Enregistrer ou modifier une donnée
 function saveData() {
   const d = document.getElementById("adminDate").value;
   const sc = document.getElementById("adminSeance").value;
@@ -469,9 +480,69 @@ function saveData() {
   localStorage.setItem("donnees", JSON.stringify(donnees));
 
   alert("Données enregistrées !");
+  renderList(); // mettre à jour la liste
 }
 
-// Charger les données au démarrage
+// Supprimer une donnée
+function deleteData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  if (donnees[date]) {
+    delete donnees[date];
+    localStorage.setItem("donnees", JSON.stringify(donnees));
+    renderList();
+    alert("Entrée supprimée !");
+  }
+}
+
+// Charger une donnée pour modification
+function editData(date) {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  if (donnees[date]) {
+    document.getElementById("adminDate").value = date;
+    document.getElementById("adminSeance").value = donnees[date].seance;
+    document.getElementById("adminDevoirs").value = donnees[date].devoirs;
+  }
+}
+
+// Afficher la liste des données (réservée au professeur)
+function renderList() {
+  let donnees = JSON.parse(localStorage.getItem("donnees")) || {};
+  let listDiv = document.getElementById("dataList");
+
+  if (!listDiv) {
+    listDiv = document.createElement("div");
+    listDiv.id = "dataList";
+    document.getElementById("adminSection").appendChild(listDiv);
+  }
+
+  listDiv.innerHTML = "<h3>📋 Liste des entrées</h3>";
+
+  const keys = Object.keys(donnees).sort();
+  if (keys.length === 0) {
+    listDiv.innerHTML += "<p>Aucune donnée enregistrée.</p>";
+    return;
+  }
+
+  keys.forEach(date => {
+    const entry = donnees[date];
+    const item = document.createElement("div");
+    item.style.border = "1px solid #ccc";
+    item.style.padding = "5px";
+    item.style.margin = "5px 0";
+
+    item.innerHTML = `
+      <strong>${date}</strong><br>
+      ✔ ${entry.seance || "—"}<br>
+      📝 ${entry.devoirs || "—"}<br>
+      <button onclick="editData('${date}')">✏️ Modifier</button>
+      <button onclick="deleteData('${date}')">🗑️ Supprimer</button>
+    `;
+
+    listDiv.appendChild(item);
+  });
+}
+
+// Charger les données au démarrage pour les élèves
 window.onload = function () {
   const dateInput = document.getElementById("date");
   const seanceEl = document.getElementById("seance");
@@ -479,7 +550,7 @@ window.onload = function () {
 
   const donnees = JSON.parse(localStorage.getItem("donnees")) || {};
 
-  // Quand on choisit une date, afficher les infos correspondantes
+  // Quand on choisit une date → afficher les infos
   dateInput.addEventListener("change", function () {
     const d = this.value;
     if (donnees[d]) {
