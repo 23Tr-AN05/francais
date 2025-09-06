@@ -1,24 +1,22 @@
 <?php
-$file = "devoirs.json";
+// Fichier JSON où les données seront stockées
+$file = "donnees.json";
 
-// Charger JSON existant
-if (file_exists($file)) {
-    $data = json_decode(file_get_contents($file), true);
-} else {
-    $data = [];
-}
+// Lire les données existantes
+$data = file_exists($file) ? json_decode(file_get_contents($file), true) : [];
 
-// Lire données envoyées
+// Récupérer ce qui vient du JS
 $input = json_decode(file_get_contents("php://input"), true);
 $date = $input["date"];
-$devoirs = $input["devoirs"];
 $seance = $input["seance"];
+$devoirs = $input["devoirs"];
 
-// Ajouter/modifier
-$data[$date] = ["devoirs" => $devoirs, "seance" => $seance];
+// Sauvegarder
+$data[$date] = ["seance" => $seance, "devoirs" => $devoirs];
 
-// Sauvegarder dans JSON
-file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+// Réécrire le fichier
+file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
 
-echo "Devoirs enregistrés pour $date ✅";
+// Répondre au JS
+echo json_encode(["success" => true]);
 ?>
