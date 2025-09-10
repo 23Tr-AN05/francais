@@ -331,6 +331,7 @@
             <li><a href="fr/1re/Menteur/Dis-Le_Menteur.pdf" target="_blank"><p id="para4">🖋️Corneille, <i>Le Menteur  </i></p></a> </li>
             <li><a href="fr/1re/oui-non/Dis-Pour_un_oui_ou_pour_un_non.pdf" target="_blank"><p id="para4">🖋️Nathalie Sarraute, <i>Pour un oui ou pour un non </i></p></a> </li>
             <li><a href="fr/1re/sujet-de-BAC-2024.pdf" dowland="" target="_blank"><p id="para4">📝Sujets de Bac  de l'épreuve de 2024 </p></a> </li>
+            <li><a href="fr/1re/sujet-de-BAC-2025.pdf" dowland="" target="_blank"><p id="para4">📝Sujets de Bac  de l'épreuve de 2025 </p></a> </li>
          </ul>
       </div>
       <button onclick="myFunction('Demo03')" class="w3-button w3-block w3-white w3-left-align"><p id="para2">🗂-Boîte à outils</p></button>
