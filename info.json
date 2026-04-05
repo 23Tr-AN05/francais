@@ -1,9 +1,3 @@
 {
-    "active": true,
-    "type": "warning",
-    "message": "📢 Les cours pour le Bac 2026 seront disponibles à partir du 15 septembre.",
-    "lien": {
-        "texte": "Voir le programme",
-        "url": "fr/1re/2025-2026-G.pdf"
-    }
+    "content": "<p><i class='fas fa-bullhorn'></i> <strong>Rentrée 2025</strong> : les nouveaux programmes seront disponibles le 1er septembre.</p><p><i class='fas fa-clock'></i> Permanence en ligne : mercredi 14h-16h.</p>"
 }

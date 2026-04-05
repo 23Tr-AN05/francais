@@ -2,84 +2,322 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Français - Accueil</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Français – Accueil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles supplémentaires pour la page d'accueil */
+        .hero-accueil {
+            background: linear-gradient(135deg, #1e3c72, #2b3b6e);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-accueil::before {
+            content: "📖";
+            font-size: 10rem;
+            position: absolute;
+            right: -20px;
+            bottom: -40px;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .info-card, .calendar-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            height: 100%;
+        }
+        .info-card h3, .calendar-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+            border-left: 4px solid #f97316;
+            padding-left: 0.8rem;
+        }
+        .info-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .info-content p {
+            margin: 0.5rem 0;
+        }
+        .calendar {
+            text-align: center;
+        }
+        .calendar table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+        .calendar th, .calendar td {
+            padding: 0.5rem;
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+        .calendar th {
+            background: #eef2ff;
+            font-weight: 600;
+        }
+        .calendar td {
+            background: #f8fafc;
+        }
+        .calendar .today {
+            background: #f97316;
+            color: white;
+            font-weight: bold;
+            border-radius: 2rem;
+        }
+        .citation-box {
+            background: #fffaf5;
+            border-left: 5px solid #f97316;
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.1rem;
+            transition: opacity 0.5s;
+        }
+        .citation-author {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #5b6e8c;
+            font-style: normal;
+        }
+        .contact-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        .contact-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .contact-card:hover {
+            transform: translateY(-3px);
+        }
+        .contact-card i {
+            font-size: 2rem;
+            color: #f97316;
+            margin-bottom: 0.5rem;
+        }
+        .contact-card a {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        @media (max-width: 800px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .contact-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- BARRE DE NAVIGATION PRINCIPALE -->
-<nav class="main-nav">
-    <div class="nav-container">
-        <a href="#" class="nav-logo">📖 Français</a>
-        <div class="nav-buttons">
-            <button onclick="loadPage('accueil')" id="nav-accueil" class="nav-btn active-nav">
-                <i class="fas fa-home"></i> Accueil
-            </button>
-            <button onclick="loadPage('six')" id="nav-six" class="nav-btn">
-                <i class="fas fa-child"></i> Sixième
-            </button>
-            <button onclick="loadPage('premiere')" id="nav-premiere" class="nav-btn">
-                <i class="fas fa-graduation-cap"></i> Première - BAC
-            </button>
-        </div>
+<div class="main-container">
+    <div class="hero hero-accueil">
+        <h1><i class="fas fa-book-open"></i> Français</h1>
+        <p>Réussis ton année du collège au baccalauréat 📖✨</p>
     </div>
-</nav>
 
+    <div class="nav-bar">
+        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
+        <a href="six.html" class="nav-btn"><i class="fas fa-graduation-cap"></i> Sixième</a>
+        <a href="cinquieme.html" class="nav-btn">Cinquième</a>
+        <a href="quatrieme.html" class="nav-btn">Quatrième</a>
+        <a href="troisieme.html" class="nav-btn">Troisième</a>
+        <a href="seconde.html" class="nav-btn">Seconde</a>
+        <a href="bac.html" class="nav-btn"><i class="fas fa-chalkboard-user"></i> Première - BAC</a>
+    </div>
 
-    <!-- ACCUEIL -->
-    <div id="accueil" class="page active-page">
-        <div class="container">
-            <!-- HERO -->
-            <div class="hero">
-                <h1>📖 Français : réussir du collège au bac</h1>
-                <p>Cours, exercices et méthodes par un étudiant en Lettres Modernes, futur professeur.</p>
-            </div>
+    <div class="content">
+        <!-- Présentation existante -->
+        <div class="card">
+            <h2 class="section-title"><i class="fas fa-smile-wink"></i> Bienvenue !</h2>
+            <p style="font-size:1.1rem">Je suis actuellement étudiant en deuxième année de Licence de Lettres Modernes (Français) et je me prépare également à passer les concours du professorat en 2027.<br>Sur ce site, vous trouverez des cours de Français qui peuvent vous être utiles, notamment si vous préparez le Baccalauréat.</p>
+        </div>
 
-            <!-- DEUX COLONNES -->
-            <div class="two-columns">
-                <div class="col-left">
-                    <div class="info-box">
-                        <h3><i class="fas fa-info-circle"></i> Informations importantes</h3>
-                        <div id="info-content" class="info-content">Chargement...</div>
-                    </div>
-                </div>
-                <div class="col-right">
-                    <div class="calendar-box">
-                        <h3><i class="fas fa-calendar-alt"></i> Calendrier</h3>
-                        <div id="calendar"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CITATION -->
-            <div id="citation-block" class="citation-container">
-                <div class="citation-icon"><i class="fas fa-quote-left"></i></div>
-                <div class="citation-content">
-                    <p id="citation-texte" class="citation-texte">Chargement...</p>
-                    <p id="citation-auteur" class="citation-auteur"></p>
+        <!-- DEUX COLONNES : Infos importantes (JSON) + Calendrier -->
+        <div class="two-columns">
+            <!-- Colonne gauche : informations importantes -->
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Informations importantes</h3>
+                <div id="infoContainer" class="info-content">
+                    <p>Chargement des informations...</p>
                 </div>
             </div>
-
-            <!-- CARTES -->
-            <div class="cards-grid">
-                <div class="info-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Une question ?</h3>
-                    <p><a href="mailto:ozcelebialican2005@gmail.com">Envoyez-moi un mail</a></p>
-                </div>
-                <div class="info-card">
-                    <i class="fas fa-bug"></i>
-                    <h3>Une erreur ?</h3>
-                    <p><a href="mailto:ozcelebialican2005@gmail.com">Signalez-la ici</a></p>
-                </div>
+            <!-- Colonne droite : calendrier dynamique -->
+            <div class="calendar-card">
+                <h3><i class="fas fa-calendar-alt"></i> Calendrier du mois</h3>
+                <div id="calendar" class="calendar"></div>
             </div>
         </div>
+
+        <!-- Espace citations -->
+        <div id="citationBox" class="citation-box">
+            <i class="fas fa-quote-left" style="color:#f97316; margin-right: 8px;"></i>
+            <span id="citationText">Chargement des citations...</span>
+            <div id="citationAuthor" class="citation-author"></div>
+        </div>
+
+        <!-- Liens de contact en deux colonnes -->
+        <div class="contact-links">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <p><strong>Une question ?</strong></p>
+                <a href="mailto:ozcelebialican2005@gmail.com?subject=J'ai une question%5BFR%5D&body=Ma%20question%20se%20porte%20sur%20le%20français%20(ne%20changez%20pas%20l'objet)">Écrivez-moi ✉️</a>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-bug"></i>
+                <p><strong>Signaler une erreur</strong></p>
+                <a href="mailto:ozcelebialican2005@gmail.com?subject=%5BErreur%5D&body=(ne%20changez%20pas%20l'objet)">Signaler ‼</a>
+            </div>
+        </div>
+
+        <footer>© 2025 - Soutien en français pour collégiens & lycéens</footer>
     </div>
 </div>
 
-<script src="main.js"></script>
+<script>
+    // 1. Chargement des informations importantes depuis info.json
+    async function loadImportantInfo() {
+        try {
+            const response = await fetch('info.json');
+            if (!response.ok) throw new Error('Fichier info.json non trouvé');
+            const data = await response.json();
+            const container = document.getElementById('infoContainer');
+            if (data && data.content && data.content.trim() !== "") {
+                // Support du HTML simple dans le JSON
+                container.innerHTML = data.content;
+            } else {
+                container.innerHTML = ""; // Rien n'est affiché
+            }
+        } catch (error) {
+            console.warn("Impossible de charger info.json :", error);
+            document.getElementById('infoContainer').innerHTML = ""; // Aucune information affichée
+        }
+    }
+
+    // 2. Calendrier dynamique (mois en cours)
+    function generateCalendar() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth(); // 0-indexé
+        const firstDay = new Date(year, month, 1).getDay(); // jour de la semaine (0 = dimanche)
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+        const dayNames = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
+        
+        let calendarHtml = `<h4 style="margin:0 0 10px 0;">${monthNames[month]} ${year}</h4>`;
+        calendarHtml += "<table>";
+        calendarHtml += "<tr>";
+        for (let i = 0; i < 7; i++) {
+            calendarHtml += `<th>${dayNames[i]}</th>`;
+        }
+        calendarHtml += "</tr><tr>";
+        
+        let date = 1;
+        // Cases vides avant le premier jour (ajuster car getDay() donne dimanche=0)
+        let startOffset = firstDay === 0 ? 6 : firstDay - 1; // pour commencer lundi
+        for (let i = 0; i < startOffset; i++) {
+            calendarHtml += "<td></td>";
+        }
+        
+        const currentDate = today.getDate();
+        for (let i = startOffset; date <= daysInMonth; i++) {
+            if (i > 0 && i % 7 === 0) {
+                calendarHtml += "</tr><tr>";
+            }
+            if (date === currentDate) {
+                calendarHtml += `<td class="today">${date}</td>`;
+            } else {
+                calendarHtml += `<td>${date}</td>`;
+            }
+            date++;
+        }
+        // Compléter les cases vides à la fin
+        const totalCells = startOffset + daysInMonth;
+        const remaining = 7 - (totalCells % 7);
+        if (remaining < 7) {
+            for (let i = 0; i < remaining; i++) {
+                calendarHtml += "<td></td>";
+            }
+        }
+        calendarHtml += "</tr></table>";
+        document.getElementById('calendar').innerHTML = calendarHtml;
+    }
+
+    // 3. Citations : charger citation.json et les afficher aléatoirement toutes les 20-30s
+    let citationsList = [];
+    let currentCitationIndex = -1;
+    let citationInterval = null;
+
+    async function loadCitations() {
+        try {
+            const response = await fetch('citation.json');
+            if (!response.ok) throw new Error('citation.json introuvable');
+            const data = await response.json();
+            if (Array.isArray(data) && data.length > 0) {
+                citationsList = data;
+                showRandomCitation();
+                // Lancer l'intervalle (20-30 secondes)
+                if (citationInterval) clearInterval(citationInterval);
+                citationInterval = setInterval(showRandomCitation, getRandomInterval());
+            } else {
+                document.getElementById('citationText').innerText = "Aucune citation pour le moment.";
+                document.getElementById('citationAuthor').innerHTML = "";
+            }
+        } catch (error) {
+            console.warn("Erreur chargement citations :", error);
+            document.getElementById('citationText').innerText = "📖 Ajoutez des citations dans citation.json";
+        }
+    }
+
+    function getRandomInterval() {
+        // entre 20 et 30 secondes (20000 à 30000 ms)
+        return Math.floor(Math.random() * (30000 - 20000 + 1) + 20000);
+    }
+
+    function showRandomCitation() {
+        if (citationsList.length === 0) return;
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * citationsList.length);
+        } while (citationsList.length > 1 && newIndex === currentCitationIndex);
+        currentCitationIndex = newIndex;
+        const citation = citationsList[currentCitationIndex];
+        document.getElementById('citationText').innerHTML = citation.texte || "Citation manquante";
+        document.getElementById('citationAuthor').innerHTML = citation.auteur ? `— ${citation.auteur}` : "";
+        // Réinitialiser l'intervalle avec une nouvelle durée aléatoire
+        if (citationInterval) {
+            clearInterval(citationInterval);
+            citationInterval = setInterval(showRandomCitation, getRandomInterval());
+        }
+    }
+
+    // 4. Initialisation au chargement
+    window.onload = () => {
+        loadImportantInfo();
+        generateCalendar();
+        loadCitations();
+    };
+</script>
 </body>
 </html>
