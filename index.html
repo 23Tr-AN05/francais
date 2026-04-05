@@ -2,522 +2,94 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Français : réussir du collège au bac</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Merriweather:ital@0;1&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Français - Accueil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ========== TON CSS COMPLET (demo_fr) ========== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: #fef8ec;
-            color: #2c3e2b;
-            line-height: 1.5;
-        }
-
-        .main-nav {
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 2rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-logo {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: #e76f51;
-            text-decoration: none;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            background: none;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            color: #5a5a5a;
-        }
-
-        .nav-btn:hover {
-            background: #f0e3d0;
-        }
-
-        .nav-btn.active-nav {
-            background: #e76f51;
-            color: white;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .active-page {
-            display: block;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-        }
-
-        /* ========== ACCUEIL (modifié avec ton code) ========== */
-        .hero {
-            background: linear-gradient(135deg, #fff3e0, #ffe6cc);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            color: #e76f51;
-        }
-
-        .two-columns {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .col-left, .col-right {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .info-box {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.2rem;
-            border-left: 5px solid #e76f51;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .info-box h3 {
-            color: #e76f51;
-            margin-bottom: 0.8rem;
-        }
-
-        .calendar-box {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.2rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .calendar-box h3 {
-            color: #2a9d8f;
-            margin-bottom: 0.8rem;
-        }
-
-        .citation-container {
-            display: flex;
-            gap: 1rem;
-            background: #fef9ef;
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid #e76f51;
-        }
-
-        .citation-icon {
-            font-size: 1.8rem;
-            color: #e76f51;
-        }
-
-        .citation-texte {
-            font-family: 'Merriweather', serif;
-            font-style: italic;
-            margin-bottom: 0.3rem;
-        }
-
-        .citation-auteur {
-            text-align: right;
-            color: #a07a50;
-            font-size: 0.85rem;
-        }
-
-        .cards-grid {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .info-card {
-            flex: 1;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .info-card i {
-            font-size: 2rem;
-            color: #f4a261;
-            margin-bottom: 0.8rem;
-        }
-
-        .info-card a {
-            color: #e76f51;
-            text-decoration: none;
-        }
-
-        /* ========== STYLES POUR LES AUTRES PAGES (Sixième, Première, etc.) ========== */
-        #six h2 {
-            color: #2a9d8f;
-            margin-bottom: 1.5rem;
-        }
-
-        .level-tabs {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
-
-        .tab-btn {
-            background: #e9ecef;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 60px;
-            cursor: pointer;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: #2a9d8f;
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            background: #fef9ef;
-            border-radius: 1rem;
-            padding: 1.5rem;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .planning-grid {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .planning-item {
-            flex: 1;
-            background: white;
-            border-radius: 1rem;
-            padding: 1rem;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .planning-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 1rem;
-        }
-
-        .planning-table th, .planning-table td {
-            padding: 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #ede3d3;
-        }
-
-        .planning-table th {
-            background: #2a9d8f;
-            color: white;
-        }
-
-        .file-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .file-list li {
-            margin: 0.8rem 0;
-        }
-
-        .file-list a {
-            text-decoration: none;
-            color: #2a9d8f;
-        }
-
-        #premiere h2 {
-            font-family: 'Merriweather', serif;
-            color: #1e466e;
-            border-left: 5px solid #1e466e;
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .serious-card {
-            background: #f2f5f9;
-            padding: 1.2rem;
-            border-radius: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .accordion-btn {
-            width: 100%;
-            background: #eef2f5;
-            border: none;
-            text-align: left;
-            padding: 0.8rem;
-            margin: 0.3rem 0;
-            border-radius: 40px;
-            cursor: pointer;
-        }
-
-        .accordion-content {
-            display: none;
-            padding: 0.5rem 1rem;
-            background: white;
-            border-radius: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .accordion-content.active {
-            display: block;
-        }
-
-        /* Styles spécifiques Sixième (projets, grammaire, etc.) */
-        .cursive-title {
-            font-family: 'Merriweather', 'Brush Script MT', cursive;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #2a9d8f;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .projets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 1rem 0;
-        }
-        .projet-card {
-            background: white;
-            border-radius: 1rem;
-            padding: 1.2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            border-left: 4px solid #2a9d8f;
-        }
-        .projet-card:hover { transform: translateY(-5px); }
-        .projet-card i { font-size: 2rem; color: #2a9d8f; margin-bottom: 0.5rem; }
-        .projet-date {
-            display: inline-block;
-            background: #f0e3d0;
-            padding: 0.2rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            margin: 0.5rem 0;
-        }
-        .grammaire-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .grammaire-categorie {
-            background: white;
-            border-radius: 1rem;
-            padding: 1rem;
-        }
-        .grammaire-categorie h4 { color: #2a9d8f; margin-bottom: 0.8rem; }
-        .btn-telecharger {
-            display: inline-block;
-            background: #2a9d8f;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            text-decoration: none;
-        }
-        .ds-card h4 { color: #e76f51; }
-        .planning-list { list-style: none; padding-left: 0; }
-        .planning-list li { font-size: 0.85rem; padding: 0.2rem 0; border-bottom: 1px dashed #ede3d3; }
-
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 0.8rem; }
-            .two-columns { flex-direction: column; }
-            .cards-grid { flex-direction: column; }
-            .container { padding: 1rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="main-nav">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">📖 Français</a>
-            <div class="nav-buttons">
-                <button class="nav-btn active-nav" data-page="accueil">Accueil</button>
-                <button class="nav-btn" data-page="six">Sixième</button>
-                <button class="nav-btn" data-page="premiere">Première</button>
-            </div>
+
+<!-- BARRE DE NAVIGATION PRINCIPALE -->
+<nav class="main-nav">
+    <div class="nav-container">
+        <a href="#" class="nav-logo">📖 Français</a>
+        <div class="nav-buttons">
+            <button onclick="loadPage('accueil')" id="nav-accueil" class="nav-btn active-nav">
+                <i class="fas fa-home"></i> Accueil
+            </button>
+            <button onclick="loadPage('six')" id="nav-six" class="nav-btn">
+                <i class="fas fa-child"></i> Sixième
+            </button>
+            <button onclick="loadPage('premiere')" id="nav-premiere" class="nav-btn">
+                <i class="fas fa-graduation-cap"></i> Première - BAC
+            </button>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div id="page-container">
-        <!-- PAGE ACCUEIL (NOUVEAU CONTENU) -->
-        <div id="accueil" class="page active-page">
-            <div class="container">
-                <div class="hero">
-                    <h1>📖 Français : réussir du collège au bac</h1>
-                    <p>Cours, exercices et méthodes par un étudiant en Lettres Modernes, futur professeur.</p>
-                </div>
+<!-- CONTENEUR DYNAMIQUE -->
+<div id="page-container" class="page-container">
+    <!-- ACCUEIL -->
+    <div id="accueil" class="page active-page">
+        <div class="container">
+            <!-- HERO -->
+            <div class="hero">
+                <h1>📖 Français : réussir du collège au bac</h1>
+                <p>Cours, exercices et méthodes par un étudiant en Lettres Modernes, futur professeur.</p>
+            </div>
 
-                <div class="two-columns">
-                    <div class="col-left">
-                        <div class="info-box">
-                            <h3><i class="fas fa-info-circle"></i> Informations importantes</h3>
-                            <div id="info-content" class="info-content">Chargement...</div>
-                        </div>
-                    </div>
-                    <div class="col-right">
-                        <div class="calendar-box">
-                            <h3><i class="fas fa-calendar-alt"></i> Calendrier</h3>
-                            <div id="calendar"></div>
-                        </div>
+            <!-- DEUX COLONNES -->
+            <div class="two-columns">
+                <div class="col-left">
+                    <div class="info-box">
+                        <h3><i class="fas fa-info-circle"></i> Informations importantes</h3>
+                        <div id="info-content" class="info-content">Chargement...</div>
                     </div>
                 </div>
-                <br/><br/><br/>
-
-                <div id="citation-block" class="citation-container">
-                    <div class="citation-icon"><i class="fas fa-quote-left"></i></div>
-                    <div class="citation-content">
-                        <p id="citation-texte" class="citation-texte">Chargement...</p>
-                        <p id="citation-auteur" class="citation-auteur"></p>
-                    </div>
-                </div>
-
-                <div class="cards-grid">
-                    <div class="info-card">
-                        <i class="fas fa-envelope"></i>
-                        <h3>Une question ?</h3>
-                        <p><a href="mailto:ozcelebialican2005@gmail.com">Envoyez-moi un mail</a></p>
-                    </div>
-                    <div class="info-card">
-                        <i class="fas fa-bug"></i>
-                        <h3>Une erreur ?</h3>
-                        <p><a href="mailto:ozcelebialican2005@gmail.com">Signalez-la ici</a></p>
+                <div class="col-right">
+                    <div class="calendar-box">
+                        <h3><i class="fas fa-calendar-alt"></i> Calendrier</h3>
+                        <div id="calendar"></div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- PAGE SIXIÈME (contenu minimal pour exemple) -->
-        <div id="six" class="page">
-            <div class="container">
-                <h2>Sixième</h2>
-                <p>Contenu de la classe de Sixième à venir.</p>
-                <!-- Tu peux recopier ici tout ton contenu existant pour la sixième -->
+            <!-- CITATION -->
+            <div id="citation-block" class="citation-container">
+                <div class="citation-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="citation-content">
+                    <p id="citation-texte" class="citation-texte">Chargement...</p>
+                    <p id="citation-auteur" class="citation-auteur"></p>
+                </div>
             </div>
-        </div>
 
-        <!-- PAGE PREMIÈRE (contenu minimal) -->
-        <div id="premiere" class="page">
-            <div class="container">
-                <h2>Première</h2>
-                <p>Contenu de la classe de Première à venir.</p>
+            <!-- CARTES -->
+            <div class="cards-grid">
+                <div class="info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Une question ?</h3>
+                    <p><a href="mailto:ozcelebialican2005@gmail.com">Envoyez-moi un mail</a></p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-bug"></i>
+                    <h3>Une erreur ?</h3>
+                    <p><a href="mailto:ozcelebialican2005@gmail.com">Signalez-la ici</a></p>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // Simulation de données pour "Informations importantes"
-        document.getElementById('info-content').innerHTML = `
-            <p>📢 <strong>Rentrée 2026</strong> : nouveaux programmes.</p>
-            <p>📅 Prochain DS de français le 15 mai.</p>
-            <p>✍️ Dépôt des fiches de révision avant le 10 mai.</p>
-        `;
+ <div id="Sixieme" class="section"><div id="sixieme-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de 6ème...</p></div></div></div>
+  <div id="Cinquieme" class="section"><div id="cinquieme-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de 5ème...</p></div></div></div>
+  <div id="Quatrieme" class="section"><div id="quatrieme-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de 4ème...</p></div></div></div>
+  <div id="Troisieme" class="section"><div id="troisieme-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de 3ème...</p></div></div></div>
+  <div id="Seconde" class="section"><div id="seconde-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de Seconde...</p></div></div></div>
+  <div id="Premiere" class="section"><div id="premiere-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de Première...</p></div></div></div>
+  <div id="Terminale" class="section"><div id="terminale-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement du contenu de Terminale...</p></div></div></div>
+  <div id="MathFLE" class="section"><div id="mathfle-content" class="dynamic-content"><div class="loading-spinner"><i class="fas fa-spinner"></i><p>Chargement de l'espace Math-FLE...</p></div></div></div>
 
-        // Gestion des citations (exemple simple)
-        const citations = [
-            { texte: "La langue française est une fierté, mais aussi un outil de liberté.", auteur: "A. Dumas" },
-            { texte: "Écrire, c'est une façon de parler sans être interrompu.", auteur: "J. Renard" },
-            { texte: "La lecture agrandit l'âme.", auteur: "Voltaire" }
-        ];
-        let idx = 0;
-        function updateCitation() {
-            const c = citations[idx % citations.length];
-            document.getElementById('citation-texte').innerText = c.texte;
-            document.getElementById('citation-auteur').innerText = '— ' + c.auteur;
-            idx++;
-        }
-        updateCitation();
-        setInterval(updateCitation, 8000);
-
-        // Calendrier simple (sans lib externe pour éviter surcharge, mais on peut faire un mini calendrier)
-        // Je vais créer un mini calendrier manuel pour rester autonome
-        function generateCalendar() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth();
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            let html = '<div class="calendar-header"><span>' + new Date(year, month).toLocaleString('fr', { month: 'long', year: 'numeric' }) + '</span></div>';
-            html += '<div class="calendar-weekdays">';
-            const weekdays = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
-            weekdays.forEach(d => html += `<div class="calendar-weekday">${d}</div>`);
-            html += '</div><div class="calendar-days">';
-            let startOffset = (firstDay === 0 ? 6 : firstDay - 1);
-            for (let i = 0; i < startOffset; i++) html += '<div class="calendar-day other-month"></div>';
-            for (let d = 1; d <= daysInMonth; d++) {
-                const isToday = (d === now.getDate() && month === now.getMonth() && year === now.getFullYear());
-                html += `<div class="calendar-day ${isToday ? 'today' : ''}">${d}</div>`;
-            }
-            html += '</div>';
-            document.getElementById('calendar').innerHTML = html;
-        }
-        generateCalendar();
-
-        // Navigation entre les pages
-        const btns = document.querySelectorAll('.nav-btn');
-        const pages = document.querySelectorAll('.page');
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const pageId = btn.getAttribute('data-page');
-                pages.forEach(page => page.classList.remove('active-page'));
-                document.getElementById(pageId).classList.add('active-page');
-                btns.forEach(b => b.classList.remove('active-nav'));
-                btn.classList.add('active-nav');
-            });
-        });
-    </script>
+<script src="main.js"></script>
 </body>
 </html>
