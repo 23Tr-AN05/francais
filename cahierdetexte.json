@@ -1,0 +1,26 @@
+[
+    {
+        "classe": "sixième",
+        "date": "Semaine 1",
+        "seance": "Introduction au conte",
+        "aFaire": "Lire 'Le Petit Poucet'"
+    },
+    {
+        "classe": "sixième",
+        "date": "Semaine 2",
+        "seance": "Le schéma narratif",
+        "aFaire": "Rédiger un récit court"
+    },
+    {
+        "classe": "sixième",
+        "date": "Semaine 3",
+        "seance": "Les personnages types",
+        "aFaire": "Créer une fiche personnage"
+    },
+    {
+        "classe": "cinquième",
+        "date": "Semaine 1",
+        "seance": "Le récit d'aventures",
+        "aFaire": "Lire 'L'Île au trésor' chapitre 1"
+    }
+]
