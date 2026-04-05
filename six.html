@@ -1,44 +1,247 @@
-<!-- six.html - Classe de Sixième -->
-<div id="six" class="page">
-    <div class="container">
-        <h2><i class="fas fa-smile"></i> Sixième – Français en s'amusant</h2>
-        
-        <div class="level-tabs">
-            <button class="tab-btn active" data-tab="cahier6">📅 Cahier de texte</button>
-            <button class="tab-btn" data-tab="cours6">📖 Cours</button>
-            <button class="tab-btn" data-tab="grammaire6">📘 Grammaire</button>
-            <button class="tab-btn" data-tab="dsdm6">📑 DS / DM</button>
-        </div>
-        
-        <div id="cahier6" class="tab-content active">
-            <div class="planning-grid">
-                <div class="planning-item"><i class="fas fa-check-circle"></i> Ce qui a été fait</div>
-                <div class="planning-item"><i class="fas fa-book-open"></i> Devoirs à faire</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Français – Sixième</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques pour la page Sixième */
+        .cursive-title {
+            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #1e3c72;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .level-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: #334155;
+        }
+        .tab-btn i {
+            margin-right: 8px;
+        }
+        .tab-btn.active {
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 10px rgba(249,115,22,0.3);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.2s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .planning-grid {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .planning-item {
+            background: #eef2ff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1rem;
+            font-weight: 600;
+            flex: 1;
+            text-align: center;
+        }
+        .planning-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .planning-table th, .planning-table td {
+            background: #f8fafc;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            text-align: left;
+        }
+        .planning-table th {
+            background: #eef2ff;
+            font-weight: 700;
+        }
+        .file-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .file-list li {
+            margin: 0.5rem 0;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .file-list li i {
+            margin-right: 10px;
+            color: #f97316;
+        }
+        .projet-card, .chantier-card, .jdl-card {
+            background: #fef9f0;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 700px) {
+            .planning-grid {
+                flex-direction: column;
+            }
+            .cursive-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="hero">
+        <h1><i class="fas fa-book-open"></i> Français</h1>
+        <p>Réussis ton année du collège au baccalauréat 📖✨</p>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
+        <a href="six.html" class="nav-btn"><i class="fas fa-graduation-cap"></i> Sixième</a>
+        <a href="cinquieme.html" class="nav-btn">Cinquième</a>
+        <a href="quatrieme.html" class="nav-btn">Quatrième</a>
+        <a href="troisieme.html" class="nav-btn">Troisième</a>
+        <a href="seconde.html" class="nav-btn">Seconde</a>
+        <a href="bac.html" class="nav-btn"><i class="fas fa-chalkboard-user"></i> Première - BAC</a>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h2 class="cursive-title">Sixième</h2>
+            
+            <div class="level-tabs">
+                <button class="tab-btn active" data-tab="cahier6"><i class="fas fa-calendar-alt"></i> Cahier de texte</button>
+                <button class="tab-btn" data-tab="projet6"><i class="fas fa-project-diagram"></i> Projet d'apprentissages</button>
+                <button class="tab-btn" data-tab="chantier6"><i class="fas fa-tools"></i> Chantier grammatical</button>
+                <button class="tab-btn" data-tab="jdl6"><i class="fas fa-book"></i> JDL</button>
+                <button class="tab-btn" data-tab="dsdm6"><i class="fas fa-file-alt"></i> DS, DM</button>
             </div>
-            <table class="planning-table">
-                <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
-                <tr><td>Semaine 1</td><td>Introduction</td><td>Lire le cours</td></tr>
-                <tr><td>Semaine 2</td><td>Le schéma narratif</td><td>Rédiger un récit</td></tr>
-            </table>
+            
+            <!-- Onglet Cahier de texte -->
+            <div id="cahier6" class="tab-content active">
+                <div class="planning-grid">
+                    <div class="planning-item"><i class="fas fa-check-circle"></i> Ce qui a été fait</div>
+                    <div class="planning-item"><i class="fas fa-book-open"></i> Devoirs à faire</div>
+                </div>
+                <table class="planning-table">
+                    <thead>
+                        <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Semaine 1</td><td>Introduction au conte</td><td>Lire "Le Petit Poucet"</td></tr>
+                        <tr><td>Semaine 2</td><td>Le schéma narratif</td><td>Rédiger un récit court</td></tr>
+                        <tr><td>Semaine 3</td><td>Les personnages types</td><td>Créer une fiche personnage</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Onglet Projet d'apprentissages -->
+            <div id="projet6" class="tab-content">
+                <div class="projet-card">
+                    <h3><i class="fas fa-pen-fancy"></i> Projet 1 : Écrire un conte merveilleux</h3>
+                    <p>Objectif : inventer un conte avec des personnages et une morale. <br> <strong>Échéance :</strong> 15 avril 2025.</p>
+                </div>
+                <div class="projet-card">
+                    <h3><i class="fas fa-microphone-alt"></i> Projet 2 : Dire une fable</h3>
+                    <p>Apprendre et interpréter une fable de La Fontaine. Passage devant la classe.</p>
+                </div>
+                <div class="projet-card">
+                    <h3><i class="fas fa-users"></i> Projet 3 : Journal de classe numérique</h3>
+                    <p>Rédiger chaque semaine un article sur l’actualité du collège.</p>
+                </div>
+            </div>
+            
+            <!-- Onglet Chantier grammatical -->
+            <div id="chantier6" class="tab-content">
+                <div class="chantier-card">
+                    <h3><i class="fas fa-spell-check"></i> Chantier n°1 – La phrase</h3>
+                    <p>Identifier le sujet, le verbe, les compléments. Exercices interactifs à venir.</p>
+                    <a href="pdf/grammaire_phrase.pdf" target="_blank">📄 Fiche récapitulative</a>
+                </div>
+                <div class="chantier-card">
+                    <h3><i class="fas fa-tag"></i> Chantier n°2 – Les classes grammaticales</h3>
+                    <p>Nom, adjectif, verbe, déterminant… Reconnaître la nature des mots.</p>
+                    <a href="pdf/classes_grammaticales.pdf" target="_blank">📄 Exercices</a>
+                </div>
+                <div class="chantier-card">
+                    <h3><i class="fas fa-clock"></i> Chantier n°3 – Les temps du passé</h3>
+                    <p>Imparfait, passé simple, passé composé : valeurs et conjugaisons.</p>
+                    <a href="pdf/temps_passe.pdf" target="_blank">📄 Tableaux de conjugaison</a>
+                </div>
+            </div>
+            
+            <!-- Onglet JDL (Journal de la langue / Journée de la langue) -->
+            <div id="jdl6" class="tab-content">
+                <div class="jdl-card">
+                    <h3><i class="fas fa-quote-right"></i> Dictée du mois</h3>
+                    <p>Dictée préparée : "La rentrée" – fichier audio disponible.</p>
+                    <a href="audio/dictee_rentree.mp3" target="_blank">🎧 Écouter la dictée</a>
+                </div>
+                <div class="jdl-card">
+                    <h3><i class="fas fa-lightbulb"></i> Le mot de la semaine</h3>
+                    <p><strong>Émerveiller</strong> (verbe) – Éprouver un vif étonnement admiratif. Exemple : « Le spectacle nous a émerveillés. »</p>
+                </div>
+                <div class="jdl-card">
+                    <h3><i class="fas fa-puzzle-piece"></i> Jeux de langue</h3>
+                    <p>Mots croisés, devinettes et anagrammes – à télécharger.</p>
+                    <a href="pdf/jeux_langue.pdf" target="_blank">📄 Fiche jeux</a>
+                </div>
+            </div>
+            
+            <!-- Onglet DS, DM -->
+            <div id="dsdm6" class="tab-content">
+                <ul class="file-list">
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/ds1.pdf" target="_blank">DS 1 – Conte et grammaire</a></li>
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/dm1.pdf" target="_blank">DM 1 – Rédiger une suite de récit</a></li>
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/ds2.pdf" target="_blank">DS 2 – Les temps du passé</a></li>
+                </ul>
+            </div>
         </div>
-        
-        <div id="cours6" class="tab-content">
-            <ul class="file-list">
-                <li><a href="pdf/cours1.pdf" target="_blank">Cours 1 : Introduction</a></li>
-                <li><a href="pdf/cours2.pdf" target="_blank">Cours 2 : Les classes grammaticales</a></li>
-            </ul>
-        </div>
-        
-        <div id="grammaire6" class="tab-content">
-            <ul class="file-list">
-                <li><a href="pdf/grammaire1.pdf" target="_blank">Grammaire : La phrase</a></li>
-            </ul>
-        </div>
-        
-        <div id="dsdm6" class="tab-content">
-            <ul class="file-list">
-                <li><a href="pdf/ds1.pdf" target="_blank">DS 1</a></li>
-            </ul>
-        </div>
+        <footer>© 2025 - Sixième</footer>
     </div>
 </div>
+
+<script>
+    // Gestion des onglets pour la page Sixième
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetId = tab.getAttribute('data-tab');
+            // Désactiver tous les onglets et contenus
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            // Activer l'onglet cliqué et le contenu correspondant
+            tab.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
