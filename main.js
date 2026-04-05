@@ -4,18 +4,9 @@ const pageCache = {};
 async function loadPage(pageName) {
     const container = document.getElementById('page-container');
     if (!container) return;
-    
-    // Si la page est déjà en cache
-    if (pageCache[pageName]) {
-        container.innerHTML = pageCache[pageName];
-        updateActiveNav(pageName);
-        initPageScripts(pageName);
-        return;
-    }
-    
-    // Page spéciale accueil (déjà dans le DOM)
+
+    // Pages spéciales
     if (pageName === 'accueil') {
-        // L'accueil est déjà présent, on le réaffiche
         const accueilDiv = document.getElementById('accueil');
         if (accueilDiv) {
             container.innerHTML = '';
@@ -26,20 +17,35 @@ async function loadPage(pageName) {
         initPageScripts('accueil');
         return;
     }
-    
-    // Charger la page externe
+
+    // Vérifier le cache
+    if (pageCache[pageName]) {
+        container.innerHTML = pageCache[pageName];
+        updateActiveNav(pageName);
+        initPageScripts(pageName);
+        return;
+    }
+
+    // Tentative de chargement par fetch
     try {
         const response = await fetch(`${pageName}.html`);
-        if (!response.ok) throw new Error('Page non trouvée');
+        if (!response.ok) throw new Error();
         const html = await response.text();
-        
         pageCache[pageName] = html;
         container.innerHTML = html;
         updateActiveNav(pageName);
         initPageScripts(pageName);
     } catch (error) {
-        console.error('Erreur:', error);
-        container.innerHTML = `<div class="container"><p style="color:red;">Erreur chargement de ${pageName}</p></div>`;
+        // Fallback : afficher une iframe ou un lien
+        container.innerHTML = `
+            <div class="container" style="text-align:center; padding:2rem;">
+                <p>⚠️ Impossible de charger ${pageName}.html directement.</p>
+                <p>Voici une alternative :</p>
+                <iframe src="${pageName}.html" style="width:100%; height:70vh; border:1px solid #ccc;"></iframe>
+                <p>Ou <a href="${pageName}.html" target="_blank">ouvrir dans un nouvel onglet</a></p>
+            </div>
+        `;
+        updateActiveNav(pageName);
     }
 }
 
