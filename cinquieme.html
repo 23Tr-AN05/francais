@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Français – Cinquième</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cursive-title {
+            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+        .level-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: #334155;
+        }
+        .tab-btn i { margin-right: 8px; }
+        .tab-btn.active {
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 10px rgba(249,115,22,0.3);
+        }
+        .tab-content { display: none; animation: fadeIn 0.2s; }
+        .tab-content.active { display: block; }
+        .planning-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .planning-table th, .planning-table td {
+            background: #f8fafc;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            text-align: left;
+        }
+        .planning-table th { background: #eef2ff; font-weight: 700; }
+        .file-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .file-list li {
+            margin: 0.5rem 0;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .file-list li i { margin-right: 10px; color: #f97316; }
+        .accordion-item {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #eef2ff;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background: #fef9f0;
+            padding: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover { background: #fff0e0; }
+        .accordion-header i { transition: transform 0.3s; }
+        .accordion-content { display: none; padding: 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
+        .accordion-content.open { display: block; }
+        .seance-list { list-style: none; padding-left: 0; }
+        .seance-list li { margin: 0.8rem 0; padding: 0.5rem; background: #f8fafc; border-radius: 0.8rem; }
+        .seance-title { font-weight: 600; color: #1e3c72; }
+        .resource-card {
+            background: #fef9f0;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f97316;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 700px) { .cursive-title { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="hero">
+        <h1><i class="fas fa-book-open"></i> Français – Cinquième</h1>
+        <p>Approfondis tes connaissances ! 📖</p>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
+        <a href="six.html" class="nav-btn">Sixième</a>
+        <a href="cinquieme.html" class="nav-btn">Cinquième</a>
+        <a href="quatrieme.html" class="nav-btn">Quatrième</a>
+        <a href="troisieme.html" class="nav-btn">Troisième</a>
+        <a href="seconde.html" class="nav-btn">Seconde</a>
+        <a href="bac.html" class="nav-btn">Première - BAC</a>
+        <a href="fle.html" class="nav-btn"><i class="fas fa-language"></i> FLE</a>
+        <a href="divers.html" class="nav-btn"><i class="fas fa-folder-open"></i> Divers</a>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h2 class="cursive-title">Cinquième</h2>
+
+            <div class="level-tabs">
+                <button class="tab-btn active" data-tab="cahier5"><i class="fas fa-calendar-alt"></i> Cahier de texte</button>
+                <button class="tab-btn" data-tab="projet5"><i class="fas fa-project-diagram"></i> Projet d'apprentissages</button>
+                <button class="tab-btn" data-tab="chantier5"><i class="fas fa-tools"></i> Chantier grammatical</button>
+                <button class="tab-btn" data-tab="jdl5"><i class="fas fa-book"></i> JDL</button>
+                <button class="tab-btn" data-tab="dsdm5"><i class="fas fa-file-alt"></i> DS, DM</button>
+            </div>
+
+            <!-- Cahier de texte -->
+            <div id="cahier5" class="tab-content active">
+                <div id="cahier5-container">Chargement du cahier de texte...</div>
+            </div>
+
+            <!-- Projets -->
+            <div id="projet5" class="tab-content">
+                <div id="projets5-container"></div>
+            </div>
+
+            <!-- Chantier grammatical -->
+            <div id="chantier5" class="tab-content">
+                <div class="resource-card"><h3>📖 Chantier n°1 – Le récit d'aventures</h3><p>Structure, rythme, vocabulaire de l'aventure.</p><a href="pdf/5e_recit_aventures.pdf" target="_blank">📄 Fiche</a></div>
+                <div class="resource-card"><h3>✍️ Chantier n°2 – Le discours rapporté</h3><p>Discours direct, indirect, indirect libre.</p><a href="pdf/5e_discours_rapporte.pdf" target="_blank">📄 Exercices</a></div>
+                <div class="resource-card"><h3>🔍 Chantier n°3 – La comparaison et la métaphore</h3><p>Reconnaître et utiliser les figures de style.</p><a href="pdf/5e_figures.pdf" target="_blank">📄 Fiche méthode</a></div>
+            </div>
+
+            <!-- JDL -->
+            <div id="jdl5" class="tab-content">
+                <div class="resource-card"><h3>🎧 Dictée thématique : "Les explorateurs"</h3><a href="audio/dictee_explorateurs.mp3" target="_blank">Écouter la dictée</a></div>
+                <div class="resource-card"><h3>💡 Le mot de la semaine : "Aventure"</h3><p>Étymologie et expressions liées.</p></div>
+                <div class="resource-card"><h3>🧩 Quiz : Les types de récits</h3><a href="pdf/quiz_recits.pdf" target="_blank">📄 Télécharger le quiz</a></div>
+            </div>
+
+            <!-- DS, DM -->
+            <div id="dsdm5" class="tab-content">
+                <ul class="file-list">
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/5e_ds1.pdf" target="_blank">DS 1 – Le récit d'aventures</a></li>
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/5e_dm1.pdf" target="_blank">DM 1 – Écrire une péripétie</a></li>
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/5e_ds2.pdf" target="_blank">DS 2 – Grammaire : discours rapporté</a></li>
+                </ul>
+            </div>
+        </div>
+        <footer>© 2025 - Cinquième</footer>
+    </div>
+</div>
+
+<script>
+    async function loadCahierTexte(classe, containerId) {
+        const container = document.getElementById(containerId);
+        try {
+            const response = await fetch('cahierdetexte.json');
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            const entries = data.filter(entry => entry.classe === classe);
+            if (entries.length === 0) {
+                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+                return;
+            }
+            let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
+            entries.forEach(entry => {
+                html += `<tr><td>${entry.date || ''}</td><td>${entry.seance || ''}</td><td>${entry.aFaire || ''}</td></tr>`;
+            });
+            html += `</tbody></table>`;
+            container.innerHTML = html;
+        } catch (error) {
+            container.innerHTML = '<p>Impossible de charger le cahier de texte.</p>';
+        }
+    }
+
+    const projets5 = [
+        { titre: "🏴‍☠️ Projet 1 : Écrire une nouvelle d'aventure", seances: ["Séance 1 : Lecture d'une nouvelle (L'Île au trésor)", "Séance 2 : Créer un personnage aventurier", "Séance 3 : Construire un schéma narratif", "Séance 4 : Rédiger le début et la péripétie", "Séance 5 : Dénouement et chute"] },
+        { titre: "🎭 Projet 2 : Mettre en scène une saynète", seances: ["Séance 1 : Découverte du texte", "Séance 2 : Distribution des rôles", "Séance 3 : Jeu et intonation", "Séance 4 : Répétition", "Séance 5 : Représentation"] }
+    ];
+
+    function buildAccordionProjets(containerId, projets) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        projets.forEach((projet, idx) => {
+            html += `<div class="accordion-item"><div class="accordion-header" data-accordion="${idx}"><span>${projet.titre}</span><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="accordion-content-${idx}"><ul class="seance-list">`;
+            projet.seances.forEach(seance => { html += `<li><span class="seance-title">📌</span> ${seance}</li>`; });
+            html += `</ul></div></div>`;
+        });
+        container.innerHTML = html;
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                content.classList.toggle('open');
+                icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+    }
+
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetId = tab.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    window.onload = () => {
+        loadCahierTexte('cinquième', 'cahier5-container');
+        buildAccordionProjets('projets5-container', projets5);
+    };
+</script>
+</body>
+</html>
