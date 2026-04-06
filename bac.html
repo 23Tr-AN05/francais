@@ -7,41 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Styles généraux (identiques) */
-        .cursive-title {
-            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
-            font-size: 2.8rem;
-            text-align: center;
-            margin: 1rem 0;
-            color: #1e3c72;
-            font-weight: 500;
-        }
-        .level-tabs {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.75rem;
-            justify-content: center;
-        }
-        .tab-btn {
-            background: #f1f5f9;
-            border: none;
-            padding: 0.6rem 1.4rem;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-            color: #334155;
-        }
+        /* ===== STYLES GÉNÉRAUX (inchangés) ===== */
+        .cursive-title { font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif; font-size: 2.8rem; text-align: center; margin: 1rem 0; color: #1e3c72; font-weight: 500; }
+        .level-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; justify-content: center; }
+        .tab-btn { background: #f1f5f9; border: none; padding: 0.6rem 1.4rem; border-radius: 40px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; color: #334155; }
         .tab-btn i { margin-right: 8px; }
-        .tab-btn.active {
-            background: #f97316;
-            color: white;
-            box-shadow: 0 4px 10px rgba(249,115,22,0.3);
-        }
+        .tab-btn.active { background: #f97316; color: white; box-shadow: 0 4px 10px rgba(249,115,22,0.3); }
         .tab-content { display: none; animation: fadeIn 0.2s; }
         .tab-content.active { display: block; }
         .planning-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
@@ -50,126 +21,37 @@
         .file-list { list-style: none; padding-left: 0; }
         .file-list li { margin: 0.5rem 0; padding: 0.4rem 0; border-bottom: 1px dashed #e2e8f0; }
         .file-list li i { margin-right: 10px; color: #f97316; }
-        .resource-card {
-            background: #fef9f0;
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #f97316;
-        }
-        .oeuvre-pdf {
-            background: #eef2ff;
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
+        .accordion-item { background: white; border-radius: 1rem; margin-bottom: 1rem; border: 1px solid #eef2ff; overflow: hidden; }
+        .accordion-header { background: #fef9f0; padding: 1rem; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .accordion-header:hover { background: #fff0e0; }
+        .accordion-header i { transition: transform 0.3s; }
+        .accordion-content { display: none; padding: 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
+        .accordion-content.open { display: block; }
+        .seance-list { list-style: none; padding-left: 0; }
+        .seance-list li { margin: 0.8rem 0; padding: 0.5rem; background: #f8fafc; border-radius: 0.8rem; }
+        .seance-title { font-weight: 600; color: #1e3c72; }
+        .resource-card { background: #fef9f0; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #f97316; }
+        .oeuvre-pdf { background: #eef2ff; border-radius: 1rem; padding: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
         .oeuvre-pdf i { font-size: 2rem; color: #f97316; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
         @media (max-width: 700px) { .cursive-title { font-size: 2rem; } }
 
         /* Styles pour l'onglet Œuvres (accordéon horizontal) */
-        .genre-container {
-            margin-bottom: 2.5rem;
-            border-radius: 1.5rem;
-            padding: 1rem;
-            transition: all 0.3s;
-        }
-        .genre-title {
-            text-align: center;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            padding: 0.5rem;
-            border-radius: 2rem;
-            display: inline-block;
-            width: 100%;
-        }
-        .books-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-        }
-        .book-card {
-            width: 180px;
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.2s;
-            background: white;
-            border-radius: 1rem;
-            padding: 0.8rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .book-cover {
-            width: 140px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            margin-bottom: 0.3rem;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-        .book-title {
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-        }
-        .image-source {
-            font-size: 0.6rem;
-            color: #aaa;
-            text-align: center;
-            margin-top: 0.2rem;
-            font-style: italic;
-        }
-        .book-detail {
-            margin-top: 1rem;
-            border-top: 2px solid #e2e8f0;
-            padding-top: 1rem;
-            display: none;
-        }
-        .book-detail.active {
-            display: block;
-        }
-        .detail-section {
-            background: #fef9f0;
-            border-radius: 1rem;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #f97316;
-        }
-        .detail-section h4 {
-            margin-bottom: 0.5rem;
-            color: #1e3c72;
-        }
-        .back-link {
-            display: inline-block;
-            margin-bottom: 1rem;
-            background: #e2e8f0;
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .back-link:hover {
-            background: #cbd5e1;
-        }
-        .chosen-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #1e3c72;
-            border-left: 4px solid #f97316;
-            padding-left: 1rem;
-        }
+        .genre-container { margin-bottom: 2.5rem; border-radius: 1.5rem; padding: 1rem; transition: all 0.3s; }
+        .genre-title { text-align: center; font-size: 1.8rem; font-weight: bold; margin-bottom: 1.5rem; padding: 0.5rem; border-radius: 2rem; display: inline-block; width: 100%; }
+        .books-grid { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1rem; transition: all 0.3s; }
+        .book-card { width: 180px; cursor: pointer; text-align: center; transition: transform 0.2s; background: white; border-radius: 1rem; padding: 0.8rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .book-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .book-cover { width: 140px; height: 200px; object-fit: cover; border-radius: 0.5rem; margin-bottom: 0.3rem; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+        .book-title { font-weight: 600; font-size: 0.9rem; margin-top: 0.3rem; }
+        .image-source { font-size: 0.6rem; color: #aaa; text-align: center; margin-top: 0.2rem; font-style: italic; }
+        .book-detail { margin-top: 1rem; border-top: 2px solid #e2e8f0; padding-top: 1rem; display: none; }
+        .book-detail.active { display: block; }
+        .detail-section { background: #fef9f0; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #f97316; }
+        .detail-section h4 { margin-bottom: 0.5rem; color: #1e3c72; }
+        .back-link { display: inline-block; margin-bottom: 1rem; background: #e2e8f0; padding: 0.4rem 1rem; border-radius: 2rem; font-size: 0.9rem; cursor: pointer; transition: background 0.2s; }
+        .back-link:hover { background: #cbd5e1; }
+        .chosen-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #1e3c72; border-left: 4px solid #f97316; padding-left: 1rem; }
     </style>
 </head>
 <body>
@@ -205,7 +87,7 @@
                 <button class="tab-btn" data-tab="boiteBac"><i class="fas fa-toolbox"></i> Boîte à outils</button>
             </div>
 
-            <!-- Cahier de texte : deux PDF pour les œuvres -->
+            <!-- Cahier de texte -->
             <div id="cahierBac" class="tab-content active">
                 <div class="oeuvre-pdf">
                     <i class="fas fa-book"></i>
@@ -218,113 +100,60 @@
                 <div id="cahierBac-container">Chargement du cahier de texte...</div>
             </div>
 
-            <!-- ONGLET ŒUVRES (accordéon horizontal, sans section ressources générales) -->
-            <div id="oeuvresBac" class="tab-content">
-                <div id="oeuvres-container"></div>
-            </div>
+            <!-- Œuvres -->
+            <div id="oeuvresBac" class="tab-content"><div id="oeuvres-container"></div></div>
 
             <!-- Chantier grammatical (accordéon) -->
-            <div id="chantierBac" class="tab-content">
-                <div id="chantierBac-container"></div>
-            </div>
+            <div id="chantierBac" class="tab-content"><div id="chantierBac-container"></div></div>
 
-            <!-- JDL (affichage simple, sans accordéon) -->
-            <div id="jdlBac" class="tab-content">
-                <div id="jdlBac-container"></div>
-            </div>
+            <!-- JDL (affichage simple) -->
+            <div id="jdlBac" class="tab-content"><div id="jdlBac-container"></div></div>
 
             <!-- DS/DM -->
-            <div id="dsdmBac" class="tab-content">
-                <div id="dsdmBac-container"></div>
-            </div>
+            <div id="dsdmBac" class="tab-content"><div id="dsdmBac-container"></div></div>
 
-            <!-- Méthodologie -->
-            <div id="methodoBac" class="tab-content">
-                <div id="methodoBac-container"></div>
-            </div>
+            <!-- Méthodologie (accordéon) -->
+            <div id="methodoBac" class="tab-content"><div id="methodoBac-container"></div></div>
 
-            <!-- Boîte à outils -->
-            <div id="boiteBac" class="tab-content">
-                <div id="boiteBac-container"></div>
-            </div>
+            <!-- Boîte à outils (accordéon) -->
+            <div id="boiteBac" class="tab-content"><div id="boiteBac-container"></div></div>
         </div>
         <footer>© 2025 - Première (Baccalauréat)</footer>
     </div>
 </div>
 
 <script>
-    // ==================== DONNÉES POUR L'ONGLET ŒUVRES ====================
+    // ========== 1. ONGLET ŒUVRES (données + construction) ==========
     const genresData = [
-        {
-            id: "genreA",
-            nom: "Genre A",
-            couleur: "#FFE4E1",
-            livres: [
-                {
-                    titre: "Livre A1",
-                    image: "documents/images/livre_a1.jpg",
-                    source: "© Éditions Exemple",
-                    cours: [
-                        { nom: "Introduction au livre A1", url: "pdf/premiere/livreA1_cours1.pdf" },
-                        { nom: "Analyse des personnages", url: "pdf/premiere/livreA1_cours2.pdf" }
-                    ],
-                    explications: [
-                        { nom: "Explication 1 - Chapitre 1", url: "pdf/premiere/livreA1_expl1.pdf" },
-                        { nom: "Explication 2 - Scène clé", url: "pdf/premiere/livreA1_expl2.pdf" }
-                    ],
-                    entrainements: [
-                        { nom: "Sujet de dissertation", url: "pdf/premiere/livreA1_dissert.pdf" },
-                        { nom: "QCM de révision", url: "pdf/premiere/livreA1_qcm.pdf" }
-                    ]
-                },
-                {
-                    titre: "Livre A2",
-                    image: "documents/images/livre_a2.jpg",
-                    source: "© Domaine public",
-                    cours: [{ nom: "Cours complet", url: "pdf/premiere/livreA2_cours.pdf" }],
-                    explications: [{ nom: "Explication linéaire", url: "pdf/premiere/livreA2_expl.pdf" }],
-                    entrainements: [{ nom: "Entraînement oral", url: "pdf/premiere/livreA2_oral.pdf" }]
-                },
-                {
-                    titre: "Livre A3",
-                    image: "documents/images/livre_a3.jpg",
-                    source: "© Bibliothèque nationale",
-                    cours: [{ nom: "Présentation de l'œuvre", url: "pdf/premiere/livreA3_presentation.pdf" }],
-                    explications: [{ nom: "Commentaire composé", url: "pdf/premiere/livreA3_commentaire.pdf" }],
-                    entrainements: [{ nom: "Sujets blancs", url: "pdf/premiere/livreA3_blancs.pdf" }]
-                }
-            ]
-        },
-        {
-            id: "genreB",
-            nom: "Genre B",
-            couleur: "#E0FFFF",
-            livres: [
-                { titre: "Livre B1", image: "documents/images/livre_b1.jpg", source: "© Éditions B", cours: [{nom:"Cours B1",url:"pdf/premiere/b1_cours.pdf"}], explications:[{nom:"Explication B1",url:"pdf/premiere/b1_expl.pdf"}], entrainements:[{nom:"Entraînement B1",url:"pdf/premiere/b1_entrain.pdf"}] },
-                { titre: "Livre B2", image: "documents/images/livre_b2.jpg", source: "© Auteur", cours: [{nom:"Cours B2",url:"pdf/premiere/b2_cours.pdf"}], explications:[{nom:"Explication B2",url:"pdf/premiere/b2_expl.pdf"}], entrainements:[{nom:"Entraînement B2",url:"pdf/premiere/b2_entrain.pdf"}] },
-                { titre: "Livre B3", image: "documents/images/livre_b3.jpg", source: "© ADAGP", cours: [{nom:"Cours B3",url:"pdf/premiere/b3_cours.pdf"}], explications:[{nom:"Explication B3",url:"pdf/premiere/b3_expl.pdf"}], entrainements:[{nom:"Entraînement B3",url:"pdf/premiere/b3_entrain.pdf"}] }
-            ]
-        },
-        {
-            id: "genreC",
-            nom: "Genre C",
-            couleur: "#F0FFF0",
-            livres: [
-                { titre: "Livre C1", image: "documents/images/livre_c1.jpg", source: "© Éditions C", cours: [{nom:"Cours C1",url:"pdf/premiere/c1_cours.pdf"}], explications:[{nom:"Explication C1",url:"pdf/premiere/c1_expl.pdf"}], entrainements:[{nom:"Entraînement C1",url:"pdf/premiere/c1_entrain.pdf"}] },
-                { titre: "Livre C2", image: "documents/images/livre_c2.jpg", source: "© DR", cours: [{nom:"Cours C2",url:"pdf/premiere/c2_cours.pdf"}], explications:[{nom:"Explication C2",url:"pdf/premiere/c2_expl.pdf"}], entrainements:[{nom:"Entraînement C2",url:"pdf/premiere/c2_entrain.pdf"}] },
-                { titre: "Livre C3", image: "documents/images/livre_c3.jpg", source: "© Musée", cours: [{nom:"Cours C3",url:"pdf/premiere/c3_cours.pdf"}], explications:[{nom:"Explication C3",url:"pdf/premiere/c3_expl.pdf"}], entrainements:[{nom:"Entraînement C3",url:"pdf/premiere/c3_entrain.pdf"}] }
-            ]
-        },
-        {
-            id: "genreD",
-            nom: "Genre D",
-            couleur: "#FFFACD",
-            livres: [
-                { titre: "Livre D1", image: "documents/images/livre_d1.jpg", source: "© Éditions D", cours: [{nom:"Cours D1",url:"pdf/premiere/d1_cours.pdf"}], explications:[{nom:"Explication D1",url:"pdf/premiere/d1_expl.pdf"}], entrainements:[{nom:"Entraînement D1",url:"pdf/premiere/d1_entrain.pdf"}] },
-                { titre: "Livre D2", image: "documents/images/livre_d2.jpg", source: "© Archives", cours: [{nom:"Cours D2",url:"pdf/premiere/d2_cours.pdf"}], explications:[{nom:"Explication D2",url:"pdf/premiere/d2_expl.pdf"}], entrainements:[{nom:"Entraînement D2",url:"pdf/premiere/d2_entrain.pdf"}] },
-                { titre: "Livre D3", image: "documents/images/livre_d3.jpg", source: "© Source ouverte", cours: [{nom:"Cours D3",url:"pdf/premiere/d3_cours.pdf"}], explications:[{nom:"Explication D3",url:"pdf/premiere/d3_expl.pdf"}], entrainements:[{nom:"Entraînement D3",url:"pdf/premiere/d3_entrain.pdf"}] }
-            ]
-        }
+        { id:"genreA", nom:"Genre A", couleur:"#FFE4E1", livres:[
+            { titre:"Livre A1", image:"documents/images/livre_a1.jpg", source:"© Éditions Exemple",
+              cours:[{nom:"Introduction", url:"pdf/premiere/livreA1_cours1.pdf"},{nom:"Analyse des personnages", url:"pdf/premiere/livreA1_cours2.pdf"}],
+              explications:[{nom:"Explication chapitre 1", url:"pdf/premiere/livreA1_expl1.pdf"},{nom:"Scène clé", url:"pdf/premiere/livreA1_expl2.pdf"}],
+              entrainements:[{nom:"Dissertation", url:"pdf/premiere/livreA1_dissert.pdf"},{nom:"QCM", url:"pdf/premiere/livreA1_qcm.pdf"}] },
+            { titre:"Livre A2", image:"documents/images/livre_a2.jpg", source:"© Domaine public",
+              cours:[{nom:"Cours complet", url:"pdf/premiere/livreA2_cours.pdf"}],
+              explications:[{nom:"Explication linéaire", url:"pdf/premiere/livreA2_expl.pdf"}],
+              entrainements:[{nom:"Entraînement oral", url:"pdf/premiere/livreA2_oral.pdf"}] },
+            { titre:"Livre A3", image:"documents/images/livre_a3.jpg", source:"© Bibliothèque nationale",
+              cours:[{nom:"Présentation", url:"pdf/premiere/livreA3_presentation.pdf"}],
+              explications:[{nom:"Commentaire", url:"pdf/premiere/livreA3_commentaire.pdf"}],
+              entrainements:[{nom:"Sujets blancs", url:"pdf/premiere/livreA3_blancs.pdf"}] }
+        ]},
+        { id:"genreB", nom:"Genre B", couleur:"#E0FFFF", livres:[
+            { titre:"Livre B1", image:"documents/images/livre_b1.jpg", source:"© Éditions B", cours:[{nom:"Cours B1",url:"pdf/premiere/b1_cours.pdf"}], explications:[{nom:"Explication B1",url:"pdf/premiere/b1_expl.pdf"}], entrainements:[{nom:"Entraînement B1",url:"pdf/premiere/b1_entrain.pdf"}] },
+            { titre:"Livre B2", image:"documents/images/livre_b2.jpg", source:"© Auteur", cours:[{nom:"Cours B2",url:"pdf/premiere/b2_cours.pdf"}], explications:[{nom:"Explication B2",url:"pdf/premiere/b2_expl.pdf"}], entrainements:[{nom:"Entraînement B2",url:"pdf/premiere/b2_entrain.pdf"}] },
+            { titre:"Livre B3", image:"documents/images/livre_b3.jpg", source:"© ADAGP", cours:[{nom:"Cours B3",url:"pdf/premiere/b3_cours.pdf"}], explications:[{nom:"Explication B3",url:"pdf/premiere/b3_expl.pdf"}], entrainements:[{nom:"Entraînement B3",url:"pdf/premiere/b3_entrain.pdf"}] }
+        ]},
+        { id:"genreC", nom:"Genre C", couleur:"#F0FFF0", livres:[
+            { titre:"Livre C1", image:"documents/images/livre_c1.jpg", source:"© Éditions C", cours:[{nom:"Cours C1",url:"pdf/premiere/c1_cours.pdf"}], explications:[{nom:"Explication C1",url:"pdf/premiere/c1_expl.pdf"}], entrainements:[{nom:"Entraînement C1",url:"pdf/premiere/c1_entrain.pdf"}] },
+            { titre:"Livre C2", image:"documents/images/livre_c2.jpg", source:"© DR", cours:[{nom:"Cours C2",url:"pdf/premiere/c2_cours.pdf"}], explications:[{nom:"Explication C2",url:"pdf/premiere/c2_expl.pdf"}], entrainements:[{nom:"Entraînement C2",url:"pdf/premiere/c2_entrain.pdf"}] },
+            { titre:"Livre C3", image:"documents/images/livre_c3.jpg", source:"© Musée", cours:[{nom:"Cours C3",url:"pdf/premiere/c3_cours.pdf"}], explications:[{nom:"Explication C3",url:"pdf/premiere/c3_expl.pdf"}], entrainements:[{nom:"Entraînement C3",url:"pdf/premiere/c3_entrain.pdf"}] }
+        ]},
+        { id:"genreD", nom:"Genre D", couleur:"#FFFACD", livres:[
+            { titre:"Livre D1", image:"documents/images/livre_d1.jpg", source:"© Éditions D", cours:[{nom:"Cours D1",url:"pdf/premiere/d1_cours.pdf"}], explications:[{nom:"Explication D1",url:"pdf/premiere/d1_expl.pdf"}], entrainements:[{nom:"Entraînement D1",url:"pdf/premiere/d1_entrain.pdf"}] },
+            { titre:"Livre D2", image:"documents/images/livre_d2.jpg", source:"© Archives", cours:[{nom:"Cours D2",url:"pdf/premiere/d2_cours.pdf"}], explications:[{nom:"Explication D2",url:"pdf/premiere/d2_expl.pdf"}], entrainements:[{nom:"Entraînement D2",url:"pdf/premiere/d2_entrain.pdf"}] },
+            { titre:"Livre D3", image:"documents/images/livre_d3.jpg", source:"© Source ouverte", cours:[{nom:"Cours D3",url:"pdf/premiere/d3_cours.pdf"}], explications:[{nom:"Explication D3",url:"pdf/premiere/d3_expl.pdf"}], entrainements:[{nom:"Entraînement D3",url:"pdf/premiere/d3_entrain.pdf"}] }
+        ]}
     ];
 
     function buildOeuvres() {
@@ -342,12 +171,9 @@
                             <div class="image-source">${livre.source || 'Source'}</div>
                          </div>`;
             });
-            html += `</div>`;
-            html += `<div id="detail-${genre.id}" class="book-detail"></div>`;
-            html += `</div>`;
+            html += `</div><div id="detail-${genre.id}" class="book-detail"></div></div>`;
         });
         container.innerHTML = html;
-
         genresData.forEach(genre => {
             const grid = document.getElementById(`books-grid-${genre.id}`);
             if (!grid) return;
@@ -355,114 +181,33 @@
             cards.forEach((card, idx) => {
                 card.addEventListener('click', () => {
                     const livre = genre.livres[idx];
-                    const detailContainer = document.getElementById(`detail-${genre.id}`);
+                    const detail = document.getElementById(`detail-${genre.id}`);
                     let detailHtml = `<div class="back-link" data-genre-id="${genre.id}">← Retour aux livres</div>`;
                     detailHtml += `<div class="chosen-title">📖 ${livre.titre}</div>`;
-                    // Section Cours
                     detailHtml += `<div class="detail-section"><h4><i class="fas fa-book-open"></i> Cours</h4><ul class="file-list">`;
-                    livre.cours.forEach(f => {
-                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
-                    });
+                    livre.cours.forEach(f => detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`);
                     detailHtml += `</ul></div>`;
-                    // Section Explication de texte
                     detailHtml += `<div class="detail-section"><h4><i class="fas fa-comment-dots"></i> Explication de texte</h4><ul class="file-list">`;
-                    livre.explications.forEach(f => {
-                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
-                    });
+                    livre.explications.forEach(f => detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`);
                     detailHtml += `</ul></div>`;
-                    // Section S'entraîner
                     detailHtml += `<div class="detail-section"><h4><i class="fas fa-pen-fancy"></i> S'entraîner</h4><ul class="file-list">`;
-                    livre.entrainements.forEach(f => {
-                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
-                    });
+                    livre.entrainements.forEach(f => detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`);
                     detailHtml += `</ul></div>`;
-                    detailContainer.innerHTML = detailHtml;
-                    detailContainer.classList.add('active');
+                    detail.innerHTML = detailHtml;
+                    detail.classList.add('active');
                     grid.style.display = 'none';
-                    const backLink = detailContainer.querySelector('.back-link');
-                    if (backLink) {
-                        backLink.addEventListener('click', () => {
-                            grid.style.display = 'flex';
-                            detailContainer.classList.remove('active');
-                            detailContainer.innerHTML = '';
-                        });
-                    }
+                    const back = detail.querySelector('.back-link');
+                    if (back) back.addEventListener('click', () => {
+                        grid.style.display = 'flex';
+                        detail.classList.remove('active');
+                        detail.innerHTML = '';
+                    });
                 });
             });
         });
     }
 
-    // ==================== AUTRES DONNÉES ====================
-    const chantiersData = [
-        { "titre": "✍️ Chantier n°1 – La phrase complexe", "seances": [{ "titre": "Les propositions subordonnées", "fichiers": [{"nom": "Fiche", "url": "pdf/premiere/subordonnees.pdf"}] }] },
-        { "titre": "🎨 Chantier n°2 – Les registres littéraires", "seances": [{ "titre": "Tableau récapitulatif", "fichiers": [{"nom": "PDF", "url": "pdf/premiere/registres.pdf"}] }] }
-    ];
-
-    // Données JDL sans accordéon (affichage simple)
-    const jdlSimple = {
-        dictées: [
-            { nom: "Dictée : La littérature engagée", audio: "audio/premiere/dictee_engagee.mp3", texte: "pdf/premiere/dictee_engagee_texte.pdf" },
-            { nom: "Dictée : Le classicisme", audio: null, texte: null }
-        ],
-        mots: [
-            { mot: "Ambivalence", fiche: "pdf/premiere/mot_ambivalence.pdf" },
-            { mot: "Nostalgie", fiche: null }
-        ],
-        quiz: [
-            { nom: "Mouvements littéraires", url: "pdf/premiere/quiz_mouvements.pdf" },
-            { nom: "Auteurs du XVIIe siècle", url: null }
-        ]
-    };
-
-    function buildJDLSimple() {
-        const container = document.getElementById('jdlBac-container');
-        if (!container) return;
-        let html = '';
-
-        // Dictées
-        html += `<div class="resource-card"><h3><i class="fas fa-headphones"></i> 🎧 Dictées préparées</h3>`;
-        jdlSimple.dictées.forEach(d => {
-            html += `<p><strong>${d.nom}</strong><br>`;
-            if (d.audio) html += `<audio controls src="${d.audio}" style="margin-top:0.3rem;"></audio><br>`;
-            if (d.texte) html += `<a href="${d.texte}" target="_blank">📄 Texte de la dictée</a>`;
-            html += `</p>`;
-        });
-        html += `</div>`;
-
-        // Mots de la semaine
-        html += `<div class="resource-card"><h3><i class="fas fa-lightbulb"></i> 💡 Le mot de la semaine</h3>`;
-        jdlSimple.mots.forEach(m => {
-            html += `<p><strong>${m.mot}</strong>`;
-            if (m.fiche) html += ` – <a href="${m.fiche}" target="_blank">📄 Fiche étymologique</a>`;
-            html += `</p>`;
-        });
-        html += `</div>`;
-
-        // Quiz
-        html += `<div class="resource-card"><h3><i class="fas fa-puzzle-piece"></i> 🧩 Quiz littéraires</h3>`;
-        jdlSimple.quiz.forEach(q => {
-            if (q.url) {
-                html += `<p><a href="${q.url}" target="_blank">📄 ${q.nom}</a></p>`;
-            } else {
-                html += `<p>${q.nom} (bientôt disponible)</p>`;
-            }
-        });
-        html += `</div>`;
-
-        container.innerHTML = html;
-    }
-
-    const dsdmlist = [
-        { "nom": "DS 1 – Dissertation", "url": "pdf/premiere/ds_dissertation.pdf" }
-    ];
-    const methodoData = [
-        { "titre": "📝 La dissertation", "seances": [{ "titre": "Guide", "fichiers": [{"nom": "PDF", "url": "pdf/premiere/methodo_dissertation.pdf"}] }] }
-    ];
-    const boiteData = [
-        { "titre": "📚 Figures de style", "seances": [{ "titre": "Liste", "fichiers": [{"nom": "PDF", "url": "pdf/premiere/figures_styles.pdf"}] }] }
-    ];
-
-    // Fonctions d'affichage des accordéons (pour les autres onglets)
+    // ========== 2. ACCORDÉONS GÉNÉRIQUES (pour Chantier, Méthodo, Boîte) ==========
     function buildAccordion(containerId, data) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -492,8 +237,9 @@
             html += `</ul></div></div>`;
         });
         container.innerHTML = html;
-        document.querySelectorAll(`#${containerId} .accordion-header`).forEach(header => {
-            header.addEventListener('click', function() {
+        // Attacher les événements après injection
+        container.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function(e) {
                 const content = this.nextElementSibling;
                 const icon = this.querySelector('i');
                 content.classList.toggle('open');
@@ -502,6 +248,63 @@
         });
     }
 
+    // ========== 3. DONNÉES POUR LES ACCORDÉONS ==========
+    const chantiersData = [
+        { titre: "✍️ Chantier n°1 – La phrase complexe", seances: [
+            { titre: "Les propositions subordonnées", fichiers: [{nom:"Fiche récapitulative", url:"pdf/premiere/subordonnees.pdf"}] },
+            { titre: "La concordance des temps", fichiers: [] }
+        ]},
+        { titre: "🎨 Chantier n°2 – Les registres littéraires", seances: [
+            { titre: "Tragique, pathétique, lyrique", fichiers: [{nom:"Tableau", url:"pdf/premiere/registres.pdf"}] },
+            { titre: "Comique, ironique, polémique", fichiers: [] }
+        ]}
+    ];
+
+    const methodoData = [
+        { titre: "📝 La dissertation", seances: [
+            { titre: "Guide méthodologique complet", fichiers: [{nom:"PDF", url:"pdf/premiere/methodo_dissertation.pdf"}] },
+            { titre: "Exemples de sujets corrigés", fichiers: [] }
+        ]},
+        { titre: "🔍 Le commentaire composé", seances: [
+            { titre: "Étapes de l'analyse", fichiers: [{nom:"Fiche", url:"pdf/premiere/methodo_commentaire.pdf"}] }
+        ]},
+        { titre: "🎤 L'oral du bac", seances: [
+            { titre: "Préparer l'explication linéaire", fichiers: [] },
+            { titre: "La question de grammaire", fichiers: [{nom:"Exemples", url:"pdf/premiere/grammaire_oral.pdf"}] }
+        ]}
+    ];
+
+    const boiteData = [
+        { titre: "📚 Figures de style", seances: [
+            { titre: "Liste complète", fichiers: [{nom:"PDF", url:"pdf/premiere/figures_styles_approfondi.pdf"}] },
+            { titre: "Exercices", fichiers: [] }
+        ]},
+        { titre: "🌍 Histoire littéraire", seances: [
+            { titre: "Frise chronologique", fichiers: [{nom:"PDF", url:"pdf/premiere/frise_litteraire_bac.pdf"}] }
+        ]}
+    ];
+
+    // ========== 4. JDL SIMPLE (pas d'accordéon) ==========
+    function buildJDLSimple() {
+        const container = document.getElementById('jdlBac-container');
+        if (!container) return;
+        container.innerHTML = `
+            <div class="resource-card"><h3><i class="fas fa-headphones"></i> 🎧 Dictées préparées</h3>
+                <p><strong>Dictée : La littérature engagée</strong><br><audio controls src="audio/premiere/dictee_engagee.mp3"></audio><br><a href="pdf/premiere/dictee_engagee_texte.pdf" target="_blank">📄 Texte</a></p>
+                <p><strong>Dictée : Le classicisme</strong><br>(bientôt disponible)</p>
+            </div>
+            <div class="resource-card"><h3><i class="fas fa-lightbulb"></i> 💡 Le mot de la semaine</h3>
+                <p><strong>Ambivalence</strong> – <a href="pdf/premiere/mot_ambivalence.pdf" target="_blank">📄 Fiche étymologique</a></p>
+                <p><strong>Nostalgie</strong> – (fiche à venir)</p>
+            </div>
+            <div class="resource-card"><h3><i class="fas fa-puzzle-piece"></i> 🧩 Quiz littéraires</h3>
+                <p><a href="pdf/premiere/quiz_mouvements.pdf" target="_blank">📄 Mouvements littéraires</a></p>
+                <p>Auteurs du XVIIe siècle (bientôt)</p>
+            </div>
+        `;
+    }
+
+    // ========== 5. CAHIER DE TEXTE (JSON) ==========
     async function loadCahierTexte(classe, containerId) {
         const container = document.getElementById(containerId);
         try {
@@ -509,37 +312,25 @@
             if (!response.ok) throw new Error();
             const data = await response.json();
             const entries = data.filter(entry => entry.classe === classe);
-            if (entries.length === 0) {
-                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
-                return;
-            }
+            if (entries.length === 0) { container.innerHTML = '<p>Aucune entrée pour le moment.</p>'; return; }
             let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
-            entries.forEach(entry => {
-                html += `<tr>
-                            <td>${entry.date || ''}</td>
-                            <td>${entry.seance || ''}</td>
-                            <td>${entry.aFaire || ''}</td>
-                         </tr>`;
-            });
+            entries.forEach(entry => { html += `<tr><td>${entry.date||''}</td><td>${entry.seance||''}</td><td>${entry.aFaire||''}</td></tr>`; });
             html += `</tbody></table>`;
             container.innerHTML = html;
-        } catch (error) {
-            container.innerHTML = '<p>Impossible de charger le cahier de texte.</p>';
-        }
+        } catch { container.innerHTML = '<p>Erreur chargement cahier de texte.</p>'; }
     }
 
     function buildDsdmList(containerId, list) {
         const container = document.getElementById(containerId);
         if (!container) return;
         let html = `<ul class="file-list">`;
-        list.forEach(item => {
-            html += `<li><i class="fas fa-file-pdf"></i> <a href="${item.url}" target="_blank">${item.nom}</a></li>`;
-        });
+        list.forEach(item => { html += `<li><i class="fas fa-file-pdf"></i> <a href="${item.url}" target="_blank">${item.nom}</a></li>`; });
         html += `</ul>`;
         container.innerHTML = html;
     }
+    const dsdmlist = [{ nom:"DS 1 – Dissertation", url:"pdf/premiere/ds_dissertation.pdf" }];
 
-    // Gestion des onglets principaux
+    // ========== 6. GESTION DES ONGLETS PRINCIPAUX ==========
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => {
@@ -552,11 +343,12 @@
         });
     });
 
+    // ========== 7. INITIALISATION ==========
     window.onload = () => {
         loadCahierTexte('premiere', 'cahierBac-container');
         buildOeuvres();
         buildAccordion('chantierBac-container', chantiersData);
-        buildJDLSimple();                     // Nouvelle fonction pour JDL sans accordéon
+        buildJDLSimple();
         buildDsdmList('dsdmBac-container', dsdmlist);
         buildAccordion('methodoBac-container', methodoData);
         buildAccordion('boiteBac-container', boiteData);
