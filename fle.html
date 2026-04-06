@@ -192,17 +192,17 @@
                 <div id="cahierFLE-container">Chargement du cahier de texte...</div>
             </div>
 
-            <!-- Projet d'apprentissage -->
+            <!-- Projet d'apprentissage (accordéon) -->
             <div id="projetFLE" class="tab-content"><div id="projetsFLE-container"></div></div>
-            <!-- Vocabulaire -->
+            <!-- Vocabulaire (accordéon) -->
             <div id="vocabFLE" class="tab-content"><div id="vocabFLE-container"></div></div>
-            <!-- Soutien FLE -->
+            <!-- Soutien FLE (accordéon) -->
             <div id="soutienFLE" class="tab-content"><div id="soutienFLE-container"></div></div>
-            <!-- JDL -->
+            <!-- JDL (sans accordéon, style simple) -->
             <div id="jdlFLE" class="tab-content"><div id="jdlFLE-container"></div></div>
-            <!-- Projets complémentaires -->
+            <!-- Projets complémentaires (accordéon) -->
             <div id="projetnFLE" class="tab-content"><div id="projetnFLE-container"></div></div>
-            <!-- DELF -->
+            <!-- DELF (accordéon avec astérisque) -->
             <div id="delfFLE" class="tab-content"><div id="delfFLE-container"></div></div>
         </div>
         <footer> Français Langue Étrangère</footer>
@@ -224,11 +224,7 @@
             container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
             return;
         }
-        let html = `<table class="planning-table">
-                        <thead>
-                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
-                        </thead>
-                        <tbody>`;
+        let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
         cahierTexteData.forEach(entry => {
             html += `<tr>
                         <td>${entry.date || ''}</td>
@@ -236,12 +232,11 @@
                         <td>${entry.aFaire || ''}</td>
                      </tr>`;
         });
-        html += `</tbody>
-                 </table>`;
+        html += `</tbody></table>`;
         container.innerHTML = html;
     }
 
-    // ========== DONNÉES DES AUTRES ONGLETS (inchangées) ==========
+    // ========== DONNÉES DES AUTRES ONGLETS ==========
     const projetsData = [
         {
             "titre": "📖 Projet 1 : Se présenter et parler de soi",
@@ -315,29 +310,60 @@
         }
     ];
 
-    const jdlData = [
-        {
-            "titre": "🎧 Dictées FLE",
-            "seances": [
-                { "titre": "Dictée 1 : Les vacances", "fichiers": [{"nom": "Audio", "url": "audio/fle/dictee_vacances.mp3"}, {"nom": "Texte", "url": "pdf/fle/dictee_vacances_texte.pdf"}] },
-                { "titre": "Dictée 2 : Au marché", "fichiers": [{"nom": "Audio", "url": "audio/fle/dictee_marche.mp3"}] }
-            ]
-        },
-        {
-            "titre": "💡 Mot de la semaine",
-            "seances": [
-                { "titre": "Semaine 1 : 'Chaleureux'", "fichiers": [{"nom": "Fiche étymologique", "url": "pdf/fle/mot_chaleureux.pdf"}] },
-                { "titre": "Semaine 2 : 'Dépaysement'", "fichiers": [] }
-            ]
-        },
-        {
-            "titre": "🧩 Jeux de langue",
-            "seances": [
-                { "titre": "Mots croisés : les métiers", "fichiers": [{"nom": "Grille", "url": "pdf/fle/mots_croises_metiers.pdf"}] },
-                { "titre": "Devinettes phonétiques", "fichiers": [] }
-            ]
-        }
-    ];
+    // === JDL : AFFICHAGE SIMPLE (sans accordéon) ===
+    // Données JDL
+    const jdlData = {
+        dictées: [
+            { titre: "Dictée 1 : Les vacances", audio: "audio/fle/dictee_vacances.mp3", texte: "pdf/fle/dictee_vacances_texte.pdf" },
+            { titre: "Dictée 2 : Au marché", audio: "audio/fle/dictee_marche.mp3", texte: null }
+        ],
+        mots: [
+            { mot: "Chaleureux", fiche: "pdf/fle/mot_chaleureux.pdf" },
+            { mot: "Dépaysement", fiche: null }
+        ],
+        jeux: [
+            { nom: "Mots croisés : les métiers", url: "pdf/fle/mots_croises_metiers.pdf" },
+            { nom: "Devinettes phonétiques", url: null }
+        ]
+    };
+
+    function buildJDLSimple() {
+        const container = document.getElementById('jdlFLE-container');
+        if (!container) return;
+        let html = '';
+
+        // Dictées
+        html += `<div class="resource-card"><h3><i class="fas fa-headphones"></i> 🎧 Dictées FLE</h3>`;
+        jdlData.dictées.forEach(d => {
+            html += `<p><strong>${d.titre}</strong><br>`;
+            if (d.audio) html += `<audio controls src="${d.audio}" style="margin-top:0.3rem;"></audio><br>`;
+            if (d.texte) html += `<a href="${d.texte}" target="_blank">📄 Texte de la dictée</a>`;
+            html += `</p>`;
+        });
+        html += `</div>`;
+
+        // Mots de la semaine
+        html += `<div class="resource-card"><h3><i class="fas fa-lightbulb"></i> 💡 Mot de la semaine</h3>`;
+        jdlData.mots.forEach(m => {
+            html += `<p><strong>${m.mot}</strong>`;
+            if (m.fiche) html += ` – <a href="${m.fiche}" target="_blank">📄 Fiche étymologique</a>`;
+            html += `</p>`;
+        });
+        html += `</div>`;
+
+        // Jeux de langue
+        html += `<div class="resource-card"><h3><i class="fas fa-puzzle-piece"></i> 🧩 Jeux de langue</h3>`;
+        jdlData.jeux.forEach(j => {
+            if (j.url) {
+                html += `<p><a href="${j.url}" target="_blank">📄 ${j.nom}</a></p>`;
+            } else {
+                html += `<p>${j.nom} (bientôt disponible)</p>`;
+            }
+        });
+        html += `</div>`;
+
+        container.innerHTML = html;
+    }
 
     const projetnData = [
         {
@@ -356,11 +382,11 @@
         }
     ];
 
-    // ========== NOUVEL ONGLET DELF ==========
+    // ========== DELF (accordéon avec astérisque) ==========
     const delfData = [
         {
             titre: "DELF A1 (débutant)",
-            lienOfficiel: "#",   // ← Remplace par le vrai lien vers le site officiel
+            lienOfficiel: "#",
             sujets: [
                 { nom: "Sujet 1 – Se présenter", pdf: "pdf/delf/a1_sujet1.pdf", audio: "audio/delf/a1_presentation.mp3" },
                 { nom: "Sujet 2 – La vie quotidienne", pdf: "pdf/delf/a1_sujet2.pdf", audio: "audio/delf/a1_marche.mp3" }
@@ -392,13 +418,11 @@
         }
     ];
 
-    // Fonction d'affichage DELF (astérisque cliquable, lecteurs audio)
     function buildDelf() {
         const container = document.getElementById('delfFLE-container');
         if (!container) return;
         let html = '';
         delfData.forEach((niveau, idx) => {
-            // Astérisque cliquable vers le site officiel
             const etoile = (niveau.lienOfficiel && niveau.lienOfficiel !== '#')
                 ? `<a href="${niveau.lienOfficiel}" target="_blank" class="star-red" title="Voir les ressources officielles"> *</a>`
                 : `<span class="star-red" title="Lien non encore renseigné"> *</span>`;
@@ -424,7 +448,6 @@
         });
         container.innerHTML = html;
 
-        // Activer les accordéons
         document.querySelectorAll('#delfFLE-container .accordion-header').forEach(header => {
             header.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -435,7 +458,7 @@
         });
     }
 
-    // ========== FONCTION D'ACCORDÉON GÉNÉRIQUE ==========
+    // ========== FONCTIONS ACCORDÉON GÉNÉRIQUES ==========
     function buildAccordion(containerId, data) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -494,9 +517,9 @@
         buildAccordion('projetsFLE-container', projetsData);
         buildAccordion('vocabFLE-container', vocabData);
         buildAccordion('soutienFLE-container', soutienData);
-        buildAccordion('jdlFLE-container', jdlData);
+        buildJDLSimple();   // JDL sans accordéon
         buildAccordion('projetnFLE-container', projetnData);
-        buildDelf();   // Affichage de l'onglet DELF
+        buildDelf();
     };
 </script>
 </body>

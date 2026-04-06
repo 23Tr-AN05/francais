@@ -116,12 +116,13 @@
         <div class="card">
             <h2 class="cursive-title">La langue française sous toutes ses facettes</h2>
 
-            <!-- Sous-onglets internes -->
+            <!-- Sous-onglets internes (ajout de l'onglet Dictionnaire) -->
             <div class="inner-tabs">
                 <button class="inner-tab-btn active" data-inner-tab="docs"><i class="fas fa-file-pdf"></i> Documents</button>
                 <button class="inner-tab-btn" data-inner-tab="audio"><i class="fas fa-headphones"></i> Audio</button>
                 <button class="inner-tab-btn" data-inner-tab="liens"><i class="fas fa-link"></i> Liens</button>
                 <button class="inner-tab-btn" data-inner-tab="videos"><i class="fab fa-youtube"></i> Vidéos</button>
+                <button class="inner-tab-btn" data-inner-tab="dico"><i class="fas fa-book"></i> Dictionnaire</button>
             </div>
 
             <!-- Contenu Documents -->
@@ -169,7 +170,7 @@
                 </div>
             </div>
 
-            <!-- Contenu Vidéos (YouTube intégrées) -->
+            <!-- Contenu Vidéos -->
             <div id="inner-videos" class="inner-tab-content">
                 <div class="resource-card">
                     <h3><i class="fab fa-youtube"></i> Vidéos sur la langue française</h3>
@@ -183,6 +184,27 @@
                         <iframe src="https://www.youtube.com/embed/7q9Z5z3qY2I" title="Pourquoi le français est-il une langue difficile ?" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <p><em>Remplacez les identifiants YouTube par vos propres vidéos.</em></p>
+                </div>
+            </div>
+
+            <!-- NOUVEAU Contenu Dictionnaire -->
+            <div id="inner-dico" class="inner-tab-content">
+                <div class="resource-card">
+                    <h3><i class="fas fa-search"></i> Dictionnaires en ligne</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-link"></i> <a href="https://www.cnrtl.fr/definition/" target="_blank">CNRTL – Trésor de la langue française (TLFi)</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.dictionnaire-academie.fr/" target="_blank">Dictionnaire de l’Académie française (9e édition)</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.larousse.fr/dictionnaires/francais-monolingue" target="_blank">Larousse – Dictionnaire de français</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://dictionary.cambridge.org/fr/dictionnaire/francais-anglais/" target="_blank">Cambridge – Français-Anglais</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.lexilogos.com/francais_langue_dictionnaires.htm" target="_blank">Lexilogos – Moteur de recherche multilingue</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3><i class="fas fa-file-pdf"></i> Fiches méthodes : utiliser un dictionnaire</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-file-pdf"></i> <a href="pdf/comment_lire_un_dictionnaire.pdf" target="_blank">Guide : Comment lire un article de dictionnaire ?</a></li>
+                        <li><i class="fas fa-file-pdf"></i> <a href="pdf/abreviations_dictionnaire.pdf" target="_blank">Liste des abréviations courantes (nom, adj, etc.)</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
