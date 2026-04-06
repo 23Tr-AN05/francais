@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ===== STYLES GÉNÉRAUX (inchangés) ===== */
+        /* ===== STYLES GÉNÉRAUX  ===== */
         .cursive-title { font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif; font-size: 2.8rem; text-align: center; margin: 1rem 0; color: #1e3c72; font-weight: 500; }
         .level-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; justify-content: center; }
         .tab-btn { background: #f1f5f9; border: none; padding: 0.6rem 1.4rem; border-radius: 40px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; color: #334155; }
@@ -123,7 +123,7 @@
 </div>
 
 <script>
-    // ========== CAHIER DE TEXTE INTÉGRÉ (plus de fetch) ==========
+    // ========== CAHIER DE TEXTE INTÉGRÉ ==========
     const cahierTexteData = [
         { date: "Semaine 1", seance: "Rimbaud - Cahier de Douai", aFaire: "Lire 'Le Dormeur du val'" },
         { date: "Semaine 2", seance: "Analyse linéaire", aFaire: "Préparer l'explication" },
@@ -156,7 +156,7 @@
 
     // ========== 1. ONGLET ŒUVRES (données + construction) ==========
     const genresData = [
-        { id:"genreA", nom:"Genre A", couleur:"#FFE4E1", livres:[
+        { id:"genreA", nom:"Le roman et le récit du Moyen Âge au XXIe siècle", couleur:"#FFE4E1", livres:[
             { titre:"Livre A1", image:"documents/images/livre_a1.jpg", source:"© Éditions Exemple",
               cours:[{nom:"Introduction", url:"pdf/premiere/livreA1_cours1.pdf"},{nom:"Analyse des personnages", url:"pdf/premiere/livreA1_cours2.pdf"}],
               explications:[{nom:"Explication chapitre 1", url:"pdf/premiere/livreA1_expl1.pdf"},{nom:"Scène clé", url:"pdf/premiere/livreA1_expl2.pdf"}],
@@ -170,17 +170,17 @@
               explications:[{nom:"Commentaire", url:"pdf/premiere/livreA3_commentaire.pdf"}],
               entrainements:[{nom:"Sujets blancs", url:"pdf/premiere/livreA3_blancs.pdf"}] }
         ]},
-        { id:"genreB", nom:"Genre B", couleur:"#E0FFFF", livres:[
+        { id:"genreB", nom:"La littérature d'idées du XVIe siècle au XVIIIe siècle", couleur:"#E0FFFF", livres:[
             { titre:"Livre B1", image:"documents/images/livre_b1.jpg", source:"© Éditions B", cours:[{nom:"Cours B1",url:"pdf/premiere/b1_cours.pdf"}], explications:[{nom:"Explication B1",url:"pdf/premiere/b1_expl.pdf"}], entrainements:[{nom:"Entraînement B1",url:"pdf/premiere/b1_entrain.pdf"}] },
             { titre:"Livre B2", image:"documents/images/livre_b2.jpg", source:"© Auteur", cours:[{nom:"Cours B2",url:"pdf/premiere/b2_cours.pdf"}], explications:[{nom:"Explication B2",url:"pdf/premiere/b2_expl.pdf"}], entrainements:[{nom:"Entraînement B2",url:"pdf/premiere/b2_entrain.pdf"}] },
             { titre:"Livre B3", image:"documents/images/livre_b3.jpg", source:"© ADAGP", cours:[{nom:"Cours B3",url:"pdf/premiere/b3_cours.pdf"}], explications:[{nom:"Explication B3",url:"pdf/premiere/b3_expl.pdf"}], entrainements:[{nom:"Entraînement B3",url:"pdf/premiere/b3_entrain.pdf"}] }
         ]},
-        { id:"genreC", nom:"Genre C", couleur:"#F0FFF0", livres:[
-            { titre:"Livre C1", image:"documents/images/livre_c1.jpg", source:"© Éditions C", cours:[{nom:"Cours C1",url:"pdf/premiere/c1_cours.pdf"}], explications:[{nom:"Explication C1",url:"pdf/premiere/c1_expl.pdf"}], entrainements:[{nom:"Entraînement C1",url:"pdf/premiere/c1_entrain.pdf"}] },
+        { id:"genreC", nom:"Le théâtre du XVIIe siècle au XXIe siècle", couleur:"#F0FFF0", livres:[
+            { titre:"On ne badine pas avec l'amour", image:"documents/premiere/images/Musset.jpg", source:" Éditions Folio", cours:[{nom:"S1: Parcours",url:"documents/premiere/musset/Musset-on_ne_badine_pas_avec_amour-Parcours.pdf"},{nom:"S2: Oeuvre et personnages",url:"documents/premiere/musset/Musset-on_ne_badine_pas_avec_amour-Oeuvre.pdf"},{nom:"S3: Structure",url:"documents/premiere/musset/Structure-on_ne_badine_pas_avec_l_amour.pdf"},{nom:"S4: Citations",url:"documents/premiere/musset/Cit-On_ne_badine_pas_avec_l_amour.pdf"}], explications:[{nom:"Explication de texte 1 : Acte I, scène 2",url:"documents/premiere/musset/Explication_de_texte-1-On_ne_badine_pas_avec_l_amour.pdf"},{nom:"Explication de texte 2 : Acte II, scène 1",url:"documents/premiere/musset/Explication_de_texte-2-On_ne_badine_pas_avec_l_amour.pdf"},{nom:"Explication de texte 3 : Acte II, scène 5",url:"documents/premiere/musset/Explication_de_texte-3-On_ne_badine_pas_avec_l_amour.pdf"},{nom:"Explication de texte 4 : Acte III, scène 3",url:"documents/premiere/musset/Explication_de_texte-4-On_ne_badine_pas_avec_l_amour.pdf"},{nom:"Explication de texte 5 : Acte III, scène 8",url:"documents/premiere/musset/Explication_de_texte-5-On_ne_badine_pas_avec_l_amour.pdf"}], entrainements:[{nom:"Sujets de dissertation",url:"documents/premiere/musset/Dis-On_ne_badine_pas_avec_l_amour.pdf"},{nom:"Quiz Lumni",url:"https://www.lumni.fr/quiz/on-ne-badine-pas-avec-l-amour-d-alfred-de-musset"},{nom:"Quiz Tout le bac de français.",url:"http://www.toutlebacdefrancais.com/quiz/qcm-on-ne-badine-pas-avec-l-amour-de-musset/"}] },
             { titre:"Livre C2", image:"documents/images/livre_c2.jpg", source:"© DR", cours:[{nom:"Cours C2",url:"pdf/premiere/c2_cours.pdf"}], explications:[{nom:"Explication C2",url:"pdf/premiere/c2_expl.pdf"}], entrainements:[{nom:"Entraînement C2",url:"pdf/premiere/c2_entrain.pdf"}] },
             { titre:"Livre C3", image:"documents/images/livre_c3.jpg", source:"© Musée", cours:[{nom:"Cours C3",url:"pdf/premiere/c3_cours.pdf"}], explications:[{nom:"Explication C3",url:"pdf/premiere/c3_expl.pdf"}], entrainements:[{nom:"Entraînement C3",url:"pdf/premiere/c3_entrain.pdf"}] }
         ]},
-        { id:"genreD", nom:"Genre D", couleur:"#FFFACD", livres:[
+        { id:"genreD", nom:"La poésie du XIXe siècle au XXIe siècle", couleur:"#FFFACD", livres:[
             { titre:"Livre D1", image:"documents/images/livre_d1.jpg", source:"© Éditions D", cours:[{nom:"Cours D1",url:"pdf/premiere/d1_cours.pdf"}], explications:[{nom:"Explication D1",url:"pdf/premiere/d1_expl.pdf"}], entrainements:[{nom:"Entraînement D1",url:"pdf/premiere/d1_entrain.pdf"}] },
             { titre:"Livre D2", image:"documents/images/livre_d2.jpg", source:"© Archives", cours:[{nom:"Cours D2",url:"pdf/premiere/d2_cours.pdf"}], explications:[{nom:"Explication D2",url:"pdf/premiere/d2_expl.pdf"}], entrainements:[{nom:"Entraînement D2",url:"pdf/premiere/d2_entrain.pdf"}] },
             { titre:"Livre D3", image:"documents/images/livre_d3.jpg", source:"© Source ouverte", cours:[{nom:"Cours D3",url:"pdf/premiere/d3_cours.pdf"}], explications:[{nom:"Explication D3",url:"pdf/premiere/d3_expl.pdf"}], entrainements:[{nom:"Entraînement D3",url:"pdf/premiere/d3_entrain.pdf"}] }
