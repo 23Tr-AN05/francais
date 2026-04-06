@@ -1,26 +1,6 @@
 [
-    {
-        "classe": "sixième",
-        "date": "Semaine 1",
-        "seance": "Introduction au conte",
-        "aFaire": "Lire 'Le Petit Poucet'"
-    },
-    {
-        "classe": "sixième",
-        "date": "Semaine 2",
-        "seance": "Le schéma narratif",
-        "aFaire": "Rédiger un récit court"
-    },
-    {
-        "classe": "sixième",
-        "date": "Semaine 3",
-        "seance": "Les personnages types",
-        "aFaire": "Créer une fiche personnage"
-    },
-    {
-        "classe": "cinquième",
-        "date": "Semaine 1",
-        "seance": "Le récit d'aventures",
-        "aFaire": "Lire 'L'Île au trésor' chapitre 1"
-    }
+    { "classe": "cinquième", "date": "Semaine 1", "seance": "Le récit d'aventures", "aFaire": "Lire un extrait de L'Île au trésor" },
+    { "classe": "cinquième", "date": "Semaine 2", "seance": "Le discours rapporté", "aFaire": "Exercices p.12" },
+    { "classe": "quatrième", "date": "Semaine 1", "seance": "L'argumentation", "aFaire": "Préparer un débat" },
+    { "classe": "troisième", "date": "Semaine 1", "seance": "Poésie engagée", "aFaire": "Apprendre le poème" }
 ]

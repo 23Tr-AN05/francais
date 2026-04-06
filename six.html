@@ -35,14 +35,21 @@
             font-family: inherit;
             color: #334155;
         }
-        .tab-btn i { margin-right: 8px; }
+        .tab-btn i {
+            margin-right: 8px;
+        }
         .tab-btn.active {
             background: #f97316;
             color: white;
             box-shadow: 0 4px 10px rgba(249,115,22,0.3);
         }
-        .tab-content { display: none; animation: fadeIn 0.2s; }
-        .tab-content.active { display: block; }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.2s;
+        }
+        .tab-content.active {
+            display: block;
+        }
         .planning-table {
             width: 100%;
             border-collapse: separate;
@@ -54,7 +61,10 @@
             border-radius: 1rem;
             text-align: left;
         }
-        .planning-table th { background: #eef2ff; font-weight: 700; }
+        .planning-table th {
+            background: #eef2ff;
+            font-weight: 700;
+        }
         .file-list {
             list-style: none;
             padding-left: 0;
@@ -64,7 +74,10 @@
             padding: 0.4rem 0;
             border-bottom: 1px dashed #e2e8f0;
         }
-        .file-list li i { margin-right: 10px; color: #f97316; }
+        .file-list li i {
+            margin-right: 10px;
+            color: #f97316;
+        }
         .accordion-item {
             background: white;
             border-radius: 1rem;
@@ -81,13 +94,35 @@
             justify-content: space-between;
             align-items: center;
         }
-        .accordion-header:hover { background: #fff0e0; }
-        .accordion-header i { transition: transform 0.3s; }
-        .accordion-content { display: none; padding: 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
-        .accordion-content.open { display: block; }
-        .seance-list { list-style: none; padding-left: 0; }
-        .seance-list li { margin: 0.8rem 0; padding: 0.5rem; background: #f8fafc; border-radius: 0.8rem; }
-        .seance-title { font-weight: 600; color: #1e3c72; }
+        .accordion-header:hover {
+            background: #fff0e0;
+        }
+        .accordion-header i {
+            transition: transform 0.3s;
+        }
+        .accordion-content {
+            display: none;
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
+        .accordion-content.open {
+            display: block;
+        }
+        .seance-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .seance-list li {
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: #f8fafc;
+            border-radius: 0.8rem;
+        }
+        .seance-title {
+            font-weight: 600;
+            color: #1e3c72;
+        }
         .resource-card {
             background: #fef9f0;
             border-radius: 1rem;
@@ -99,7 +134,11 @@
             from { opacity: 0; transform: translateY(8px);}
             to { opacity: 1; transform: translateY(0);}
         }
-        @media (max-width: 700px) { .cursive-title { font-size: 2rem; } }
+        @media (max-width: 700px) {
+            .cursive-title {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -109,7 +148,6 @@
         <p>Bienvenue au collège ! 📚</p>
     </div>
 
-    <!-- Barre de navigation complète avec FLE et Divers -->
     <div class="nav-bar">
         <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
         <a href="six.html" class="nav-btn"><i class="fas fa-graduation-cap"></i> Sixième</a>
@@ -134,31 +172,14 @@
                 <button class="tab-btn" data-tab="dsdm6"><i class="fas fa-file-alt"></i> DS, DM</button>
             </div>
 
-            <!-- Cahier de texte (JSON) -->
-            <div id="cahier6" class="tab-content active">
-                <div id="cahier6-container">Chargement du cahier de texte...</div>
-            </div>
-
-            <!-- Projet d'apprentissages (accordéon) -->
-            <div id="projet6" class="tab-content">
-                <div id="projets-container"></div>
-            </div>
-
-            <!-- Chantier grammatical -->
-            <div id="chantier6" class="tab-content">
-                <div class="resource-card"><h3>📘 Chantier n°1 – La phrase</h3><p>Identifier le sujet, le verbe, les compléments.</p><a href="pdf/grammaire_phrase.pdf" target="_blank">📄 Fiche</a></div>
-                <div class="resource-card"><h3>🏷️ Chantier n°2 – Classes grammaticales</h3><p>Nom, adjectif, verbe, déterminant.</p><a href="pdf/classes_grammaticales.pdf" target="_blank">📄 Exercices</a></div>
-                <div class="resource-card"><h3>⏳ Chantier n°3 – Les temps du passé</h3><p>Imparfait, passé simple, passé composé.</p><a href="pdf/temps_passe.pdf" target="_blank">📄 Tableaux</a></div>
-            </div>
-
-            <!-- JDL -->
+            <div id="cahier6" class="tab-content active"><div id="cahier6-container">Chargement du cahier de texte...</div></div>
+            <div id="projet6" class="tab-content"><div id="projets6-container"></div></div>
+            <div id="chantier6" class="tab-content"><div id="chantier6-container"></div></div>
             <div id="jdl6" class="tab-content">
-                <div class="resource-card"><h3>🎧 Dictée du mois</h3><p>Dictée préparée : "La rentrée"</p><a href="audio/dictee_rentree.mp3" target="_blank">Écouter</a></div>
-                <div class="resource-card"><h3>💡 Le mot de la semaine</h3><p><strong>Émerveiller</strong> – Éprouver un vif étonnement admiratif.</p></div>
-                <div class="resource-card"><h3>🧩 Jeux de langue</h3><p>Mots croisés, devinettes.</p><a href="pdf/jeux_langue.pdf" target="_blank">📄 Fiche</a></div>
+                <div class="resource-card"><h3>🎧 Dictée du mois : "La rentrée"</h3><a href="audio/dictee_rentree.mp3" target="_blank">Écouter la dictée</a></div>
+                <div class="resource-card"><h3>💡 Le mot de la semaine : "Émerveiller"</h3><p>Éprouver un vif étonnement admiratif. Exemple : « Le spectacle nous a émerveillés. »</p></div>
+                <div class="resource-card"><h3>🧩 Jeux de langue</h3><p>Mots croisés, devinettes et anagrammes.</p><a href="pdf/jeux_langue.pdf" target="_blank">📄 Télécharger la fiche</a></div>
             </div>
-
-            <!-- DS, DM -->
             <div id="dsdm6" class="tab-content">
                 <ul class="file-list">
                     <li><i class="fas fa-file-pdf"></i> <a href="pdf/ds1.pdf" target="_blank">DS 1 – Conte et grammaire</a></li>
@@ -172,46 +193,75 @@
 </div>
 
 <script>
-    // Charger cahier de texte depuis cahierdetexte.json
-    async function loadCahierTexte() {
-        const container = document.getElementById('cahier6-container');
-        try {
-            const response = await fetch('cahierdetexte.json');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            const entries = data.filter(entry => entry.classe === "sixième");
-            if (entries.length === 0) {
-                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
-                return;
-            }
-            let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
-            entries.forEach(entry => {
-                html += `<tr><td>${entry.date || ''}</td><td>${entry.seance || ''}</td><td>${entry.aFaire || ''}</td></tr>`;
-            });
-            html += `</tbody></table>`;
-            container.innerHTML = html;
-        } catch (error) {
-            container.innerHTML = '<p>Impossible de charger le cahier de texte.</p>';
-        }
-    }
-
-    // Projets d'apprentissages (accordéon)
+    // Données intégrées pour les projets (Sixième)
     const projetsData = [
-        { titre: "📖 Projet 1 : Écrire un conte merveilleux", seances: ["Séance 1 : Découverte des contes", "Séance 2 : Personnages types", "Séance 3 : Structure du conte", "Séance 4 : Écriture collective", "Séance 5 : Correction"] },
-        { titre: "🎭 Projet 2 : Dire une fable de La Fontaine", seances: ["Séance 1 : Lecture du Corbeau et le Renard", "Séance 2 : Comprendre la morale", "Séance 3 : Apprendre par cœur", "Séance 4 : Présentation"] },
-        { titre: "📰 Projet 3 : Journal de classe numérique", seances: ["Séance 1 : Découvrir la une", "Séance 2 : Écrire un article", "Séance 3 : Réaliser une interview", "Séance 4 : Mise en page", "Séance 5 : Publication"] }
+        {
+            "titre": "📖 Projet 1 : Écrire un conte merveilleux",
+            "seances": [
+                { "titre": "Séance 1 : Découverte des contes (lecture du Petit Poucet)", "fichiers": [{"nom": "Texte du conte", "url": "pdf/petit_poucet.pdf"}] },
+                { "titre": "Séance 2 : Les personnages types (héros, adjuvant, opposant)", "fichiers": [{"nom": "Fiche personnages", "url": "pdf/personnages_types.pdf"}] },
+                { "titre": "Séance 3 : La structure du conte (situation initiale, péripéties, morale)", "fichiers": [] },
+                { "titre": "Séance 4 : Écriture collective d’un conte en atelier", "fichiers": [] },
+                { "titre": "Séance 5 : Correction et mise en voix", "fichiers": [] }
+            ]
+        },
+        {
+            "titre": "🎭 Projet 2 : Dire une fable de La Fontaine",
+            "seances": [
+                { "titre": "Séance 1 : Lecture et analyse de 'Le Corbeau et le Renard'", "fichiers": [{"nom": "Texte de la fable", "url": "pdf/corbeau_renard.pdf"}] },
+                { "titre": "Séance 2 : Comprendre la morale et le registre satirique", "fichiers": [] },
+                { "titre": "Séance 3 : Apprendre par cœur et travailler l'intonation", "fichiers": [] },
+                { "titre": "Séance 4 : Présentation devant la classe et évaluation", "fichiers": [{"nom": "Grille d'évaluation", "url": "pdf/grille_fable.pdf"}] }
+            ]
+        },
+        {
+            "titre": "📰 Projet 3 : Journal de classe numérique",
+            "seances": [
+                { "titre": "Séance 1 : Découvrir la une d’un journal", "fichiers": [] },
+                { "titre": "Séance 2 : Écrire un article (qui, quoi, où, quand)", "fichiers": [{"nom": "Modèle d'article", "url": "pdf/modele_article.pdf"}] },
+                { "titre": "Séance 3 : Réaliser une interview", "fichiers": [] },
+                { "titre": "Séance 4 : Mise en page avec un outil numérique", "fichiers": [] },
+                { "titre": "Séance 5 : Publication du premier numéro", "fichiers": [] }
+            ]
+        }
     ];
 
-    function buildAccordionProjets() {
-        const container = document.getElementById('projets-container');
+    // Données intégrées pour les chantiers grammaticaux (Sixième)
+    const chantiersData = [
+        { "titre": "📘 Chantier n°1 – La phrase", "description": "Identifier le sujet, le verbe, les compléments.", "fichiers": [{"nom": "Fiche récapitulative", "url": "pdf/grammaire_phrase.pdf"}] },
+        { "titre": "🏷️ Chantier n°2 – Les classes grammaticales", "description": "Nom, adjectif, verbe, déterminant… Reconnaître la nature des mots.", "fichiers": [{"nom": "Exercices", "url": "pdf/classes_grammaticales.pdf"}] },
+        { "titre": "⏳ Chantier n°3 – Les temps du passé", "description": "Imparfait, passé simple, passé composé : valeurs et conjugaisons.", "fichiers": [{"nom": "Tableaux de conjugaison", "url": "pdf/temps_passe.pdf"}] }
+    ];
+
+    // Construction des projets (accordéon)
+    function buildProjets(containerId) {
+        const container = document.getElementById(containerId);
         if (!container) return;
         let html = '';
         projetsData.forEach((projet, idx) => {
-            html += `<div class="accordion-item"><div class="accordion-header" data-accordion="${idx}"><span>${projet.titre}</span><i class="fas fa-chevron-down"></i></div><div class="accordion-content" id="accordion-content-${idx}"><ul class="seance-list">`;
-            projet.seances.forEach(seance => { html += `<li><span class="seance-title">📌</span> ${seance}</li>`; });
+            html += `<div class="accordion-item">
+                        <div class="accordion-header" data-accordion="${idx}">
+                            <span>${projet.titre}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="accordion-content-${idx}">
+                            <ul class="seance-list">`;
+            projet.seances.forEach(seance => {
+                html += `<li><span class="seance-title">📌 ${seance.titre}</span>`;
+                if (seance.fichiers && seance.fichiers.length) {
+                    html += `<ul class="file-list" style="margin-top:0.5rem;">`;
+                    seance.fichiers.forEach(f => {
+                        html += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    html += `</ul>`;
+                }
+                html += `</li>`;
+            });
             html += `</ul></div></div>`;
         });
         container.innerHTML = html;
+
+        // Activer les accordéons
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -220,6 +270,59 @@
                 icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
             });
         });
+    }
+
+    // Construction des chantiers grammaticaux
+    function buildChantiers(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        chantiersData.forEach(chantier => {
+            html += `<div class="resource-card">
+                        <h3>${chantier.titre}</h3>
+                        <p>${chantier.description || ''}</p>`;
+            if (chantier.fichiers && chantier.fichiers.length) {
+                html += `<ul class="file-list">`;
+                chantier.fichiers.forEach(f => {
+                    html += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                });
+                html += `</ul>`;
+            }
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // Chargement du cahier de texte depuis cahierdetexte.json (filtre sur "sixième")
+    async function loadCahierTexte(classe, containerId) {
+        const container = document.getElementById(containerId);
+        try {
+            const response = await fetch('cahierdetexte.json');
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            const entries = data.filter(entry => entry.classe === classe);
+            if (entries.length === 0) {
+                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+                return;
+            }
+            let html = `<table class="planning-table">
+                            <thead>
+                                <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                            </thead>
+                            <tbody>`;
+            entries.forEach(entry => {
+                html += `<tr>
+                            <td>${entry.date || ''}</td>
+                            <td>${entry.seance || ''}</td>
+                            <td>${entry.aFaire || ''}</td>
+                         </tr>`;
+            });
+            html += `</tbody>
+                     </table>`;
+            container.innerHTML = html;
+        } catch (error) {
+            container.innerHTML = '<p>Impossible de charger le cahier de texte. Vérifiez le fichier cahierdetexte.json.</p>';
+        }
     }
 
     // Gestion des onglets principaux
@@ -235,9 +338,11 @@
         });
     });
 
+    // Initialisation
     window.onload = () => {
-        loadCahierTexte();
-        buildAccordionProjets();
+        loadCahierTexte('sixième', 'cahier6-container');
+        buildProjets('projets6-container');
+        buildChantiers('chantier6-container');
     };
 </script>
 </body>
