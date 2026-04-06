@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Français – Première (Bac) – Œuvres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles généraux (identiques à la version précédente) */
+        .cursive-title {
+            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+        .level-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: #334155;
+        }
+        .tab-btn i { margin-right: 8px; }
+        .tab-btn.active {
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 10px rgba(249,115,22,0.3);
+        }
+        .tab-content { display: none; animation: fadeIn 0.2s; }
+        .tab-content.active { display: block; }
+        .planning-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+        .planning-table th, .planning-table td { background: #f8fafc; padding: 0.8rem; border-radius: 1rem; text-align: left; }
+        .planning-table th { background: #eef2ff; font-weight: 700; }
+        .file-list { list-style: none; padding-left: 0; }
+        .file-list li { margin: 0.5rem 0; padding: 0.4rem 0; border-bottom: 1px dashed #e2e8f0; }
+        .file-list li i { margin-right: 10px; color: #f97316; }
+        .accordion-item { background: white; border-radius: 1rem; margin-bottom: 1rem; border: 1px solid #eef2ff; overflow: hidden; }
+        .accordion-header { background: #fef9f0; padding: 1rem; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .accordion-header:hover { background: #fff0e0; }
+        .accordion-header i { transition: transform 0.3s; }
+        .accordion-content { display: none; padding: 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
+        .accordion-content.open { display: block; }
+        .seance-list { list-style: none; padding-left: 0; }
+        .seance-list li { margin: 0.8rem 0; padding: 0.5rem; background: #f8fafc; border-radius: 0.8rem; }
+        .seance-title { font-weight: 600; color: #1e3c72; }
+        .resource-card { background: #fef9f0; border-radius: 1rem; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #f97316; }
+        .oeuvre-pdf { background: #eef2ff; border-radius: 1rem; padding: 1rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+        .oeuvre-pdf i { font-size: 2rem; color: #f97316; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+        @media (max-width: 700px) { .cursive-title { font-size: 2rem; } }
+
+        /* Styles spécifiques pour l'onglet Œuvres (accordéon horizontal) */
+        .genre-container {
+            margin-bottom: 2.5rem;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            transition: all 0.3s;
+        }
+        .genre-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 2rem;
+            display: inline-block;
+            width: 100%;
+        }
+        .books-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+        .book-card {
+            width: 180px;
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.2s;
+            background: white;
+            border-radius: 1rem;
+            padding: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .book-cover {
+            width: 140px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 0.3rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .book-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+        .image-source {
+            font-size: 0.6rem;
+            color: #aaa;
+            text-align: center;
+            margin-top: 0.2rem;
+            font-style: italic;
+        }
+        .book-detail {
+            margin-top: 1rem;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 1rem;
+            display: none;
+        }
+        .book-detail.active {
+            display: block;
+        }
+        .detail-section {
+            background: #fef9f0;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f97316;
+        }
+        .detail-section h4 {
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            background: #e2e8f0;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .back-link:hover {
+            background: #cbd5e1;
+        }
+        .chosen-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+            border-left: 4px solid #f97316;
+            padding-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="hero">
+        <h1><i class="fas fa-star-of-life"></i> Français – Première (Bac)</h1>
+        <p></p>
+    </div>
+
+    <div class="nav-bar">
+        <a href="index.html" class="nav-btn"><i class="fas fa-home"></i> Accueil</a>
+        <a href="six.html" class="nav-btn">Sixième</a>
+        <a href="cinquieme.html" class="nav-btn">Cinquième</a>
+        <a href="quatrieme.html" class="nav-btn">Quatrième</a>
+        <a href="troisieme.html" class="nav-btn">Troisième</a>
+        <a href="seconde.html" class="nav-btn">Seconde</a>
+        <a href="bac.html" class="nav-btn">Première - BAC</a>
+        <a href="fle.html" class="nav-btn"><i class="fas fa-language"></i> FLE</a>
+        <a href="divers.html" class="nav-btn"><i class="fas fa-folder-open"></i> Divers</a>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h2 class="cursive-title">Première – Baccalauréat</h2>
+
+            <div class="level-tabs">
+                <button class="tab-btn active" data-tab="cahierBac"><i class="fas fa-calendar-alt"></i> Cahier de texte</button>
+                <button class="tab-btn" data-tab="oeuvresBac"><i class="fas fa-book"></i> Œuvres</button>
+                <button class="tab-btn" data-tab="chantierBac"><i class="fas fa-tools"></i> Chantier grammatical</button>
+                <button class="tab-btn" data-tab="jdlBac"><i class="fas fa-book"></i> JDL</button>
+                <button class="tab-btn" data-tab="dsdmBac"><i class="fas fa-file-alt"></i> DS, DM</button>
+                <button class="tab-btn" data-tab="methodoBac"><i class="fas fa-chalkboard-teacher"></i> Méthodologie</button>
+                <button class="tab-btn" data-tab="boiteBac"><i class="fas fa-toolbox"></i> Boîte à outils</button>
+            </div>
+
+            <!-- Cahier de texte -->
+            <div id="cahierBac" class="tab-content active">
+                <div class="oeuvre-pdf">
+                    <i class="fas fa-book"></i>
+                    <div>
+                        <strong>📖 Œuvres au programme du Bac 2025-2026</strong><br>
+                        <a href="pdf/premiere/programme_oeuvres_bac.pdf" target="_blank">📄 Télécharger le récapitulatif (PDF)</a>
+                    </div>
+                </div>
+                <div id="cahierBac-container">Chargement du cahier de texte...</div>
+            </div>
+
+            <!-- ONGLET ŒUVRES (accordéon horizontal avec titre visible) -->
+            <div id="oeuvresBac" class="tab-content">
+                <div id="oeuvres-container"></div>
+            </div>
+
+            <!-- Chantier grammatical (accordéon) -->
+            <div id="chantierBac" class="tab-content">
+                <div id="chantierBac-container"></div>
+            </div>
+
+            <!-- JDL -->
+            <div id="jdlBac" class="tab-content">
+                <div id="jdlBac-container"></div>
+            </div>
+
+            <!-- DS/DM -->
+            <div id="dsdmBac" class="tab-content">
+                <div id="dsdmBac-container"></div>
+            </div>
+
+            <!-- Méthodologie -->
+            <div id="methodoBac" class="tab-content">
+                <div id="methodoBac-container"></div>
+            </div>
+
+            <!-- Boîte à outils -->
+            <div id="boiteBac" class="tab-content">
+                <div id="boiteBac-container"></div>
+            </div>
+        </div>
+        <footer>Première (Baccalauréat)</footer>
+    </div>
+</div>
+
+<script>
+    // ==================== DONNÉES POUR L'ONGLET ŒUVRES ====================
+    // 4 genres (nommés A, B, C, D - vous modifierez)
+    // Chaque genre contient 3 livres avec les nouveaux fichiers "precisGeneral" et "technologique"
+    const genresData = [
+        {
+            id: "genreA",
+            nom: "Genre A",
+            couleur: "#FFE4E1",
+            livres: [
+                {
+                    titre: "Livre A1",
+                    image: "documents/images/livre_a1.jpg",
+                    source: "© Éditions Exemple",
+                    precisGeneral: { nom: "Précis général - Livre A1", url: "pdf/premiere/livreA1_precis.pdf" },
+                    technologique: { nom: "Ressources technologiques - Livre A1", url: "pdf/premiere/livreA1_techno.pdf" },
+                    cours: [
+                        { nom: "Introduction au livre A1", url: "pdf/premiere/livreA1_cours1.pdf" },
+                        { nom: "Analyse des personnages", url: "pdf/premiere/livreA1_cours2.pdf" }
+                    ],
+                    explications: [
+                        { nom: "Explication 1 - Chapitre 1", url: "pdf/premiere/livreA1_expl1.pdf" },
+                        { nom: "Explication 2 - Scène clé", url: "pdf/premiere/livreA1_expl2.pdf" }
+                    ],
+                    entrainements: [
+                        { nom: "Sujet de dissertation", url: "pdf/premiere/livreA1_dissert.pdf" },
+                        { nom: "QCM de révision", url: "pdf/premiere/livreA1_qcm.pdf" }
+                    ]
+                },
+                {
+                    titre: "Livre A2",
+                    image: "documents/images/livre_a2.jpg",
+                    source: "© Domaine public",
+                    precisGeneral: { nom: "Précis général - Livre A2", url: "pdf/premiere/livreA2_precis.pdf" },
+                    technologique: { nom: "Ressources technologiques - Livre A2", url: "pdf/premiere/livreA2_techno.pdf" },
+                    cours: [{ nom: "Cours complet", url: "pdf/premiere/livreA2_cours.pdf" }],
+                    explications: [{ nom: "Explication linéaire", url: "pdf/premiere/livreA2_expl.pdf" }],
+                    entrainements: [{ nom: "Entraînement oral", url: "pdf/premiere/livreA2_oral.pdf" }]
+                },
+                {
+                    titre: "Livre A3",
+                    image: "documents/images/livre_a3.jpg",
+                    source: "© Bibliothèque nationale",
+                    precisGeneral: { nom: "Précis général - Livre A3", url: "pdf/premiere/livreA3_precis.pdf" },
+                    technologique: { nom: "Ressources technologiques - Livre A3", url: "pdf/premiere/livreA3_techno.pdf" },
+                    cours: [{ nom: "Présentation de l'œuvre", url: "pdf/premiere/livreA3_presentation.pdf" }],
+                    explications: [{ nom: "Commentaire composé", url: "pdf/premiere/livreA3_commentaire.pdf" }],
+                    entrainements: [{ nom: "Sujets blancs", url: "pdf/premiere/livreA3_blancs.pdf" }]
+                }
+            ]
+        },
+        {
+            id: "genreB",
+            nom: "Genre B",
+            couleur: "#E0FFFF",
+            livres: [
+                { titre: "Livre B1", image: "documents/images/livre_b1.jpg", source: "© Éditions B", precisGeneral: { nom: "Précis B1", url: "pdf/premiere/b1_precis.pdf" }, technologique: { nom: "Techno B1", url: "pdf/premiere/b1_techno.pdf" }, cours: [{nom:"Cours B1",url:"pdf/premiere/b1_cours.pdf"}], explications:[{nom:"Explication B1",url:"pdf/premiere/b1_expl.pdf"}], entrainements:[{nom:"Entraînement B1",url:"pdf/premiere/b1_entrain.pdf"}] },
+                { titre: "Livre B2", image: "documents/images/livre_b2.jpg", source: "© Auteur", precisGeneral: { nom: "Précis B2", url: "pdf/premiere/b2_precis.pdf" }, technologique: { nom: "Techno B2", url: "pdf/premiere/b2_techno.pdf" }, cours: [{nom:"Cours B2",url:"pdf/premiere/b2_cours.pdf"}], explications:[{nom:"Explication B2",url:"pdf/premiere/b2_expl.pdf"}], entrainements:[{nom:"Entraînement B2",url:"pdf/premiere/b2_entrain.pdf"}] },
+                { titre: "Livre B3", image: "documents/images/livre_b3.jpg", source: "© ADAGP", precisGeneral: { nom: "Précis B3", url: "pdf/premiere/b3_precis.pdf" }, technologique: { nom: "Techno B3", url: "pdf/premiere/b3_techno.pdf" }, cours: [{nom:"Cours B3",url:"pdf/premiere/b3_cours.pdf"}], explications:[{nom:"Explication B3",url:"pdf/premiere/b3_expl.pdf"}], entrainements:[{nom:"Entraînement B3",url:"pdf/premiere/b3_entrain.pdf"}] }
+            ]
+        },
+        {
+            id: "genreC",
+            nom: "Genre C",
+            couleur: "#F0FFF0",
+            livres: [
+                { titre: "Livre C1", image: "documents/images/livre_c1.jpg", source: "© Éditions C", precisGeneral: { nom: "Précis C1", url: "pdf/premiere/c1_precis.pdf" }, technologique: { nom: "Techno C1", url: "pdf/premiere/c1_techno.pdf" }, cours: [{nom:"Cours C1",url:"pdf/premiere/c1_cours.pdf"}], explications:[{nom:"Explication C1",url:"pdf/premiere/c1_expl.pdf"}], entrainements:[{nom:"Entraînement C1",url:"pdf/premiere/c1_entrain.pdf"}] },
+                { titre: "Livre C2", image: "documents/images/livre_c2.jpg", source: "© DR", precisGeneral: { nom: "Précis C2", url: "pdf/premiere/c2_precis.pdf" }, technologique: { nom: "Techno C2", url: "pdf/premiere/c2_techno.pdf" }, cours: [{nom:"Cours C2",url:"pdf/premiere/c2_cours.pdf"}], explications:[{nom:"Explication C2",url:"pdf/premiere/c2_expl.pdf"}], entrainements:[{nom:"Entraînement C2",url:"pdf/premiere/c2_entrain.pdf"}] },
+                { titre: "Livre C3", image: "documents/images/livre_c3.jpg", source: "© Musée", precisGeneral: { nom: "Précis C3", url: "pdf/premiere/c3_precis.pdf" }, technologique: { nom: "Techno C3", url: "pdf/premiere/c3_techno.pdf" }, cours: [{nom:"Cours C3",url:"pdf/premiere/c3_cours.pdf"}], explications:[{nom:"Explication C3",url:"pdf/premiere/c3_expl.pdf"}], entrainements:[{nom:"Entraînement C3",url:"pdf/premiere/c3_entrain.pdf"}] }
+            ]
+        },
+        {
+            id: "genreD",
+            nom: "Genre D",
+            couleur: "#FFFACD",
+            livres: [
+                { titre: "Livre D1", image: "documents/images/livre_d1.jpg", source: "© Éditions D", precisGeneral: { nom: "Précis D1", url: "pdf/premiere/d1_precis.pdf" }, technologique: { nom: "Techno D1", url: "pdf/premiere/d1_techno.pdf" }, cours: [{nom:"Cours D1",url:"pdf/premiere/d1_cours.pdf"}], explications:[{nom:"Explication D1",url:"pdf/premiere/d1_expl.pdf"}], entrainements:[{nom:"Entraînement D1",url:"pdf/premiere/d1_entrain.pdf"}] },
+                { titre: "Livre D2", image: "documents/images/livre_d2.jpg", source: "© Archives", precisGeneral: { nom: "Précis D2", url: "pdf/premiere/d2_precis.pdf" }, technologique: { nom: "Techno D2", url: "pdf/premiere/d2_techno.pdf" }, cours: [{nom:"Cours D2",url:"pdf/premiere/d2_cours.pdf"}], explications:[{nom:"Explication D2",url:"pdf/premiere/d2_expl.pdf"}], entrainements:[{nom:"Entraînement D2",url:"pdf/premiere/d2_entrain.pdf"}] },
+                { titre: "Livre D3", image: "documents/images/livre_d3.jpg", source: "© Source ouverte", precisGeneral: { nom: "Précis D3", url: "pdf/premiere/d3_precis.pdf" }, technologique: { nom: "Techno D3", url: "pdf/premiere/d3_techno.pdf" }, cours: [{nom:"Cours D3",url:"pdf/premiere/d3_cours.pdf"}], explications:[{nom:"Explication D3",url:"pdf/premiere/d3_expl.pdf"}], entrainements:[{nom:"Entraînement D3",url:"pdf/premiere/d3_entrain.pdf"}] }
+            ]
+        }
+    ];
+
+    // Construction de l'onglet Œuvres (accordéon horizontal avec titre du livre choisi)
+    function buildOeuvres() {
+        const container = document.getElementById('oeuvres-container');
+        if (!container) return;
+        let html = '';
+        genresData.forEach(genre => {
+            html += `<div class="genre-container" style="background-color: ${genre.couleur}20; border-radius: 1.5rem; padding: 1rem; margin-bottom: 2rem;">`;
+            html += `<div class="genre-title" style="background-color: ${genre.couleur};">${genre.nom}</div>`;
+            html += `<div id="books-grid-${genre.id}" class="books-grid">`;
+            genre.livres.forEach((livre, idx) => {
+                html += `<div class="book-card" data-livre-idx="${idx}" data-genre-id="${genre.id}">
+                            <img class="book-cover" src="${livre.image}" alt="${livre.titre}" onerror="this.src='https://placehold.co/140x200?text=Couverture'">
+                            <div class="book-title">${livre.titre}</div>
+                            <div class="image-source">${livre.source || 'Source'}</div>
+                         </div>`;
+            });
+            html += `</div>`;
+            html += `<div id="detail-${genre.id}" class="book-detail"></div>`;
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+
+        // Ajouter les écouteurs sur chaque livre
+        genresData.forEach(genre => {
+            const grid = document.getElementById(`books-grid-${genre.id}`);
+            if (!grid) return;
+            const cards = grid.querySelectorAll('.book-card');
+            cards.forEach((card, idx) => {
+                card.addEventListener('click', () => {
+                    const livre = genre.livres[idx];
+                    const detailContainer = document.getElementById(`detail-${genre.id}`);
+                    // Générer le contenu détaillé avec le titre du livre en évidence
+                    let detailHtml = `<div class="back-link" data-genre-id="${genre.id}">← Retour aux livres</div>`;
+                    detailHtml += `<div class="chosen-title">📖 ${livre.titre}</div>`;
+                    
+                    // Section Ressources générales et technologiques (les deux fichiers demandés)
+                    detailHtml += `<div class="detail-section"><h4><i class="fas fa-database"></i> Ressources générales et technologiques</h4><ul class="file-list">`;
+                    if (livre.precisGeneral) {
+                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${livre.precisGeneral.url}" target="_blank">${livre.precisGeneral.nom}</a></li>`;
+                    }
+                    if (livre.technologique) {
+                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${livre.technologique.url}" target="_blank">${livre.technologique.nom}</a></li>`;
+                    }
+                    detailHtml += `</ul></div>`;
+
+                    // Section Cours
+                    detailHtml += `<div class="detail-section"><h4><i class="fas fa-book-open"></i> Cours</h4><ul class="file-list">`;
+                    livre.cours.forEach(f => {
+                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    detailHtml += `</ul></div>`;
+
+                    // Section Explication de texte
+                    detailHtml += `<div class="detail-section"><h4><i class="fas fa-comment-dots"></i> Explication de texte</h4><ul class="file-list">`;
+                    livre.explications.forEach(f => {
+                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    detailHtml += `</ul></div>`;
+
+                    // Section S'entraîner
+                    detailHtml += `<div class="detail-section"><h4><i class="fas fa-pen-fancy"></i> S'entraîner</h4><ul class="file-list">`;
+                    livre.entrainements.forEach(f => {
+                        detailHtml += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    detailHtml += `</ul></div>`;
+
+                    detailContainer.innerHTML = detailHtml;
+                    detailContainer.classList.add('active');
+                    // Masquer la grille des livres pour ce genre
+                    grid.style.display = 'none';
+                    // Écouteur sur le bouton retour
+                    const backLink = detailContainer.querySelector('.back-link');
+                    if (backLink) {
+                        backLink.addEventListener('click', () => {
+                            grid.style.display = 'flex';
+                            detailContainer.classList.remove('active');
+                            detailContainer.innerHTML = '';
+                        });
+                    }
+                });
+            });
+        });
+    }
+
+    // ==================== AUTRES DONNÉES (inchangées) ====================
+    const chantiersData = [
+        { "titre": "✍️ Chantier n°1 – La phrase complexe", "seances": [{ "titre": "Les propositions subordonnées", "fichiers": [{"nom": "Fiche", "url": "pdf/premiere/subordonnees.pdf"}] }] },
+        { "titre": "🎨 Chantier n°2 – Les registres littéraires", "seances": [{ "titre": "Tableau récapitulatif", "fichiers": [{"nom": "PDF", "url": "pdf/premiere/registres.pdf"}] }] }
+    ];
+    const jdlData = [
+        { "titre": "🎧 Dictées", "seances": [{ "titre": "Dictée classique", "fichiers": [{"nom": "Audio", "url": "audio/premiere/dictee.mp3"}] }] }
+    ];
+    const dsdmlist = [
+        { "nom": "DS 1 – Dissertation", "url": "pdf/premiere/ds_dissertation.pdf" }
+    ];
+    const methodoData = [
+        { "titre": "📝 La dissertation", "seances": [{ "titre": "Guide", "fichiers": [{"nom": "PDF", "url": "pdf/premiere/methodo_dissertation.pdf"}] }] }
+    ];
+    const boiteData = [
+        { "titre": "📚 Figures de style", "seances": [{ "titre": "Liste", "fichiers": [{"nom": "PDF", "url": "pdf/premiere/figures_styles.pdf"}] }] }
+    ];
+
+    // Fonctions d'affichage des accordéons (inchangées)
+    function buildAccordion(containerId, data) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        data.forEach((item, idx) => {
+            html += `<div class="accordion-item">
+                        <div class="accordion-header" data-accordion="${idx}">
+                            <span>${item.titre}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="accordion-content-${idx}">
+                            <ul class="seance-list">`;
+            item.seances.forEach(seance => {
+                html += `<li><span class="seance-title">📌 ${seance.titre}</span>`;
+                if (seance.fichiers && seance.fichiers.length) {
+                    html += `<ul class="file-list" style="margin-top:0.5rem;">`;
+                    seance.fichiers.forEach(f => {
+                        let icon = 'fas fa-file-pdf';
+                        if (f.url.endsWith('.mp3')) icon = 'fas fa-headphones';
+                        else if (f.url.includes('youtube')) icon = 'fab fa-youtube';
+                        html += `<li><i class="${icon}"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    html += `</ul>`;
+                }
+                html += `</li>`;
+            });
+            html += `</ul></div></div>`;
+        });
+        container.innerHTML = html;
+        document.querySelectorAll(`#${containerId} .accordion-header`).forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                content.classList.toggle('open');
+                icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+    }
+
+    async function loadCahierTexte(classe, containerId) {
+        const container = document.getElementById(containerId);
+        try {
+            const response = await fetch('cahierdetexte.json');
+            if (!response.ok) throw new Error();
+            const data = await response.json();
+            const entries = data.filter(entry => entry.classe === classe);
+            if (entries.length === 0) {
+                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+                return;
+            }
+            let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
+            entries.forEach(entry => {
+                html += `<tr>
+                            <td>${entry.date || ''}</td>
+                            <td>${entry.seance || ''}</td>
+                            <td>${entry.aFaire || ''}</td>
+                         </tr>`;
+            });
+            html += `</tbody></td>`;
+            container.innerHTML = html;
+        } catch (error) {
+            container.innerHTML = '<p>Impossible de charger le cahier de texte.</p>';
+        }
+    }
+
+    function buildDsdmList(containerId, list) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = `<ul class="file-list">`;
+        list.forEach(item => {
+            html += `<li><i class="fas fa-file-pdf"></i> <a href="${item.url}" target="_blank">${item.nom}</a></li>`;
+        });
+        html += `</ul>`;
+        container.innerHTML = html;
+    }
+
+    // Gestion des onglets principaux
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetId = tab.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    window.onload = () => {
+        loadCahierTexte('premiere', 'cahierBac-container');
+        buildOeuvres();
+        buildAccordion('chantierBac-container', chantiersData);
+        buildAccordion('jdlBac-container', jdlData);
+        buildDsdmList('dsdmBac-container', dsdmlist);
+        buildAccordion('methodoBac-container', methodoData);
+        buildAccordion('boiteBac-container', boiteData);
+    };
+</script>
+</body>
+</html>
