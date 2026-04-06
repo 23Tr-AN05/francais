@@ -3,19 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Français – Divers</title>
+    <title>Français – Divers sur la langue française</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        .cursive-title {
+            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+        .inner-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            justify-content: center;
+        }
+        .inner-tab-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: #334155;
+        }
+        .inner-tab-btn i {
+            margin-right: 6px;
+        }
+        .inner-tab-btn.active {
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 10px rgba(249,115,22,0.3);
+        }
+        .inner-tab-content {
+            display: none;
+            animation: fadeIn 0.2s;
+        }
+        .inner-tab-content.active {
+            display: block;
+        }
         .resource-card {
             background: #fef9f0;
             border-radius: 1rem;
             padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-left: 5px solid #f97316;
-        }
-        .audio-player {
-            margin: 0.5rem 0;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f97316;
         }
         .file-list {
             list-style: none;
@@ -25,6 +65,31 @@
             margin: 0.5rem 0;
             padding: 0.4rem 0;
             border-bottom: 1px dashed #e2e8f0;
+        }
+        .file-list li i {
+            margin-right: 10px;
+            color: #f97316;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-bottom: 1rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 700px) {
+            .cursive-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -49,46 +114,96 @@
 
     <div class="content">
         <div class="card">
-            <h2 class="section-title"><i class="fas fa-lightbulb"></i> La langue française sous toutes ses facettes</h2>
-            
-            <div class="resource-card">
-                <h3><i class="fas fa-book"></i> Documents & fiches</h3>
-                <ul class="file-list">
-                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_origines_mots.pdf" target="_blank">Les origines des mots français (latin, grec, arabe...)</a></li>
-                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_expressions_idiomatiques.pdf" target="_blank">Expressions idiomatiques illustrées</a></li>
-                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_patrimoine.pdf" target="_blank">Le patrimoine linguistique francophone</a></li>
-                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_francophonie.pdf" target="_blank">Carte et chiffres de la Francophonie</a></li>
-                </ul>
+            <h2 class="cursive-title">La langue française sous toutes ses facettes</h2>
+
+            <!-- Sous-onglets internes -->
+            <div class="inner-tabs">
+                <button class="inner-tab-btn active" data-inner-tab="docs"><i class="fas fa-file-pdf"></i> Documents</button>
+                <button class="inner-tab-btn" data-inner-tab="audio"><i class="fas fa-headphones"></i> Audio</button>
+                <button class="inner-tab-btn" data-inner-tab="liens"><i class="fas fa-link"></i> Liens</button>
+                <button class="inner-tab-btn" data-inner-tab="videos"><i class="fab fa-youtube"></i> Vidéos</button>
             </div>
 
-            <div class="resource-card">
-                <h3><i class="fas fa-link"></i> Liens pour approfondir</h3>
-                <ul class="file-list">
-                    <li><i class="fas fa-link"></i> <a href="https://www.cnrtl.fr/etymologie/" target="_blank">CNRTL – Dictionnaire étymologique</a></li>
-                    <li><i class="fas fa-link"></i> <a href="https://www.jeuxdelettres.fr/" target="_blank">Jeux de lettres en ligne (Scrabble, Boggle)</a></li>
-                    <li><i class="fas fa-link"></i> <a href="https://www.francophonie.org/" target="_blank">Organisation internationale de la Francophonie</a></li>
-                    <li><i class="fas fa-link"></i> <a href="https://www.orthodidacte.com/" target="_blank">Orthodidacte – exercices d’orthographe</a></li>
-                </ul>
+            <!-- Contenu Documents -->
+            <div id="inner-docs" class="inner-tab-content active">
+                <div class="resource-card">
+                    <h3><i class="fas fa-book"></i> Fiches et documents</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_origines_mots.pdf" target="_blank">Les origines des mots français (latin, grec, arabe...)</a></li>
+                        <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_expressions_idiomatiques.pdf" target="_blank">Expressions idiomatiques illustrées</a></li>
+                        <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_patrimoine.pdf" target="_blank">Le patrimoine linguistique francophone</a></li>
+                        <li><i class="fas fa-file-pdf"></i> <a href="pdf/divers_francophonie.pdf" target="_blank">Carte et chiffres de la Francophonie</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="resource-card">
-                <h3><i class="fas fa-headphones"></i> Écouter et s’émerveiller</h3>
-                <div class="audio-player">
-                    <p><strong>🎙️ Les accents régionaux de France (Nord, Sud, Est, Ouest)</strong></p>
-                    <audio controls src="audio/accents_france.mp3">Votre navigateur ne supporte pas l'audio.</audio>
+            <!-- Contenu Audio -->
+            <div id="inner-audio" class="inner-tab-content">
+                <div class="resource-card">
+                    <h3><i class="fas fa-headphones"></i> Extraits audio</h3>
+                    <div class="audio-player" style="margin-bottom: 1rem;">
+                        <p><strong>🎙️ Les accents régionaux de France (Nord, Sud, Est, Ouest)</strong></p>
+                        <audio controls src="audio/accents_france.mp3">Votre navigateur ne supporte pas l'audio.</audio>
+                    </div>
+                    <div class="audio-player" style="margin-bottom: 1rem;">
+                        <p><strong>📜 Poème "Le cancre" de Jacques Prévert (dit par l'auteur)</strong></p>
+                        <audio controls src="audio/prevert_cancre.mp3">Votre navigateur ne supporte pas l'audio.</audio>
+                    </div>
+                    <div class="audio-player">
+                        <p><strong>🗣️ Étymologie amusante : "radis", "chou", "boulot"</strong></p>
+                        <audio controls src="audio/etymologie_amusante.mp3">Votre navigateur ne supporte pas l'audio.</audio>
+                    </div>
                 </div>
-                <div class="audio-player">
-                    <p><strong>📜 Poème "Le cancre" de Jacques Prévert (dit par l'auteur)</strong></p>
-                    <audio controls src="audio/prevert_cancre.mp3">Votre navigateur ne supporte pas l'audio.</audio>
+            </div>
+
+            <!-- Contenu Liens -->
+            <div id="inner-liens" class="inner-tab-content">
+                <div class="resource-card">
+                    <h3><i class="fas fa-link"></i> Ressources en ligne</h3>
+                    <ul class="file-list">
+                        <li><i class="fas fa-link"></i> <a href="https://www.cnrtl.fr/etymologie/" target="_blank">CNRTL – Dictionnaire étymologique</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.jeuxdelettres.fr/" target="_blank">Jeux de lettres en ligne (Scrabble, Boggle)</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.francophonie.org/" target="_blank">Organisation internationale de la Francophonie</a></li>
+                        <li><i class="fas fa-link"></i> <a href="https://www.orthodidacte.com/" target="_blank">Orthodidacte – exercices d’orthographe</a></li>
+                    </ul>
                 </div>
-                <div class="audio-player">
-                    <p><strong>🗣️ Étymologie amusante : "radis", "chou", "boulot"</strong></p>
-                    <audio controls src="audio/etymologie_amusante.mp3">Votre navigateur ne supporte pas l'audio.</audio>
+            </div>
+
+            <!-- Contenu Vidéos (YouTube intégrées) -->
+            <div id="inner-videos" class="inner-tab-content">
+                <div class="resource-card">
+                    <h3><i class="fab fa-youtube"></i> Vidéos sur la langue française</h3>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/5Lz7K9x7g0I" title="L'histoire de la langue française" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/6XqFcL5d5K8" title="Les expressions françaises expliquées" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/7q9Z5z3qY2I" title="Pourquoi le français est-il une langue difficile ?" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <p><em>Remplacez les identifiants YouTube par vos propres vidéos.</em></p>
                 </div>
             </div>
         </div>
         <footer>© 2025 - Divers sur la langue française</footer>
     </div>
 </div>
+
+<script>
+    // Gestion des sous-onglets internes
+    const innerTabs = document.querySelectorAll('.inner-tab-btn');
+    const innerContents = document.querySelectorAll('.inner-tab-content');
+
+    innerTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetId = tab.getAttribute('data-inner-tab');
+            innerTabs.forEach(t => t.classList.remove('active'));
+            innerContents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(`inner-${targetId}`).classList.add('active');
+        });
+    });
+</script>
 </body>
 </html>

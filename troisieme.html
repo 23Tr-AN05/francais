@@ -6,7 +6,140 @@
     <title>Français – Troisième</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>/* mêmes styles */</style>
+     <style>
+        .cursive-title {
+            font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
+            font-size: 2.8rem;
+            text-align: center;
+            margin: 1rem 0;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+        .level-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            color: #334155;
+        }
+        .tab-btn i {
+            margin-right: 8px;
+        }
+        .tab-btn.active {
+            background: #f97316;
+            color: white;
+            box-shadow: 0 4px 10px rgba(249,115,22,0.3);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.2s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .planning-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .planning-table th, .planning-table td {
+            background: #f8fafc;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            text-align: left;
+        }
+        .planning-table th {
+            background: #eef2ff;
+            font-weight: 700;
+        }
+        .file-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .file-list li {
+            margin: 0.5rem 0;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        .file-list li i {
+            margin-right: 10px;
+            color: #f97316;
+        }
+        .accordion-item {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #eef2ff;
+            overflow: hidden;
+        }
+        .accordion-header {
+            background: #fef9f0;
+            padding: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover {
+            background: #fff0e0;
+        }
+        .accordion-header i {
+            transition: transform 0.3s;
+        }
+        .accordion-content {
+            display: none;
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
+        .accordion-content.open {
+            display: block;
+        }
+        .seance-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .seance-list li {
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: #f8fafc;
+            border-radius: 0.8rem;
+        }
+        .seance-title {
+            font-weight: 600;
+            color: #1e3c72;
+        }
+        .resource-card {
+            background: #fef9f0;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f97316;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 700px) {
+            .cursive-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="main-container">
