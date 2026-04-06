@@ -193,7 +193,38 @@
 </div>
 
 <script>
-    // Données intégrées pour les projets (Sixième)
+    // ========== CAHIER DE TEXTE INTÉGRÉ  ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "Introduction au conte", aFaire: "Lire 'Le Petit Poucet'" },
+        { date: "Semaine 2", seance: "Le schéma narratif", aFaire: "Rédiger un récit court" },
+        { date: "Semaine 3", seance: "Les personnages types", aFaire: "Créer une fiche personnage" }
+    ];
+
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
+    // ========== DONNÉES PROJETS ==========
     const projetsData = [
         {
             "titre": "📖 Projet 1 : Écrire un conte merveilleux",
@@ -226,7 +257,7 @@
         }
     ];
 
-    // Données intégrées pour les chantiers grammaticaux (Sixième)
+    // ========== DONNÉES CHANTIERS  ==========
     const chantiersData = [
         { "titre": "📘 Chantier n°1 – La phrase", "description": "Identifier le sujet, le verbe, les compléments.", "fichiers": [{"nom": "Fiche récapitulative", "url": "pdf/grammaire_phrase.pdf"}, {"nom": "Fiche récapitulative2", "url": "pdf/grammaire_phrase2.pdf"}] },
         { "titre": "🏷️ Chantier n°2 – Les classes grammaticales", "description": "Nom, adjectif, verbe, déterminant… Reconnaître la nature des mots.", "fichiers": [{"nom": "Exercices", "url": "pdf/classes_grammaticales.pdf"}] },
@@ -293,39 +324,7 @@
         container.innerHTML = html;
     }
 
-    // Chargement du cahier de texte depuis cahierdetexte.json (filtre sur "sixième")
-    async function loadCahierTexte(classe, containerId) {
-        const container = document.getElementById(containerId);
-        try {
-            const response = await fetch('cahierdetexte.json');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            const entries = data.filter(entry => entry.classe === classe);
-            if (entries.length === 0) {
-                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
-                return;
-            }
-            let html = `<table class="planning-table">
-                            <thead>
-                                <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
-                            </thead>
-                            <tbody>`;
-            entries.forEach(entry => {
-                html += `<tr>
-                            <td>${entry.date || ''}</td>
-                            <td>${entry.seance || ''}</td>
-                            <td>${entry.aFaire || ''}</td>
-                         </tr>`;
-            });
-            html += `</tbody>
-                     </table>`;
-            container.innerHTML = html;
-        } catch (error) {
-            container.innerHTML = '<p>Impossible de charger le cahier de texte. Vérifiez le fichier cahierdetexte.json.</p>';
-        }
-    }
-
-    // Gestion des onglets principaux
+    // Gestion des onglets principaux 
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => {
@@ -340,7 +339,7 @@
 
     // Initialisation
     window.onload = () => {
-        loadCahierTexte('sixième', 'cahier6-container');
+        loadCahierTexte('cahier6-container');   // plus de paramètre classe
         buildProjets('projets6-container');
         buildChantiers('chantier6-container');
     };
