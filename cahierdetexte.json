@@ -1,7 +1,56 @@
 [
-    { "classe": "cinquième", "date": "Semaine 1", "seance": "Le récit d'aventures", "aFaire": "Lire un extrait de L'Île au trésor" },
-    { "classe": "cinquième", "date": "Semaine 2", "seance": "Le discours rapporté", "aFaire": "Exercices p.12" },
-    { "classe": "quatrième", "date": "Semaine 1", "seance": "L'argumentation", "aFaire": "Préparer un débat" },
-    { "classe": "troisième", "date": "Semaine 1", "seance": "Poésie engagée", "aFaire": "Apprendre le poème" }
-    { "classe": "seconde",   "date": "Semaine 1", "seance": "Poètes prisonniers", "aFaire": "Lire les textes en ancien français et leur traduction" }
+    {
+        "classe": "seconde",
+        "date": "Semaine 1",
+        "seance": "Introduction à la littérature du XVIIe siècle",
+        "aFaire": "Lire 'Le Cid' de Corneille (acte I)"
+    },
+    {
+        "classe": "seconde",
+        "date": "Semaine 2",
+        "seance": "Les mouvements littéraires : classicisme et baroque",
+        "aFaire": "Fiche de révision à compléter"
+    },
+    {
+        "classe": "seconde",
+        "date": "Semaine 3",
+        "seance": "Méthodologie de la dissertation",
+        "aFaire": "Analyser un sujet et proposer un plan"
+    },
+    {
+        "classe": "premiere",
+        "date": "Semaine 1",
+        "seance": "Objet d'étude : la poésie (Rimbaud, Cahier de Douai)",
+        "aFaire": "Lire les poèmes 'Le Dormeur du val' et 'Vénus Anadyomène'"
+    },
+    {
+        "classe": "premiere",
+        "date": "Semaine 2",
+        "seance": "Analyse linéaire : 'Le Dormeur du val'",
+        "aFaire": "Préparer l'explication linéaire (10 minutes)"
+    },
+    {
+        "classe": "premiere",
+        "date": "Semaine 3",
+        "seance": "La dissertation sur œuvre (Manon Lescaut)",
+        "aFaire": "Rédiger l'introduction d'une dissertation"
+    },
+    {
+        "classe": "fle",
+        "date": "Semaine 1",
+        "seance": "Se présenter : salutations et informations personnelles",
+        "aFaire": "Apprendre les formules de politesse"
+    },
+    {
+        "classe": "fle",
+        "date": "Semaine 2",
+        "seance": "Les verbes du 1er groupe au présent",
+        "aFaire": "Exercices de conjugaison (fichier PDF)"
+    },
+    {
+        "classe": "fle",
+        "date": "Semaine 3",
+        "seance": "Vocabulaire de la maison",
+        "aFaire": "Faire le schéma de sa maison avec légendes"
+    }
 ]
