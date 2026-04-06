@@ -137,13 +137,27 @@
         @media (max-width: 700px) {
             .cursive-title { font-size: 2rem; }
         }
+        .star-red {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-left: 5px;
+            text-decoration: none;
+        }
+        .star-red:hover {
+            text-decoration: underline;
+        }
+        audio {
+            border-radius: 30px;
+            width: 100%;
+            max-width: 300px;
+        }
     </style>
 </head>
 <body>
 <div class="main-container">
     <div class="hero">
         <h1><i class="fas fa-globe"></i> Français Langue Étrangère (FLE)</h1>
-        <p>Apprendre le français pas à pas </p>
+        <p>Apprendre le français pas à pas</p>
     </div>
 
     <div class="nav-bar">
@@ -170,6 +184,7 @@
                 <button class="tab-btn" data-tab="soutienFLE"><i class="fas fa-hand-holding-heart"></i> Soutien FLE</button>
                 <button class="tab-btn" data-tab="jdlFLE"><i class="fas fa-book"></i> JDL</button>
                 <button class="tab-btn" data-tab="projetnFLE"><i class="fas fa-tasks"></i> Projets</button>
+                <button class="tab-btn" data-tab="delfFLE"><i class="fas fa-certificate"></i> DELF</button>
             </div>
 
             <!-- Cahier de texte -->
@@ -177,39 +192,56 @@
                 <div id="cahierFLE-container">Chargement du cahier de texte...</div>
             </div>
 
-            <!-- Projet d'apprentissage (accordéon) -->
-            <div id="projetFLE" class="tab-content">
-                <div id="projetsFLE-container"></div>
-            </div>
-
-            <!-- Vocabulaire (accordéon) -->
-            <div id="vocabFLE" class="tab-content">
-                <div id="vocabFLE-container"></div>
-            </div>
-
-            <!-- Soutien FLE (accordéon) -->
-            <div id="soutienFLE" class="tab-content">
-                <div id="soutienFLE-container"></div>
-            </div>
-
-            <!-- JDL (accordéon) -->
-            <div id="jdlFLE" class="tab-content">
-                <div id="jdlFLE-container"></div>
-            </div>
-
-            <!-- Projetn (accordéon) -->
-            <div id="projetnFLE" class="tab-content">
-                <div id="projetnFLE-container"></div>
-            </div>
+            <!-- Projet d'apprentissage -->
+            <div id="projetFLE" class="tab-content"><div id="projetsFLE-container"></div></div>
+            <!-- Vocabulaire -->
+            <div id="vocabFLE" class="tab-content"><div id="vocabFLE-container"></div></div>
+            <!-- Soutien FLE -->
+            <div id="soutienFLE" class="tab-content"><div id="soutienFLE-container"></div></div>
+            <!-- JDL -->
+            <div id="jdlFLE" class="tab-content"><div id="jdlFLE-container"></div></div>
+            <!-- Projets complémentaires -->
+            <div id="projetnFLE" class="tab-content"><div id="projetnFLE-container"></div></div>
+            <!-- DELF -->
+            <div id="delfFLE" class="tab-content"><div id="delfFLE-container"></div></div>
         </div>
         <footer> Français Langue Étrangère</footer>
     </div>
 </div>
 
 <script>
-    // ==================== DONNÉES INTÉGRÉES ====================
+    // ========== CAHIER DE TEXTE INTÉGRÉ ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "Se présenter", aFaire: "Apprendre les salutations" },
+        { date: "Semaine 2", seance: "Les verbes du 1er groupe", aFaire: "Exercices PDF" },
+        { date: "Semaine 3", seance: "Vocabulaire de la maison", aFaire: "Schéma légendé" }
+    ];
 
-    // Projets d'apprentissage (accordéon)
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
+    // ========== DONNÉES DES AUTRES ONGLETS (inchangées) ==========
     const projetsData = [
         {
             "titre": "📖 Projet 1 : Se présenter et parler de soi",
@@ -231,7 +263,6 @@
         }
     ];
 
-    // Vocabulaire (thèmes avec listes de mots et fichiers)
     const vocabData = [
         {
             "titre": "📚 Thème 1 : Les couleurs et les formes",
@@ -258,7 +289,6 @@
         }
     ];
 
-    // Soutien FLE (exercices supplémentaires, grammaire de base, phonétique)
     const soutienData = [
         {
             "titre": "🔊 Phonétique : les sons du français",
@@ -285,7 +315,6 @@
         }
     ];
 
-    // JDL (Journée de la langue) – dictées, mots, jeux
     const jdlData = [
         {
             "titre": "🎧 Dictées FLE",
@@ -310,7 +339,6 @@
         }
     ];
 
-    // Projetn (projets complémentaires) – accordéon
     const projetnData = [
         {
             "titre": "🎬 Projetn 1 : Créer une mini-pièce de théâtre",
@@ -328,9 +356,86 @@
         }
     ];
 
-    // ==================== FONCTIONS D'AFFICHAGE ====================
+    // ========== NOUVEL ONGLET DELF ==========
+    const delfData = [
+        {
+            titre: "DELF A1 (débutant)",
+            lienOfficiel: "#",   // ← Remplace par le vrai lien vers le site officiel
+            sujets: [
+                { nom: "Sujet 1 – Se présenter", pdf: "pdf/delf/a1_sujet1.pdf", audio: "audio/delf/a1_presentation.mp3" },
+                { nom: "Sujet 2 – La vie quotidienne", pdf: "pdf/delf/a1_sujet2.pdf", audio: "audio/delf/a1_marche.mp3" }
+            ]
+        },
+        {
+            titre: "DELF A2 (intermédiaire)",
+            lienOfficiel: "#",
+            sujets: [
+                { nom: "Sujet 1 – Décrire un lieu", pdf: "pdf/delf/a2_sujet1.pdf", audio: "audio/delf/a2_ville.mp3" },
+                { nom: "Sujet 2 – Raconter une expérience", pdf: "pdf/delf/a2_sujet2.pdf", audio: "audio/delf/a2_temoignage.mp3" }
+            ]
+        },
+        {
+            titre: "DELF B1 (seuil)",
+            lienOfficiel: "#",
+            sujets: [
+                { nom: "Sujet 1 – Donner son avis", pdf: "pdf/delf/b1_sujet1.pdf", audio: "audio/delf/b1_debat.mp3" },
+                { nom: "Sujet 2 – Comprendre une interview", pdf: "pdf/delf/b1_sujet2.pdf", audio: "audio/delf/b1_interview.mp3" }
+            ]
+        },
+        {
+            titre: "DELF B2 (avancé)",
+            lienOfficiel: "#",
+            sujets: [
+                { nom: "Sujet 1 – Argumentation", pdf: "pdf/delf/b2_sujet1.pdf", audio: "audio/delf/b2_conference.mp3" },
+                { nom: "Sujet 2 – Analyse de document", pdf: "pdf/delf/b2_sujet2.pdf", audio: "audio/delf/b2_reportage.mp3" }
+            ]
+        }
+    ];
 
-    // Construire un accordéon générique
+    // Fonction d'affichage DELF (astérisque cliquable, lecteurs audio)
+    function buildDelf() {
+        const container = document.getElementById('delfFLE-container');
+        if (!container) return;
+        let html = '';
+        delfData.forEach((niveau, idx) => {
+            // Astérisque cliquable vers le site officiel
+            const etoile = (niveau.lienOfficiel && niveau.lienOfficiel !== '#')
+                ? `<a href="${niveau.lienOfficiel}" target="_blank" class="star-red" title="Voir les ressources officielles"> *</a>`
+                : `<span class="star-red" title="Lien non encore renseigné"> *</span>`;
+            html += `<div class="accordion-item">
+                        <div class="accordion-header" data-accordion="${idx}">
+                            <span>${niveau.titre}${etoile}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="accordion-content-${idx}">
+                            <ul class="seance-list">`;
+            niveau.sujets.forEach(sujet => {
+                html += `<li><span class="seance-title">📌 ${sujet.nom}</span>`;
+                if (sujet.pdf) {
+                    html += `<div style="margin-top:0.5rem;"><i class="fas fa-file-pdf"></i> <a href="${sujet.pdf}" target="_blank">Télécharger le sujet</a></div>`;
+                }
+                if (sujet.audio) {
+                    html += `<div style="margin-top:0.5rem;"><i class="fas fa-headphones"></i> Écouter l’audio :<br>
+                             <audio controls src="${sujet.audio}" style="max-width:100%; margin-top:0.3rem;"></audio></div>`;
+                }
+                html += `</li>`;
+            });
+            html += `</ul></div></div>`;
+        });
+        container.innerHTML = html;
+
+        // Activer les accordéons
+        document.querySelectorAll('#delfFLE-container .accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                content.classList.toggle('open');
+                icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+    }
+
+    // ========== FONCTION D'ACCORDÉON GÉNÉRIQUE ==========
     function buildAccordion(containerId, data) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -360,8 +465,6 @@
             html += `</ul></div></div>`;
         });
         container.innerHTML = html;
-
-        // Activer les accordéons
         document.querySelectorAll(`#${containerId} .accordion-header`).forEach(header => {
             header.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -370,38 +473,6 @@
                 icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
             });
         });
-    }
-
-    // Charger le cahier de texte depuis JSON (classe "fle")
-    async function loadCahierTexte(classe, containerId) {
-        const container = document.getElementById(containerId);
-        try {
-            const response = await fetch('cahierdetexte.json');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            const entries = data.filter(entry => entry.classe === classe);
-            if (entries.length === 0) {
-                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
-                return;
-            }
-            let html = `<table class="planning-table">
-                            <thead>
-                                <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
-                            </thead>
-                            <tbody>`;
-            entries.forEach(entry => {
-                html += `<tr>
-                            <td>${entry.date || ''}</td>
-                            <td>${entry.seance || ''}</td>
-                            <td>${entry.aFaire || ''}</td>
-                         </tr>`;
-            });
-            html += `</tbody>
-                     </table>`;
-            container.innerHTML = html;
-        } catch (error) {
-            container.innerHTML = '<p>Impossible de charger le cahier de texte. Vérifiez le fichier cahierdetexte.json (classe "fle").</p>';
-        }
     }
 
     // ==================== GESTION DES ONGLETS ====================
@@ -419,12 +490,13 @@
 
     // ==================== INITIALISATION ====================
     window.onload = () => {
-        loadCahierTexte('fle', 'cahierFLE-container');
+        loadCahierTexte('cahierFLE-container');
         buildAccordion('projetsFLE-container', projetsData);
         buildAccordion('vocabFLE-container', vocabData);
         buildAccordion('soutienFLE-container', soutienData);
         buildAccordion('jdlFLE-container', jdlData);
         buildAccordion('projetnFLE-container', projetnData);
+        buildDelf();   // Affichage de l'onglet DELF
     };
 </script>
 </body>
