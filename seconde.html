@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Français – FLE (Français Langue Étrangère)</title>
+    <title>Français – Seconde</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
@@ -130,6 +130,19 @@
             margin-bottom: 1rem;
             border-left: 4px solid #f97316;
         }
+        .oeuvre-pdf {
+            background: #eef2ff;
+            border-radius: 1rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .oeuvre-pdf i {
+            font-size: 2rem;
+            color: #f97316;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px);}
             to { opacity: 1; transform: translateY(0);}
@@ -142,8 +155,8 @@
 <body>
 <div class="main-container">
     <div class="hero">
-        <h1><i class="fas fa-globe"></i> Français Langue Étrangère (FLE)</h1>
-        <p>Apprendre le français pas à pas – ressources pour débutants et intermédiaires</p>
+        <h1><i class="fas fa-book-open"></i> Français – Seconde</h1>
+        <p>Consolide ta culture littéraire et prépare la Première ! 📖</p>
     </div>
 
     <div class="nav-bar">
@@ -160,177 +173,198 @@
 
     <div class="content">
         <div class="card">
-            <h2 class="cursive-title">Français Langue Étrangère</h2>
+            <h2 class="cursive-title">Seconde</h2>
 
-            <!-- Onglets principaux -->
             <div class="level-tabs">
-                <button class="tab-btn active" data-tab="cahierFLE"><i class="fas fa-calendar-alt"></i> Cahier de texte</button>
-                <button class="tab-btn" data-tab="projetFLE"><i class="fas fa-project-diagram"></i> Projet d'apprentissage</button>
-                <button class="tab-btn" data-tab="vocabFLE"><i class="fas fa-spell-check"></i> Vocabulaire</button>
-                <button class="tab-btn" data-tab="soutienFLE"><i class="fas fa-hand-holding-heart"></i> Soutien FLE</button>
-                <button class="tab-btn" data-tab="jdlFLE"><i class="fas fa-book"></i> JDL</button>
-                <button class="tab-btn" data-tab="projetnFLE"><i class="fas fa-tasks"></i> Projets</button>
+                <button class="tab-btn active" data-tab="cahier2"><i class="fas fa-calendar-alt"></i> Cahier de texte</button>
+                <button class="tab-btn" data-tab="projet2"><i class="fas fa-project-diagram"></i> Projet d'apprentissages</button>
+                <button class="tab-btn" data-tab="chantier2"><i class="fas fa-tools"></i> Chantier grammatical</button>
+                <button class="tab-btn" data-tab="jdl2"><i class="fas fa-book"></i> JDL</button>
+                <button class="tab-btn" data-tab="dsdm2"><i class="fas fa-file-alt"></i> DS, DM</button>
+                <button class="tab-btn" data-tab="methodo2"><i class="fas fa-chalkboard-teacher"></i> Méthodologie</button>
+                <button class="tab-btn" data-tab="boite2"><i class="fas fa-toolbox"></i> Boîte à outils</button>
             </div>
 
-            <!-- Cahier de texte -->
-            <div id="cahierFLE" class="tab-content active">
-                <div id="cahierFLE-container">Chargement du cahier de texte...</div>
+            <!-- Cahier de texte avec PDF des œuvres -->
+            <div id="cahier2" class="tab-content active">
+                <div class="oeuvre-pdf">
+                    <i class="fas fa-book"></i>
+                    <div>
+                        <strong>📖 Œuvres au programme de l'année</strong><br>
+                        <a href="pdf/2nde/programme_oeuvres.pdf" target="_blank">📄 Télécharger le récapitulatif des œuvres (PDF)</a>
+                    </div>
+                </div>
+                <div id="cahier2-container">Chargement du cahier de texte...</div>
             </div>
 
-            <!-- Projet d'apprentissage (accordéon) -->
-            <div id="projetFLE" class="tab-content">
-                <div id="projetsFLE-container"></div>
+            <!-- Projet d'apprentissages -->
+            <div id="projet2" class="tab-content">
+                <div id="projets2-container"></div>
             </div>
 
-            <!-- Vocabulaire (accordéon) -->
-            <div id="vocabFLE" class="tab-content">
-                <div id="vocabFLE-container"></div>
+            <!-- Chantier grammatical -->
+            <div id="chantier2" class="tab-content">
+                <div id="chantier2-container"></div>
             </div>
 
-            <!-- Soutien FLE (accordéon) -->
-            <div id="soutienFLE" class="tab-content">
-                <div id="soutienFLE-container"></div>
+            <!-- JDL -->
+            <div id="jdl2" class="tab-content">
+                <div id="jdl2-container"></div>
             </div>
 
-            <!-- JDL (accordéon) -->
-            <div id="jdlFLE" class="tab-content">
-                <div id="jdlFLE-container"></div>
+            <!-- DS / DM -->
+            <div id="dsdm2" class="tab-content">
+                <div id="dsdm2-container"></div>
             </div>
 
-            <!-- Projetn (accordéon) -->
-            <div id="projetnFLE" class="tab-content">
-                <div id="projetnFLE-container"></div>
+            <!-- Méthodologie (accordéon) -->
+            <div id="methodo2" class="tab-content">
+                <div id="methodo2-container"></div>
+            </div>
+
+            <!-- Boîte à outils (accordéon) -->
+            <div id="boite2" class="tab-content">
+                <div id="boite2-container"></div>
             </div>
         </div>
-        <footer> Français Langue Étrangère</footer>
+        <footer>© 2025 - Seconde</footer>
     </div>
 </div>
 
 <script>
     // ==================== DONNÉES INTÉGRÉES ====================
 
-    // Projets d'apprentissage (accordéon)
+    // Projets d'apprentissages
     const projetsData = [
         {
-            "titre": "📖 Projet 1 : Se présenter et parler de soi",
+            "titre": "📝 Projet 1 : Écrire un essai argumenté",
             "seances": [
-                { "titre": "Séance 1 : Les salutations et formules de politesse", "fichiers": [{"nom": "Fiche de vocabulaire", "url": "pdf/fle/salutations.pdf"}] },
-                { "titre": "Séance 2 : Dire son nom, son âge, sa nationalité", "fichiers": [{"nom": "Exercices", "url": "pdf/fle/se_presenter_exos.pdf"}] },
-                { "titre": "Séance 3 : Parler de ses goûts (aimer, adorer, détester)", "fichiers": [] },
-                { "titre": "Séance 4 : Jeu de rôle : rencontre entre deux personnes", "fichiers": [] }
+                { "titre": "Séance 1 : Comprendre la structure d'un essai", "fichiers": [{"nom": "Guide méthodologique", "url": "pdf/2nde/guide_essai.pdf"}] },
+                { "titre": "Séance 2 : Choisir un sujet et rassembler des arguments", "fichiers": [] },
+                { "titre": "Séance 3 : Rédiger l'introduction et la conclusion", "fichiers": [{"nom": "Exemples", "url": "pdf/2nde/intro_conclu.pdf"}] },
+                { "titre": "Séance 4 : Rédaction complète et correction", "fichiers": [] }
             ]
         },
         {
-            "titre": "🏠 Projet 2 : Décrire sa maison et son quartier",
+            "titre": "🎭 Projet 2 : Analyser une scène de théâtre classique",
             "seances": [
-                { "titre": "Séance 1 : Vocabulaire de la maison", "fichiers": [{"nom": "Planche d'images", "url": "pdf/fle/maison_vocab.pdf"}] },
-                { "titre": "Séance 2 : Les prépositions de lieu", "fichiers": [] },
-                { "titre": "Séance 3 : Écrire une description courte", "fichiers": [{"nom": "Modèle de description", "url": "pdf/fle/description_maison.pdf"}] },
-                { "titre": "Séance 4 : Présentation orale", "fichiers": [] }
+                { "titre": "Séance 1 : Lecture d'une scène (Le Cid)", "fichiers": [{"nom": "Texte", "url": "pdf/2nde/cid_scene.pdf"}] },
+                { "titre": "Séance 2 : Les enjeux dramatiques", "fichiers": [] },
+                { "titre": "Séance 3 : Mise en voix et interprétation", "fichiers": [] }
             ]
         }
     ];
 
-    // Vocabulaire (thèmes avec listes de mots et fichiers)
-    const vocabData = [
+    // Chantiers grammaticaux
+    const chantiersData = [
         {
-            "titre": "📚 Thème 1 : Les couleurs et les formes",
+            "titre": "✍️ Chantier n°1 – La cohérence textuelle",
             "seances": [
-                { "titre": "Liste de vocabulaire : couleurs de base", "fichiers": [{"nom": "Fiche récapitulative", "url": "pdf/fle/couleurs.pdf"}] },
-                { "titre": "Les formes (carré, rond, triangle...)", "fichiers": [{"nom": "Images", "url": "pdf/fle/formes.pdf"}] },
-                { "titre": "Exercices d'association", "fichiers": [] }
+                { "titre": "Connecteurs logiques", "fichiers": [{"nom": "Fiche récapitulative", "url": "pdf/2nde/connecteurs.pdf"}] },
+                { "titre": "Anaphores et substitution", "fichiers": [] },
+                { "titre": "Temps verbaux et narration", "fichiers": [] }
             ]
         },
         {
-            "titre": "🍽️ Thème 2 : La nourriture et les repas",
+            "titre": "🎨 Chantier n°2 – Les figures de style",
             "seances": [
-                { "titre": "Vocabulaire des aliments", "fichiers": [{"nom": "Liste illustrée", "url": "pdf/fle/aliments.pdf"}] },
-                { "titre": "Les verbes : manger, boire, cuisiner", "fichiers": [] },
-                { "titre": "Dialogue au restaurant", "fichiers": [{"nom": "Script du dialogue", "url": "pdf/fle/restaurant_dialogue.pdf"}] }
+                { "titre": "Métaphore, comparaison, personnification", "fichiers": [{"nom": "Liste des figures", "url": "pdf/2nde/figures_styles.pdf"}] },
+                { "titre": "Hyperbole, antiphrase, euphémisme", "fichiers": [] }
             ]
         },
         {
-            "titre": "⏰ Thème 3 : Les moments de la journée et les heures",
+            "titre": "🔍 Chantier n°3 – L'analyse du discours",
             "seances": [
-                { "titre": "Dire l'heure", "fichiers": [{"nom": "Horloge à découper", "url": "pdf/fle/heures.pdf"}] },
-                { "titre": "Routine quotidienne", "fichiers": [] }
+                { "titre": "Énonciation et registres", "fichiers": [] },
+                { "titre": "Les types de discours (narratif, descriptif, argumentatif)", "fichiers": [{"nom": "Exercices", "url": "pdf/2nde/types_discours.pdf"}] }
             ]
         }
     ];
 
-    // Soutien FLE (exercices supplémentaires, grammaire de base, phonétique)
-    const soutienData = [
-        {
-            "titre": "🔊 Phonétique : les sons du français",
-            "seances": [
-                { "titre": "Le son [u] et [y] (ou / u)", "fichiers": [{"nom": "Fiche de prononciation", "url": "pdf/fle/sons_ou_u.pdf"}, {"nom": "Audio", "url": "audio/fle/sons_ou_u.mp3"}] },
-                { "titre": "Les nasales (an, in, on, un)", "fichiers": [{"nom": "Exercices", "url": "pdf/fle/nasales.pdf"}] },
-                { "titre": "La liaison", "fichiers": [] }
-            ]
-        },
-        {
-            "titre": "✍️ Grammaire de base",
-            "seances": [
-                { "titre": "Le présent des verbes en -er", "fichiers": [{"nom": "Tableau de conjugaison", "url": "pdf/fle/present_er.pdf"}] },
-                { "titre": "Les articles définis et indéfinis", "fichiers": [] },
-                { "titre": "La négation (ne... pas)", "fichiers": [{"nom": "Exercices", "url": "pdf/fle/negation.pdf"}] }
-            ]
-        },
-        {
-            "titre": "📝 Compréhension écrite",
-            "seances": [
-                { "titre": "Lire un petit texte : 'Ma journée'", "fichiers": [{"nom": "Texte + questions", "url": "pdf/fle/lecture_journee.pdf"}] },
-                { "titre": "Comprendre une recette de cuisine", "fichiers": [] }
-            ]
-        }
-    ];
-
-    // JDL (Journée de la langue) – dictées, mots, jeux
+    // JDL
     const jdlData = [
         {
-            "titre": "🎧 Dictées FLE",
+            "titre": "🎧 Dictées préparées",
             "seances": [
-                { "titre": "Dictée 1 : Les vacances", "fichiers": [{"nom": "Audio", "url": "audio/fle/dictee_vacances.mp3"}, {"nom": "Texte", "url": "pdf/fle/dictee_vacances_texte.pdf"}] },
-                { "titre": "Dictée 2 : Au marché", "fichiers": [{"nom": "Audio", "url": "audio/fle/dictee_marche.mp3"}] }
+                { "titre": "Dictée : La littérature engagée", "fichiers": [{"nom": "Audio", "url": "audio/2nde/dictee_engagee.mp3"}, {"nom": "Texte", "url": "pdf/2nde/dictee_engagee_texte.pdf"}] },
+                { "titre": "Dictée : Le classicisme", "fichiers": [] }
             ]
         },
         {
-            "titre": "💡 Mot de la semaine",
+            "titre": "💡 Le mot de la semaine",
             "seances": [
-                { "titre": "Semaine 1 : 'Chaleureux'", "fichiers": [{"nom": "Fiche étymologique", "url": "pdf/fle/mot_chaleureux.pdf"}] },
-                { "titre": "Semaine 2 : 'Dépaysement'", "fichiers": [] }
+                { "titre": "Ambivalence", "fichiers": [{"nom": "Fiche étymologique", "url": "pdf/2nde/mot_ambivalence.pdf"}] },
+                { "titre": "Nostalgie", "fichiers": [] }
             ]
         },
         {
-            "titre": "🧩 Jeux de langue",
+            "titre": "🧩 Quiz littéraires",
             "seances": [
-                { "titre": "Mots croisés : les métiers", "fichiers": [{"nom": "Grille", "url": "pdf/fle/mots_croises_metiers.pdf"}] },
-                { "titre": "Devinettes phonétiques", "fichiers": [] }
+                { "titre": "Mouvements littéraires", "fichiers": [{"nom": "Quiz PDF", "url": "pdf/2nde/quiz_mouvements.pdf"}] },
+                { "titre": "Auteurs du XVIIe siècle", "fichiers": [] }
             ]
         }
     ];
 
-    // Projetn (projets complémentaires) – accordéon
-    const projetnData = [
+    // DS / DM
+    const dsdmlist = [
+        { "nom": "DS 1 – Commentaire composé", "url": "pdf/2nde/ds_commentaire.pdf" },
+        { "nom": "DM 1 – Dissertation sur l'argumentation", "url": "pdf/2nde/dm_dissertation.pdf" },
+        { "nom": "DS 2 – Analyse grammaticale", "url": "pdf/2nde/ds_grammaire.pdf" }
+    ];
+
+    // Méthodologie (conseils, guides)
+    const methodoData = [
         {
-            "titre": "🎬 Projetn 1 : Créer une mini-pièce de théâtre",
+            "titre": "📝 Méthodologie de la dissertation",
             "seances": [
-                { "titre": "Séance 1 : Écrire un dialogue simple", "fichiers": [{"nom": "Guide d'écriture", "url": "pdf/fle/guide_dialogue.pdf"}] },
-                { "titre": "Séance 2 : Jouer la scène", "fichiers": [] }
+                { "titre": "Analyser le sujet", "fichiers": [{"nom": "Guide", "url": "pdf/2nde/methodo_dissertation.pdf"}] },
+                { "titre": "Construire un plan", "fichiers": [] },
+                { "titre": "Rédiger l'introduction et la conclusion", "fichiers": [] }
             ]
         },
         {
-            "titre": "📷 Projetn 2 : Réaliser un reportage photo sur son quartier",
+            "titre": "🔍 Méthodologie du commentaire composé",
             "seances": [
-                { "titre": "Séance 1 : Prendre des photos et légender", "fichiers": [] },
-                { "titre": "Séance 2 : Présentation orale", "fichiers": [{"nom": "Exemple", "url": "pdf/fle/reportage_exemple.pdf"}] }
+                { "titre": "Lire et dégager une problématique", "fichiers": [] },
+                { "titre": "Rédiger un paragraphe argumenté", "fichiers": [{"nom": "Exemple", "url": "pdf/2nde/methodo_commentaire.pdf"}] }
+            ]
+        },
+        {
+            "titre": "🎤 L'oral du bac (préparation en Seconde)",
+            "seances": [
+                { "titre": "Préparer une explication linéaire", "fichiers": [] },
+                { "titre": "Gérer son stress", "fichiers": [] }
+            ]
+        }
+    ];
+
+    // Boîte à outils (ressources transversales)
+    const boiteData = [
+        {
+            "titre": "📚 Figures de style",
+            "seances": [
+                { "titre": "Fiche récapitulative", "fichiers": [{"nom": "PDF", "url": "pdf/2nde/figures_styles.pdf"}] },
+                { "titre": "Exercices", "fichiers": [] }
+            ]
+        },
+        {
+            "titre": "🌍 Contexte culturel (histoire littéraire)",
+            "seances": [
+                { "titre": "Mouvements littéraires", "fichiers": [{"nom": "Frise chronologique", "url": "pdf/2nde/frise_litteraire.pdf"}] },
+                { "titre": "Auteurs incontournables", "fichiers": [] }
+            ]
+        },
+        {
+            "titre": "📖 Lexique grammatical",
+            "seances": [
+                { "titre": "Les termes essentiels", "fichiers": [{"nom": "Glossaire", "url": "pdf/2nde/glossaire_grammaire.pdf"}] }
             ]
         }
     ];
 
     // ==================== FONCTIONS D'AFFICHAGE ====================
 
-    // Construire un accordéon générique
     function buildAccordion(containerId, data) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -361,7 +395,6 @@
         });
         container.innerHTML = html;
 
-        // Activer les accordéons
         document.querySelectorAll(`#${containerId} .accordion-header`).forEach(header => {
             header.addEventListener('click', function() {
                 const content = this.nextElementSibling;
@@ -372,7 +405,6 @@
         });
     }
 
-    // Charger le cahier de texte depuis JSON (classe "fle")
     async function loadCahierTexte(classe, containerId) {
         const container = document.getElementById(containerId);
         try {
@@ -400,8 +432,19 @@
                      </table>`;
             container.innerHTML = html;
         } catch (error) {
-            container.innerHTML = '<p>Impossible de charger le cahier de texte. Vérifiez le fichier cahierdetexte.json (classe "fle").</p>';
+            container.innerHTML = '<p>Impossible de charger le cahier de texte. Vérifiez le fichier cahierdetexte.json (classe "seconde").</p>';
         }
+    }
+
+    function buildDsdmList(containerId, list) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = `<ul class="file-list">`;
+        list.forEach(item => {
+            html += `<li><i class="fas fa-file-pdf"></i> <a href="${item.url}" target="_blank">${item.nom}</a></li>`;
+        });
+        html += `</ul>`;
+        container.innerHTML = html;
     }
 
     // ==================== GESTION DES ONGLETS ====================
@@ -419,12 +462,13 @@
 
     // ==================== INITIALISATION ====================
     window.onload = () => {
-        loadCahierTexte('fle', 'cahierFLE-container');
-        buildAccordion('projetsFLE-container', projetsData);
-        buildAccordion('vocabFLE-container', vocabData);
-        buildAccordion('soutienFLE-container', soutienData);
-        buildAccordion('jdlFLE-container', jdlData);
-        buildAccordion('projetnFLE-container', projetnData);
+        loadCahierTexte('seconde', 'cahier2-container');
+        buildAccordion('projets2-container', projetsData);
+        buildAccordion('chantier2-container', chantiersData);
+        buildAccordion('jdl2-container', jdlData);
+        buildDsdmList('dsdm2-container', dsdmlist);
+        buildAccordion('methodo2-container', methodoData);
+        buildAccordion('boite2-container', boiteData);
     };
 </script>
 </body>
