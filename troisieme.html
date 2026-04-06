@@ -6,7 +6,7 @@
     <title>Français – Troisième</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-     <style>
+    <style>
         .cursive-title {
             font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
             font-size: 2.8rem;
@@ -174,8 +174,17 @@
             <div id="cahier3" class="tab-content active"><div id="cahier3-container">Chargement...</div></div>
             <div id="projet3" class="tab-content"><div id="projets3-container"></div></div>
             <div id="chantier3" class="tab-content"><div id="chantier3-container"></div></div>
-            <div id="jdl3" class="tab-content"><!-- contenu similaire --></div>
-            <div id="dsdm3" class="tab-content"><!-- ... --></div>
+            <div id="jdl3" class="tab-content">
+                <div class="resource-card"><h3>🎧 Dictée Brevet : "L'appel du 18 Juin"</h3><a href="audio/dictee_appel.mp3">Écouter</a></div>
+                <div class="resource-card"><h3>💡 Mot de la semaine : "Résilience"</h3></div>
+                <div class="resource-card"><h3>🧩 Quiz : Figures de style</h3><a href="pdf/quiz_figures.pdf">Télécharger</a></div>
+            </div>
+            <div id="dsdm3" class="tab-content">
+                <ul class="file-list">
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/3e_ds_poesie.pdf">DS – Poésie engagée</a></li>
+                    <li><i class="fas fa-file-pdf"></i> <a href="pdf/3e_dm_brevet_blanc.pdf">DM – Brevet blanc n°1</a></li>
+                </ul>
+            </div>
             <div id="brevet3" class="tab-content"><div id="brevet3-container"></div></div>
         </div>
         <footer> Troisième</footer>
@@ -183,7 +192,38 @@
 </div>
 
 <script>
-    // Données Troisième
+    // ========== CAHIER DE TEXTE INTÉGRÉ ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "Poésie engagée", aFaire: "Apprendre un poème d'Eluard" },
+        { date: "Semaine 2", seance: "Préparation Brevet", aFaire: "Sujet blanc n°1" },
+        { date: "Semaine 3", seance: "Le texte théâtral", aFaire: "Lire une scène de Cyrano" }
+    ];
+
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
+    // ========== PROJETS (accordéon) ==========
     const projetsData = [
         {
             "titre": "📝 Projet 1 : Préparer l'oral du Brevet",
@@ -205,12 +245,72 @@
         }
     ];
 
+    function buildProjets(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        projetsData.forEach((projet, idx) => {
+            html += `<div class="accordion-item">
+                        <div class="accordion-header" data-accordion="${idx}">
+                            <span>${projet.titre}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="accordion-content-${idx}">
+                            <ul class="seance-list">`;
+            projet.seances.forEach(seance => {
+                html += `<li><span class="seance-title">📌 ${seance.titre}</span>`;
+                if (seance.fichiers && seance.fichiers.length) {
+                    html += `<ul class="file-list" style="margin-top:0.5rem;">`;
+                    seance.fichiers.forEach(f => {
+                        html += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    html += `</ul>`;
+                }
+                html += `</li>`;
+            });
+            html += `</ul></div></div>`;
+        });
+        container.innerHTML = html;
+
+        // Activer les accordéons
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                content.classList.toggle('open');
+                icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+    }
+
+    // ========== CHANTIERS GRAMMATICAUX (accordéon) ==========
     const chantiersData = [
         { "titre": "📖 Chantier n°1 – La poésie engagée", "description": "Analyse de poèmes engagés (Aragon, Eluard).", "fichiers": [{"nom": "Anthologie", "url": "pdf/3e_poesie_engagee.pdf"}] },
         { "titre": "🎭 Chantier n°2 – Le texte théâtral", "description": "Didascalies, tirade, sous-texte.", "fichiers": [{"nom": "Méthode", "url": "pdf/3e_analyse_theatre.pdf"}] },
         { "titre": "✍️ Chantier n°3 – La contraction de texte", "description": "Méthodologie pour l'épreuve écrite.", "fichiers": [{"nom": "Fiche pratique", "url": "pdf/3e_contraction.pdf"}] }
     ];
 
+    function buildChantiers(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        chantiersData.forEach(chantier => {
+            html += `<div class="resource-card">
+                        <h3>${chantier.titre}</h3>
+                        <p>${chantier.description || ''}</p>`;
+            if (chantier.fichiers && chantier.fichiers.length) {
+                html += `<ul class="file-list">`;
+                chantier.fichiers.forEach(f => {
+                    html += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                });
+                html += `</ul>`;
+            }
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // ========== BREVET ==========
     const brevetData = {
         "annales": [
             { "nom": "Brevet 2024 – sujet et corrigé", "url": "pdf/brevet_2024_francais.pdf" },
@@ -224,7 +324,6 @@
         ]
     };
 
-    // Fonctions d'affichage (buildProjets, buildChantiers, loadCahierTexte, buildBrevet)
     function buildBrevet(containerId) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -247,10 +346,22 @@
         container.innerHTML = html || '<p>Aucune ressource Brevet pour le moment.</p>';
     }
 
-    // Gestion des onglets identique
-    // ...
+    // ========== GESTION DES ONGLETS PRINCIPAUX ==========
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetId = tab.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    // ========== INITIALISATION ==========
     window.onload = () => {
-        loadCahierTexte('troisième', 'cahier3-container');
+        loadCahierTexte('cahier3-container');
         buildProjets('projets3-container');
         buildChantiers('chantier3-container');
         buildBrevet('brevet3-container');

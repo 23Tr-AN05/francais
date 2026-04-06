@@ -6,7 +6,7 @@
     <title>Français – Quatrième</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-     <style>
+    <style>
         .cursive-title {
             font-family: 'Segoe UI', 'Brush Script MT', cursive, sans-serif;
             font-size: 2.8rem;
@@ -190,7 +190,38 @@
 </div>
 
 <script>
-    // Données intégrées pour la Quatrième
+    // ========== CAHIER DE TEXTE INTÉGRÉ ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "L'argumentation", aFaire: "Préparer un débat" },
+        { date: "Semaine 2", seance: "Le théâtre classique", aFaire: "Lire une scène de comédie" },
+        { date: "Semaine 3", seance: "La phrase complexe", aFaire: "Exercices sur les subordonnées" }
+    ];
+
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
+    // ========== PROJETS ==========
     const projetsData = [
         {
             "titre": "🎭 Projet 1 : Jouer une scène de comédie",
@@ -213,22 +244,89 @@
         }
     ];
 
+    // ========== CHANTIERS GRAMMATICAUX ==========
     const chantiersData = [
         { "titre": "🗣️ Chantier n°1 – L'argumentation", "description": "Thèse, antithèse, exemples.", "fichiers": [{"nom": "Fiche méthode", "url": "pdf/4e_argumentation.pdf"}] },
         { "titre": "🎭 Chantier n°2 – Le théâtre classique", "description": "Règle des trois unités, comédie et tragédie.", "fichiers": [{"nom": "Cours", "url": "pdf/4e_theatre.pdf"}] },
         { "titre": "✍️ Chantier n°3 – La phrase complexe", "description": "Propositions subordonnées.", "fichiers": [{"nom": "Exercices", "url": "pdf/4e_subordonnees.pdf"}] }
     ];
 
-    // Fonctions identiques à celles de cinquième (buildProjets, buildChantiers, loadCahierTexte)
-    function buildProjets(containerId) { /* même code */ }
-    function buildChantiers(containerId) { /* même code */ }
-    async function loadCahierTexte(classe, containerId) { /* même code */ }
+    // Construction des projets (accordéon)
+    function buildProjets(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        projetsData.forEach((projet, idx) => {
+            html += `<div class="accordion-item">
+                        <div class="accordion-header" data-accordion="${idx}">
+                            <span>${projet.titre}</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-content" id="accordion-content-${idx}">
+                            <ul class="seance-list">`;
+            projet.seances.forEach(seance => {
+                html += `<li><span class="seance-title">📌 ${seance.titre}</span>`;
+                if (seance.fichiers && seance.fichiers.length) {
+                    html += `<ul class="file-list" style="margin-top:0.5rem;">`;
+                    seance.fichiers.forEach(f => {
+                        html += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                    });
+                    html += `</ul>`;
+                }
+                html += `</li>`;
+            });
+            html += `</ul></div></div>`;
+        });
+        container.innerHTML = html;
 
-    // Gestion des onglets (identique)
-    // ...
+        // Activer les accordéons
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                content.classList.toggle('open');
+                icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        });
+    }
 
+    // Construction des chantiers grammaticaux
+    function buildChantiers(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        let html = '';
+        chantiersData.forEach(chantier => {
+            html += `<div class="resource-card">
+                        <h3>${chantier.titre}</h3>
+                        <p>${chantier.description || ''}</p>`;
+            if (chantier.fichiers && chantier.fichiers.length) {
+                html += `<ul class="file-list">`;
+                chantier.fichiers.forEach(f => {
+                    html += `<li><i class="fas fa-file-pdf"></i> <a href="${f.url}" target="_blank">${f.nom}</a></li>`;
+                });
+                html += `</ul>`;
+            }
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    // Gestion des onglets principaux
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetId = tab.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+
+    // Initialisation
     window.onload = () => {
-        loadCahierTexte('quatrième', 'cahier4-container');
+        loadCahierTexte('cahier4-container');   // appel sans paramètre classe
         buildProjets('projets4-container');
         buildChantiers('chantier4-container');
     };

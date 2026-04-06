@@ -86,6 +86,37 @@
 </div>
 
 <script>
+    // ========== CAHIER DE TEXTE INTÉGRÉ (plus de fetch) ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "Le récit d'aventures", aFaire: "Lire un extrait de L'Île au trésor" },
+        { date: "Semaine 2", seance: "Le discours rapporté", aFaire: "Exercices p.12" },
+        { date: "Semaine 3", seance: "La comparaison et la métaphore", aFaire: "Préparer une fiche" }
+    ];
+
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
     // Données intégrées pour les projets
     const projetsData = [
         {
@@ -113,7 +144,7 @@
         { "titre": "🔍 Chantier n°3 – La comparaison et la métaphore", "description": "Reconnaître et utiliser les figures de style.", "fichiers": [{"nom": "Fiche méthode", "url": "pdf/5e_figures.pdf"}] }
     ];
 
-    // Fonctions d'affichage
+    // Fonctions d'affichage (inchangées)
     function buildProjets(containerId) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -159,22 +190,7 @@
         container.innerHTML = html;
     }
 
-    async function loadCahierTexte(classe, containerId) {
-        const container = document.getElementById(containerId);
-        try {
-            const response = await fetch('cahierdetexte.json');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            const entries = data.filter(entry => entry.classe === classe);
-            if (entries.length === 0) { container.innerHTML = '<p>Aucune entrée pour le moment.</p>'; return; }
-            let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
-            entries.forEach(entry => { html += `<tr><td>${entry.date || ''}</td><td>${entry.seance || ''}</td><td>${entry.aFaire || ''}</td></tr>`; });
-            html += `</tbody></table>`;
-            container.innerHTML = html;
-        } catch { container.innerHTML = '<p>Impossible de charger le cahier de texte.</p>'; }
-    }
-
-    // Gestion des onglets
+    // Gestion des onglets (inchangée)
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => {
@@ -187,8 +203,9 @@
         });
     });
 
+    // Initialisation
     window.onload = () => {
-        loadCahierTexte('cinquième', 'cahier5-container');
+        loadCahierTexte('cahier5-container');   // plus de paramètre classe
         buildProjets('projets5-container');
         buildChantiers('chantier5-container');
     };
