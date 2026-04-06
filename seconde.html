@@ -232,7 +232,38 @@
 </div>
 
 <script>
-    // ==================== DONNÉES INTÉGRÉES ====================
+    // ========== CAHIER DE TEXTE INTÉGRÉ (plus de fetch) ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "Introduction XVIIe siècle", aFaire: "Lire 'Le Cid' (acte I)" },
+        { date: "Semaine 2", seance: "Mouvements littéraires", aFaire: "Fiche de révision" },
+        { date: "Semaine 3", seance: "Méthodologie de la dissertation", aFaire: "Analyser un sujet" }
+    ];
+
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
+    // ==================== DONNÉES INTÉGRÉES (projets, chantiers, etc.) ====================
 
     // Projets d'apprentissages
     const projetsData = [
@@ -313,7 +344,7 @@
         { "nom": "DS 2 – Analyse grammaticale", "url": "pdf/2nde/ds_grammaire.pdf" }
     ];
 
-    // Méthodologie (conseils, guides)
+    // Méthodologie
     const methodoData = [
         {
             "titre": "📝 Méthodologie de la dissertation",
@@ -339,7 +370,7 @@
         }
     ];
 
-    // Boîte à outils (ressources transversales)
+    // Boîte à outils
     const boiteData = [
         {
             "titre": "📚 Figures de style",
@@ -405,37 +436,6 @@
         });
     }
 
-    async function loadCahierTexte(classe, containerId) {
-        const container = document.getElementById(containerId);
-        try {
-            const response = await fetch('cahierdetexte.json');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            const entries = data.filter(entry => entry.classe === classe);
-            if (entries.length === 0) {
-                container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
-                return;
-            }
-            let html = `<table class="planning-table">
-                            <thead>
-                                <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
-                            </thead>
-                            <tbody>`;
-            entries.forEach(entry => {
-                html += `<tr>
-                            <td>${entry.date || ''}</td>
-                            <td>${entry.seance || ''}</td>
-                            <td>${entry.aFaire || ''}</td>
-                         </tr>`;
-            });
-            html += `</tbody>
-                     </table>`;
-            container.innerHTML = html;
-        } catch (error) {
-            container.innerHTML = '<p>Impossible de charger le cahier de texte. Vérifiez le fichier cahierdetexte.json (classe "seconde").</p>';
-        }
-    }
-
     function buildDsdmList(containerId, list) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -462,7 +462,7 @@
 
     // ==================== INITIALISATION ====================
     window.onload = () => {
-        loadCahierTexte('seconde', 'cahier2-container');
+        loadCahierTexte('cahier2-container');   // plus de paramètre classe
         buildAccordion('projets2-container', projetsData);
         buildAccordion('chantier2-container', chantiersData);
         buildAccordion('jdl2-container', jdlData);

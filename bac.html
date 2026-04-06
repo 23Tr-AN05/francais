@@ -58,7 +58,7 @@
 <div class="main-container">
     <div class="hero">
         <h1><i class="fas fa-star-of-life"></i> Français – Première (Bac)</h1>
-        <p>Réussis ton baccalauréat ! 🎓</p>
+        <p>Passe ton Bach d'abord ! 🎓</p>
     </div>
 
     <div class="nav-bar">
@@ -123,6 +123,37 @@
 </div>
 
 <script>
+    // ========== CAHIER DE TEXTE INTÉGRÉ (plus de fetch) ==========
+    const cahierTexteData = [
+        { date: "Semaine 1", seance: "Rimbaud - Cahier de Douai", aFaire: "Lire 'Le Dormeur du val'" },
+        { date: "Semaine 2", seance: "Analyse linéaire", aFaire: "Préparer l'explication" },
+        { date: "Semaine 3", seance: "Manon Lescaut", aFaire: "Dissertation sur le personnage" }
+    ];
+
+    function loadCahierTexte(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        if (cahierTexteData.length === 0) {
+            container.innerHTML = '<p>Aucune entrée pour le moment.</p>';
+            return;
+        }
+        let html = `<table class="planning-table">
+                        <thead>
+                            <tr><th>Date</th><th>Séance</th><th>À faire</th></tr>
+                        </thead>
+                        <tbody>`;
+        cahierTexteData.forEach(entry => {
+            html += `<tr>
+                        <td>${entry.date || ''}</td>
+                        <td>${entry.seance || ''}</td>
+                        <td>${entry.aFaire || ''}</td>
+                     </tr>`;
+        });
+        html += `</tbody>
+                 </table>`;
+        container.innerHTML = html;
+    }
+
     // ========== 1. ONGLET ŒUVRES (données + construction) ==========
     const genresData = [
         { id:"genreA", nom:"Genre A", couleur:"#FFE4E1", livres:[
@@ -304,22 +335,6 @@
         `;
     }
 
-    // ========== 5. CAHIER DE TEXTE (JSON) ==========
-    async function loadCahierTexte(classe, containerId) {
-        const container = document.getElementById(containerId);
-        try {
-            const response = await fetch('cahierdetexte.json');
-            if (!response.ok) throw new Error();
-            const data = await response.json();
-            const entries = data.filter(entry => entry.classe === classe);
-            if (entries.length === 0) { container.innerHTML = '<p>Aucune entrée pour le moment.</p>'; return; }
-            let html = `<table class="planning-table"><thead><tr><th>Date</th><th>Séance</th><th>À faire</th></tr></thead><tbody>`;
-            entries.forEach(entry => { html += `<tr><td>${entry.date||''}</td><td>${entry.seance||''}</td><td>${entry.aFaire||''}</td></tr>`; });
-            html += `</tbody></table>`;
-            container.innerHTML = html;
-        } catch { container.innerHTML = '<p>Erreur chargement cahier de texte.</p>'; }
-    }
-
     function buildDsdmList(containerId, list) {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -330,7 +345,7 @@
     }
     const dsdmlist = [{ nom:"DS 1 – Dissertation", url:"pdf/premiere/ds_dissertation.pdf" }];
 
-    // ========== 6. GESTION DES ONGLETS PRINCIPAUX ==========
+    // ========== 5. GESTION DES ONGLETS PRINCIPAUX ==========
     const tabs = document.querySelectorAll('.tab-btn');
     const contents = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => {
@@ -343,9 +358,9 @@
         });
     });
 
-    // ========== 7. INITIALISATION ==========
+    // ========== 6. INITIALISATION ==========
     window.onload = () => {
-        loadCahierTexte('premiere', 'cahierBac-container');
+        loadCahierTexte('cahierBac-container');
         buildOeuvres();
         buildAccordion('chantierBac-container', chantiersData);
         buildJDLSimple();
